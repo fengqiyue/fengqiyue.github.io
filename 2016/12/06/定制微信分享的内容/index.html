@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="前端," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="微信分享的内容，从视觉上看有三个部分：标题、描述、图片。如果不使用微信的 jssdk 进行订制的话，微信会截取一张大概 300*300 并且距离&amp;lt;body&amp;gt; 标签最近的一张图片作为需要的图片；标题会选取&amp;lt;title&amp;gt;&amp;lt;/title&amp;gt;中的内容；描述则会是该页面的 URL。 1声明：2017年3月29日，微信宣布未接入 JSSDK 的网站将统一显示默认缩略图 所以在">
+<meta name="keywords" content="前端">
+<meta property="og:type" content="article">
+<meta property="og:title" content="定制微信分享的内容">
+<meta property="og:url" content="http://cheri.love/2016/12/06/定制微信分享的内容/index.html">
+<meta property="og:site_name" content="枫祺玥的小客栈">
+<meta property="og:description" content="微信分享的内容，从视觉上看有三个部分：标题、描述、图片。如果不使用微信的 jssdk 进行订制的话，微信会截取一张大概 300*300 并且距离&amp;lt;body&amp;gt; 标签最近的一张图片作为需要的图片；标题会选取&amp;lt;title&amp;gt;&amp;lt;/title&amp;gt;中的内容；描述则会是该页面的 URL。 1声明：2017年3月29日，微信宣布未接入 JSSDK 的网站将统一显示默认缩略图 所以在">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-06-05T06:35:10.879Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="定制微信分享的内容">
+<meta name="twitter:description" content="微信分享的内容，从视觉上看有三个部分：标题、描述、图片。如果不使用微信的 jssdk 进行订制的话，微信会截取一张大概 300*300 并且距离&amp;lt;body&amp;gt; 标签最近的一张图片作为需要的图片；标题会选取&amp;lt;title&amp;gt;&amp;lt;/title&amp;gt;中的内容；描述则会是该页面的 URL。 1声明：2017年3月29日，微信宣布未接入 JSSDK 的网站将统一显示默认缩略图 所以在">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://cheri.love/2016/12/06/定制微信分享的内容/"/>
+
+
+
+
+
+  <title>定制微信分享的内容 | 枫祺玥的小客栈</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">枫祺玥的小客栈</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://cheri.love/2016/12/06/定制微信分享的内容/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="fengqiyue.cheri">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="枫祺玥的小客栈">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">定制微信分享的内容</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-12-06T16:37:00+08:00">
+                2016-12-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/技术/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>微信分享的内容，从视觉上看有三个部分：标题、描述、图片。<br>如果不使用微信的 jssdk 进行订制的话，微信会截取一张大概 300*300 并且距离<code>&lt;body&gt;</code> 标签最近的一张图片作为需要的图片；标题会选取<code>&lt;title&gt;&lt;/title&gt;</code>中的内容；描述则会是该页面的 URL。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">声明：2017年3月29日，微信宣布未接入 JSSDK 的网站将统一显示默认缩略图</span><br></pre></td></tr></table></figure>
+<p>所以在某些时候，订制内容是极为必要的。<br>需要做的事情也很简单<br>首先需要和微信服务器交互以获得以下字段，这些字段通常由服务端获取并传递给前端：<br><code>appId</code> 公众号的唯一标识<br><code>timestamp</code>生成签名的时间戳<br><code>nonceStr</code>生成签名的随机串<br><code>signature</code>签名（获取签名比获取其他字段稍微麻烦一点）</p>
+<p>获取了之后，在你的<script></script>标签中写如下的代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">wx.config(&#123;</span><br><span class="line">               debug: true, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。</span><br><span class="line">               appId: yourAppId, // 必填，公众号的唯一标识</span><br><span class="line">               timestamp: yourtimestamp, // 必填，生成签名的时间戳</span><br><span class="line">               nonceStr: yournonceStr, // 必填，生成签名的随机串</span><br><span class="line">               signature: yoursignature,// 必填，签名</span><br><span class="line">               jsApiList: [</span><br><span class="line">                   &apos;checkJsApi&apos;,</span><br><span class="line">                   &apos;onMenuShareTimeline&apos;,</span><br><span class="line">                   &apos;onMenuShareAppMessage&apos;,</span><br><span class="line">                   &apos;onMenuShareQQ&apos;,</span><br><span class="line">                   &apos;onMenuShareWeibo&apos;</span><br><span class="line">               ] // 必填，需要使用的JS接口列表(此处接入了四个用于分享的接口)，所有JS接口列表见官方文档</span><br><span class="line">           &#125;);</span><br><span class="line">           </span><br><span class="line">           window.share_config = &#123;</span><br><span class="line">               &quot;share&quot;: &#123;</span><br><span class="line">                   &quot;title&quot; : &apos;&apos;,//分享卡片标题</span><br><span class="line">                   &quot;desc&quot; : &quot; &quot;,//摘要,只有发给朋友才显示摘要。</span><br><span class="line">                   &quot;imgUrl&quot;: &apos;&apos;,//分享图，默认当相对路径处理，所以使用绝对路径的的话，“http://”协议前缀必须在。</span><br><span class="line">                   &quot;link&quot;: window.location.href,//分享出去后的链接，这里可以将链接设置为另一个页面。</span><br><span class="line">                   &quot;success&quot;:function()&#123;</span><br><span class="line">                       //分享成功后的回调函数</span><br><span class="line">                   &#125;,</span><br><span class="line">                   &apos;cancel&apos;: function () &#123; </span><br><span class="line">                       // 用户取消分享后执行的回调函数</span><br><span class="line">                   &#125;</span><br><span class="line">               &#125;</span><br><span class="line">           &#125;;  </span><br><span class="line">           wx.ready(function () &#123;</span><br><span class="line">               wx.onMenuShareAppMessage(share_config.share);//分享给好友</span><br><span class="line">               wx.onMenuShareTimeline(share_config.share);//分享到朋友圈</span><br><span class="line">               wx.onMenuShareQQ(share_config.share);//分享给手机QQ</span><br><span class="line">               wx.onMenuShareWeibo(share_config.share);//分享给微博</span><br><span class="line">           &#125;);</span><br></pre></td></tr></table></figure></p>
+<p>把以上代码写进去就 ok 啦，</p>
+<p>参考文章：<br><a href="http://mp.weixin.qq.com/wiki/7/aaa137b55fb2e0456bf8dd9148dd613f.html#.E5.88.86.E4.BA.AB.E6.8E.A5.E5.8F.A3" target="_blank" rel="noopener">官方文档</a>:<a href="http://mp.weixin.qq.com/wiki/7/aaa137b55fb2e0456bf8dd9148dd613f.html#.E5.88.86.E4.BA.AB.E6.8E.A5.E5.8F.A3" target="_blank" rel="noopener">http://mp.weixin.qq.com/wiki/7/aaa137b55fb2e0456bf8dd9148dd613f.html#.E5.88.86.E4.BA.AB.E6.8E.A5.E5.8F.A3</a><br><a href="http://meiminjun.github.io/2015/12/27/wxProject/" target="_blank" rel="noopener">http://meiminjun.github.io/2015/12/27/wxProject/</a><br><a href="http://chitanda.me/2015/06/19/wechat-share-diy/" target="_blank" rel="noopener">http://chitanda.me/2015/06/19/wechat-share-diy/</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/前端/" rel="tag"># 前端</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/11/13/Grunt 笔记/" rel="next" title="Grunt 笔记">
+                <i class="fa fa-chevron-left"></i> Grunt 笔记
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/12/06/手写 ajax 请求/" rel="prev" title="简单实现 ajax 请求">
+                简单实现 ajax 请求 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">fengqiyue.cheri</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">76</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">categories</span>
+                
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-name">tags</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/fengqiyue" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:mynameiszhangxu@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">fengqiyue.cheri</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="杂记," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="积分的设计简单的，以财务视角来看，积分分为两种：一、需要计入财务成本；二、不需要计入财务成本。 需要计入财务成本的积分：企业货币和通用货币企业货币企业为了培养用户忠诚度，采用的积分模式，通常表现为航空公司的『里程』，信用卡的积分，中国移动的积分等等，你可以用这些积分来换取有价值的商品，比如免费乘坐飞机的服务，以及各种实体或虚拟的有价物品；兑换方始终是积分的直接发行方，并且兑换比例相对稳定。 通用积">
+<meta name="keywords" content="杂记">
+<meta property="og:type" content="article">
+<meta property="og:title" content="积分系统初步认识">
+<meta property="og:url" content="http://cheri.love/2016/04/30/积分系统初步认识/index.html">
+<meta property="og:site_name" content="枫祺玥的小客栈">
+<meta property="og:description" content="积分的设计简单的，以财务视角来看，积分分为两种：一、需要计入财务成本；二、不需要计入财务成本。 需要计入财务成本的积分：企业货币和通用货币企业货币企业为了培养用户忠诚度，采用的积分模式，通常表现为航空公司的『里程』，信用卡的积分，中国移动的积分等等，你可以用这些积分来换取有价值的商品，比如免费乘坐飞机的服务，以及各种实体或虚拟的有价物品；兑换方始终是积分的直接发行方，并且兑换比例相对稳定。 通用积">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-06-05T06:07:51.697Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="积分系统初步认识">
+<meta name="twitter:description" content="积分的设计简单的，以财务视角来看，积分分为两种：一、需要计入财务成本；二、不需要计入财务成本。 需要计入财务成本的积分：企业货币和通用货币企业货币企业为了培养用户忠诚度，采用的积分模式，通常表现为航空公司的『里程』，信用卡的积分，中国移动的积分等等，你可以用这些积分来换取有价值的商品，比如免费乘坐飞机的服务，以及各种实体或虚拟的有价物品；兑换方始终是积分的直接发行方，并且兑换比例相对稳定。 通用积">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://cheri.love/2016/04/30/积分系统初步认识/"/>
+
+
+
+
+
+  <title>积分系统初步认识 | 枫祺玥的小客栈</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">枫祺玥的小客栈</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://cheri.love/2016/04/30/积分系统初步认识/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="fengqiyue.cheri">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="枫祺玥的小客栈">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">积分系统初步认识</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-04-30T13:07:00+08:00">
+                2016-04-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/杂篇/" itemprop="url" rel="index">
+                    <span itemprop="name">杂篇</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>积分的设计<br>简单的，以财务视角来看，积分分为两种：一、需要计入财务成本；二、不需要计入财务成本。</p>
+<h2 id="需要计入财务成本的积分：企业货币和通用货币"><a href="#需要计入财务成本的积分：企业货币和通用货币" class="headerlink" title="需要计入财务成本的积分：企业货币和通用货币"></a>需要计入财务成本的积分：企业货币和通用货币</h2><h3 id="企业货币"><a href="#企业货币" class="headerlink" title="企业货币"></a>企业货币</h3><p>企业为了培养用户忠诚度，采用的积分模式，通常表现为航空公司的『里程』，信用卡的积分，中国移动的积分等等，你可以用这些积分来换取有价值的商品，比如免费乘坐飞机的服务，以及各种实体或虚拟的有价物品；兑换方始终是积分的直接发行方，并且兑换比例相对稳定。</p>
+<h3 id="通用积分"><a href="#通用积分" class="headerlink" title="通用积分"></a>通用积分</h3><p>通用积分和企业积分的核心不同在于：通用积分的 积分兑换方不一定是积分的直接发行方。在国外有不少有名的通用积分：Nectar（英国）、Payback（德国）、OKCashBag（韩国）、Fly buys（澳大利亚）等等；但是在国内，相信你也没有听说过有哪些名气很大的通用积分吧。<br>通用积分打通了不同商家之间的用户墙，换句话说，通用积分是可能导致用户流失，这和积分模式的价值相悖，所以如果没有一个统一的资本背景或非常合理的商业模式来运作的话，通用积分是很难在市场上长期存在的并做大的。<br>以上两种积分都产生于 Loyalry Program，目的非常明确，保证用户忠诚度，避免用户流失。</p>
+<h2 id="不需要计入财务成本的积分"><a href="#不需要计入财务成本的积分" class="headerlink" title="不需要计入财务成本的积分"></a>不需要计入财务成本的积分</h2><p>这一类积分就很常见了，签到得积分，转发得积分之类的活动屡见不鲜。这类积分的直接目的是引导用户行为。所能兑换的物品不一定是有价值的，比如一些论坛可以通过积分兑换改名卡之类的道具，但也可以兑换有价商品，比如淘金币抵钱，能兑换什么物品和以什么比例兑换皆由积分发行方决定。<br>这种积分诞生原因，或者换句话说，你为什么想使用这样的一个积分系统？当然你可能会很自然地说：目的当然是拉新存留促活。但随着侧重的变化，积分发放方案也可以有多重形式。<br>举个例子：<br>比如有一款软件，是一款轻应用浏览器，就是把常见 app 的网页版集中起来，然后浏览器提供良好的体验。积分发放方案可能是这样的：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">用户向官方提交一个 web app，只要和现有的不重复，不管官方有没有收录，都奖励 100 分；攒够10000分就能换一部 iPhone6s</span><br></pre></td></tr></table></figure></p>
+<p>或者这样的：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">用户帮助官方提交一个 web app，官方收录的话，奖励 200 分，因为质量或者重复的原因拒绝了的话，就不奖励；攒够10000分就能换一部 iPhone6s</span><br></pre></td></tr></table></figure></p>
+<p>对比一下就会发现不同。<br>如果我们现在已经有了很多用户，但是用户只使用几个常见的 web app，并不愿意尝试新的web app，那么我们应该采取什么样的方式发放积分呢？<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">用户首次打开新的 web app 并使用 5 分钟，奖励 50 积分，每天最多获得 3 次奖励。</span><br></pre></td></tr></table></figure></p>
+<p>总的来说，积分发放方案是千变万化的，要根据需求方向来设计方案，根据具体情况来确定发放数量。比如上文中的奖品是有价值的商品，那么发放积分的数量应该由预算严格控制，由用户基数和活跃度等数据进行辅助计算。假如换一个案例，奖品变成没有具体价格的虚拟物品，比如论坛的置顶卡，改名卡等等，则积分发放方案就应该由用户活跃情况等数据严格控制了。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/杂记/" rel="tag"># 杂记</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/04/12/『FoodTracker』(三)/" rel="next" title="『FoodTracker』(三)">
+                <i class="fa fa-chevron-left"></i> 『FoodTracker』(三)
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/06/22/有怀小记/" rel="prev" title="有怀小记">
+                有怀小记 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">fengqiyue.cheri</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">76</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">categories</span>
+                
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-name">tags</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/fengqiyue" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:mynameiszhangxu@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#需要计入财务成本的积分：企业货币和通用货币"><span class="nav-number">1.</span> <span class="nav-text">需要计入财务成本的积分：企业货币和通用货币</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#企业货币"><span class="nav-number">1.1.</span> <span class="nav-text">企业货币</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#通用积分"><span class="nav-number">1.2.</span> <span class="nav-text">通用积分</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#不需要计入财务成本的积分"><span class="nav-number">2.</span> <span class="nav-text">不需要计入财务成本的积分</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">fengqiyue.cheri</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

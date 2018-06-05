@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="前端工程化," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Grunt 依赖 Node.js环境， 所以在安装之前确保你安装了 Node.js。 安装 Grunt-cliGrunt-cli 是是一个命令行工具。1npm install -g grunt-cli package.json 文件‘package.json’是 Node.js 用来描述项目的一个文件，Json 格式。在终端中输入npm init，输入name等信息后，就能在当前目录下生成一个’p">
+<meta name="keywords" content="前端工程化">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Grunt 笔记">
+<meta property="og:url" content="http://cheri.love/2016/11/13/Grunt 笔记/index.html">
+<meta property="og:site_name" content="枫祺玥的小客栈">
+<meta property="og:description" content="Grunt 依赖 Node.js环境， 所以在安装之前确保你安装了 Node.js。 安装 Grunt-cliGrunt-cli 是是一个命令行工具。1npm install -g grunt-cli package.json 文件‘package.json’是 Node.js 用来描述项目的一个文件，Json 格式。在终端中输入npm init，输入name等信息后，就能在当前目录下生成一个’p">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-06-05T06:20:10.153Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Grunt 笔记">
+<meta name="twitter:description" content="Grunt 依赖 Node.js环境， 所以在安装之前确保你安装了 Node.js。 安装 Grunt-cliGrunt-cli 是是一个命令行工具。1npm install -g grunt-cli package.json 文件‘package.json’是 Node.js 用来描述项目的一个文件，Json 格式。在终端中输入npm init，输入name等信息后，就能在当前目录下生成一个’p">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://cheri.love/2016/11/13/Grunt 笔记/"/>
+
+
+
+
+
+  <title>Grunt 笔记 | 枫祺玥的小客栈</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">枫祺玥的小客栈</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://cheri.love/2016/11/13/Grunt 笔记/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="fengqiyue.cheri">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="枫祺玥的小客栈">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Grunt 笔记</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-11-13T19:12:00+08:00">
+                2016-11-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/技术/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>Grunt 依赖 Node.js环境， 所以在安装之前确保你安装了 Node.js。</p>
+<h2 id="安装-Grunt-cli"><a href="#安装-Grunt-cli" class="headerlink" title="安装 Grunt-cli"></a>安装 Grunt-cli</h2><p>Grunt-cli 是是一个命令行工具。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g grunt-cli</span><br></pre></td></tr></table></figure></p>
+<h2 id="package-json-文件"><a href="#package-json-文件" class="headerlink" title="package.json 文件"></a>package.json 文件</h2><p>‘package.json’是 Node.js 用来描述项目的一个文件，Json 格式。<br>在终端中输入<code>npm init</code>，输入<code>name</code>等信息后，就能在当前目录下生成一个’package.json’文件，像这样：<br><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"name"</span>: <span class="string">"myGrunt"</span>,</span><br><span class="line">  <span class="attr">"version"</span>: <span class="string">"1.0.0"</span>,</span><br><span class="line">  <span class="attr">"description"</span>: <span class="string">""</span>,</span><br><span class="line">  <span class="attr">"main"</span>: <span class="string">"index.js"</span>,</span><br><span class="line">  <span class="attr">"scripts"</span>: &#123;</span><br><span class="line">    <span class="attr">"test"</span>: <span class="string">"echo \"Error: no test specified\" &amp;&amp; exit 1"</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">"author"</span>: <span class="string">""</span>,</span><br><span class="line">  <span class="attr">"license"</span>: <span class="string">"ISC"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>当然，也可以拷贝一份上述’package.json’文件到文件夹中。</p>
+<h2 id="安装-Grunt-插件"><a href="#安装-Grunt-插件" class="headerlink" title="安装 Grunt 插件"></a>安装 Grunt 插件</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo npm install grunt --save-dev</span><br></pre></td></tr></table></figure>
+<p>其中<code>--save-dev</code>的作用是：省掉你手动修改package.json文件的步骤，自动把模块和版本号添加到devdependencies部分</p>
+<p>安装完成后，你会发现 package.json文件中多了 devDependencies 的信息。<br><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"name"</span>: <span class="string">"myGrunt"</span>,</span><br><span class="line">  <span class="attr">"version"</span>: <span class="string">"1.0.0"</span>,</span><br><span class="line">  <span class="attr">"description"</span>: <span class="string">""</span>,</span><br><span class="line">  <span class="attr">"main"</span>: <span class="string">"index.js"</span>,</span><br><span class="line">  <span class="attr">"scripts"</span>: &#123;</span><br><span class="line">    <span class="attr">"test"</span>: <span class="string">"echo \"Error: no test specified\" &amp;&amp; exit 1"</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">"author"</span>: <span class="string">""</span>,</span><br><span class="line">  <span class="attr">"license"</span>: <span class="string">"ISC"</span>,</span><br><span class="line">  <span class="attr">"devDependencies"</span>: &#123;</span><br><span class="line">    <span class="attr">"grunt"</span>: <span class="string">"^1.0.1"</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="grunt-contrib-uglify-插件"><a href="#grunt-contrib-uglify-插件" class="headerlink" title="grunt-contrib-uglify 插件"></a>grunt-contrib-uglify 插件</h2><p>插件用途：压缩js,css文件 </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo npm install grunt-contrib-uglify --save-dev</span><br></pre></td></tr></table></figure>
+<p>安装完成后，发现 devDependencies 中又多了一行<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">"devDependencies": &#123;</span><br><span class="line">    "grunt": "^1.0.1",</span><br><span class="line">    "grunt-contrib-uglify": "^2.0.0"</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="Gruntfile-js-文件"><a href="#Gruntfile-js-文件" class="headerlink" title="Gruntfile.js 文件"></a>Gruntfile.js 文件</h2><p>Grunt 有两个必备的文件，一个是 package.json ，另一个就是 Gruntfile.js。<br>通过对 Gruntfile.js 文件的设置，我们可以告诉 Grunt 它应该做哪些事情。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span>(<span class="params">grunt</span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 1. 所有的配置将在这里进行</span></span><br><span class="line">    grunt.initConfig(&#123;</span><br><span class="line">        pkg: grunt.file.readJSON(<span class="string">'package.json'</span>),</span><br><span class="line">   <span class="comment">// 2. uglify插件的配置信息 </span></span><br><span class="line">      uglify: &#123;</span><br><span class="line">        options: &#123;</span><br><span class="line">          banner: <span class="string">'/*! This is uglify test - '</span> +</span><br><span class="line">            <span class="string">'&lt;%= grunt.template.today("yyyy-mm-dd") %&gt; */'</span>,</span><br><span class="line">          beautify: <span class="literal">true</span>,<span class="comment">//是否压缩</span></span><br><span class="line">          mangle: <span class="literal">false</span>, <span class="comment">//不混淆变量名</span></span><br><span class="line">          compress:<span class="literal">true</span>,<span class="comment">//打开或关闭使用默认选项源压缩。</span></span><br><span class="line">        &#125;,</span><br><span class="line">        app_task: &#123;</span><br><span class="line">          files: &#123;</span><br><span class="line">            <span class="string">'build/app.min.js'</span>: [<span class="string">'lib/index.js'</span>, <span class="string">'lib/test.js'</span>]</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line">    <span class="comment">// 3. 我们在这里告诉grunt我们将使用插件</span></span><br><span class="line">        grunt.loadNpmTasks(<span class="string">'grunt-contrib-uglify'</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 4. 我们在这里告诉grunt当我们在终端中输入grunt时需要做些什么</span></span><br><span class="line">    grunt.registerTask(<span class="string">'default'</span>, [<span class="string">'uglify'</span>]);</span><br><span class="line"></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<p>说明：<br><code>banner</code>：在build/app.min.js 文件生成内容，比如日期什么的<br><code>files</code>：将 lib 目录中的 js 压缩合并生成到 build 目录中生成 app.min.js</p>
+<h2 id="运行grunt"><a href="#运行grunt" class="headerlink" title="运行grunt"></a>运行grunt</h2><p>准备就绪后就可以运行 Grunt 啦<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grunt</span><br></pre></td></tr></table></figure></p>
+<p>以上已经是一个完整的流程了，让我们再看看别的插件吧。</p>
+<h2 id="grunt-contrib-watch-插件"><a href="#grunt-contrib-watch-插件" class="headerlink" title="grunt-contrib-watch 插件"></a>grunt-contrib-watch 插件</h2><p>插件用途：监控文件变化并自动运行grunt<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo npm install grunt-contrib-watch --save-dev</span><br></pre></td></tr></table></figure></p>
+<p>使用时，要在 Gruntfile.js 中添加对应的代码<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// watch插件的配置信息</span></span><br><span class="line">   watch: &#123;</span><br><span class="line">       another: &#123;</span><br><span class="line">           files: [<span class="string">'lib/*.js'</span>],</span><br><span class="line">           tasks: [<span class="string">'uglify'</span>],</span><br><span class="line">           options: &#123;</span><br><span class="line">               <span class="comment">// Start another live reload server on port 1337</span></span><br><span class="line">               livereload: <span class="number">1337</span></span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure></p>
+<p>再添加一行：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grunt.loadNpmTasks(&apos;grunt-contrib-watch&apos;);</span><br></pre></td></tr></table></figure></p>
+<p>数组中添加 watch<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grunt.registerTask(&apos;default&apos;, [&apos;uglify&apos;,&apos;watch&apos;]);</span><br></pre></td></tr></table></figure></p>
+<p>完整的 Gruntfile.js 文件如下：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span>(<span class="params">grunt</span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 1. 所有的配置将在这里进行</span></span><br><span class="line">    grunt.initConfig(&#123;</span><br><span class="line">      pkg: grunt.file.readJSON(<span class="string">'package.json'</span>),</span><br><span class="line">    <span class="comment">// 2. uglify插件的配置信息 </span></span><br><span class="line">      uglify: &#123;</span><br><span class="line">        options: &#123;</span><br><span class="line">          banner: <span class="string">'/*! This is uglify test - '</span> +</span><br><span class="line">            <span class="string">'&lt;%= grunt.template.today("yyyy-mm-dd") %&gt; */'</span>,</span><br><span class="line">          beautify: <span class="literal">true</span>,<span class="comment">//是否压缩</span></span><br><span class="line">          mangle: <span class="literal">false</span>, <span class="comment">//不混淆变量名</span></span><br><span class="line">          compress:<span class="literal">true</span>,<span class="comment">//打开或关闭使用默认选项源压缩。</span></span><br><span class="line">        &#125;,</span><br><span class="line">        app_task: &#123;</span><br><span class="line">          files: &#123;</span><br><span class="line">            <span class="string">'build/app.min.js'</span>: [<span class="string">'lib/index.js'</span>, <span class="string">'lib/test.js'</span>]</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">      watch: &#123;</span><br><span class="line">        another: &#123;</span><br><span class="line">            files: [<span class="string">'lib/*.js'</span>],</span><br><span class="line">            tasks: [<span class="string">'uglify'</span>],</span><br><span class="line">            options: &#123;</span><br><span class="line">                <span class="comment">// Start another live reload server on port 1337</span></span><br><span class="line">                livereload: <span class="number">1337</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">     &#125;</span><br><span class="line">  &#125;);</span><br><span class="line">    <span class="comment">// 3. 我们在这里告诉grunt我们将使用插件</span></span><br><span class="line">    grunt.loadNpmTasks(<span class="string">'grunt-contrib-uglify'</span>);</span><br><span class="line">    grunt.loadNpmTasks(<span class="string">'grunt-contrib-watch'</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 4. 我们在这里告诉grunt当我们在终端中输入grunt时需要做些什么</span></span><br><span class="line">    grunt.registerTask(<span class="string">'default'</span>, [<span class="string">'uglify'</span>,<span class="string">'watch'</span>]);</span><br><span class="line"></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/前端工程化/" rel="tag"># 前端工程化</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/11/12/正则表达式笔记/" rel="next" title="正则表达式笔记">
+                <i class="fa fa-chevron-left"></i> 正则表达式笔记
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/12/06/定制微信分享的内容/" rel="prev" title="定制微信分享的内容">
+                定制微信分享的内容 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">fengqiyue.cheri</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">76</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">categories</span>
+                
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-name">tags</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/fengqiyue" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:mynameiszhangxu@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装-Grunt-cli"><span class="nav-number">1.</span> <span class="nav-text">安装 Grunt-cli</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#package-json-文件"><span class="nav-number">2.</span> <span class="nav-text">package.json 文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装-Grunt-插件"><span class="nav-number">3.</span> <span class="nav-text">安装 Grunt 插件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#grunt-contrib-uglify-插件"><span class="nav-number">4.</span> <span class="nav-text">grunt-contrib-uglify 插件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Gruntfile-js-文件"><span class="nav-number">5.</span> <span class="nav-text">Gruntfile.js 文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#运行grunt"><span class="nav-number">6.</span> <span class="nav-text">运行grunt</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#grunt-contrib-watch-插件"><span class="nav-number">7.</span> <span class="nav-text">grunt-contrib-watch 插件</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">fengqiyue.cheri</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

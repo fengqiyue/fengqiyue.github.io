@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="css 向," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="SASS 作为一种 CSS 的开发工具，可以有效地提高生产效率，本文对其常用语法做一个笔记，方便日后查阅。官方提供的在线转换器 基本语法变量所有的变量以$开头；12345678$天依蓝: #66ccff;div &amp;#123;    color: $天依蓝;&amp;#125;上述代码相当于 CSS 中的：div &amp;#123;  color: #66ccff;&amp;#125; 如果变量出现在字符串之中，则需要使">
+<meta name="keywords" content="css 向">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Sass 语法笔记">
+<meta property="og:url" content="http://cheri.love/2016/11/09/Sass/index.html">
+<meta property="og:site_name" content="枫祺玥的小客栈">
+<meta property="og:description" content="SASS 作为一种 CSS 的开发工具，可以有效地提高生产效率，本文对其常用语法做一个笔记，方便日后查阅。官方提供的在线转换器 基本语法变量所有的变量以$开头；12345678$天依蓝: #66ccff;div &amp;#123;    color: $天依蓝;&amp;#125;上述代码相当于 CSS 中的：div &amp;#123;  color: #66ccff;&amp;#125; 如果变量出现在字符串之中，则需要使">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-06-05T06:28:28.237Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Sass 语法笔记">
+<meta name="twitter:description" content="SASS 作为一种 CSS 的开发工具，可以有效地提高生产效率，本文对其常用语法做一个笔记，方便日后查阅。官方提供的在线转换器 基本语法变量所有的变量以$开头；12345678$天依蓝: #66ccff;div &amp;#123;    color: $天依蓝;&amp;#125;上述代码相当于 CSS 中的：div &amp;#123;  color: #66ccff;&amp;#125; 如果变量出现在字符串之中，则需要使">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://cheri.love/2016/11/09/Sass/"/>
+
+
+
+
+
+  <title>Sass 语法笔记 | 枫祺玥的小客栈</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">枫祺玥的小客栈</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://cheri.love/2016/11/09/Sass/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="fengqiyue.cheri">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="枫祺玥的小客栈">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Sass 语法笔记</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-11-09T19:03:00+08:00">
+                2016-11-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/技术/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>SASS 作为一种 CSS 的开发工具，可以有效地提高生产效率，本文对其常用语法做一个笔记，方便日后查阅。<br><a href="http://www.sassmeister.com" target="_blank" rel="noopener">官方提供的在线转换器</a></p>
+<h2 id="基本语法"><a href="#基本语法" class="headerlink" title="基本语法"></a>基本语法</h2><h3 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h3><p>所有的变量以<code>$</code>开头；<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$天依蓝: #66ccff;</span><br><span class="line">div &#123;</span><br><span class="line">    color: $天依蓝;</span><br><span class="line">&#125;</span><br><span class="line">上述代码相当于 CSS 中的：</span><br><span class="line">div &#123;</span><br><span class="line">  color: #66ccff;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>如果变量出现在字符串之中，则需要使用<code>#{}</code>包裹变量<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$side: left;</span><br><span class="line">.rounded &#123;</span><br><span class="line">     border-#&#123;$side&#125;-radius:5px;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">上述代码相当于 CSS 中的：</span><br><span class="line">.rounded &#123;</span><br><span class="line">  border-left-radius: 5px;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="计算功能"><a href="#计算功能" class="headerlink" title="计算功能"></a>计算功能</h3><p>SASS 允许使用算术式<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">$var: 0.5;</span><br><span class="line">body &#123;</span><br><span class="line">    margin: (14px/2);</span><br><span class="line">    right: 10px+50px;</span><br><span class="line">    width: $var * 100%;</span><br><span class="line">&#125;</span><br><span class="line">上述代码相当于 CSS 中的：</span><br><span class="line">body &#123;</span><br><span class="line">  margin: 7px;</span><br><span class="line">  right: 60px;</span><br><span class="line">  width: 50%;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="嵌套写法"><a href="#嵌套写法" class="headerlink" title="嵌套写法"></a>嵌套写法</h3><p>SASS可以使用嵌套写法，比如当你想写下面的 CSS 代码时<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">div p &#123;</span><br><span class="line">    border-color:red;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>你可以这样写：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">div&#123;</span><br><span class="line">    p&#123;</span><br><span class="line">        border-color: red;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>属性也可以嵌套，但是要注意需要有 <code>:</code>跟在属性的后面，不能省略；<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">div&#123;</span><br><span class="line">    p&#123;</span><br><span class="line">        border:&#123;</span><br><span class="line">          color: red;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">下面是另外一个例子</span><br><span class="line">div&#123;</span><br><span class="line">    p&#123;</span><br><span class="line">        border:&#123;</span><br><span class="line">          left:&#123;</span><br><span class="line">            radius: 5px;</span><br><span class="line">          &#125;;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>嵌套的代码中，可以用<code>&amp;</code>引用父级元素，比如伪类：<code>a:hover</code>可以写成：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">a &#123;</span><br><span class="line">    &amp;:hover &#123;</span><br><span class="line">    color: #66ffcc;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>###注释<br>SASS 有三种注释</p>
+<ol>
+<li>单行注释 <code>//comment</code> 这种注释只保留在 SASS 源文件中，编译后就会被省略。</li>
+<li>标准 CSS 注释 <code>/* comment */</code> 此种注释会保留到编译后的文件。</li>
+<li>重要注释 <code>/*! 重要注释 */</code>即使是压缩模式编译，也会保留这行注释，通常可以用于声明版权信息。</li>
+</ol>
+<p>##代码重用</p>
+<p>###继承<br>使用<code>@extend</code>进行继承<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">.class&#123;</span><br><span class="line">    border: 1px solid red;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class2 要继承 class1</span><br><span class="line">.class2 &#123;</span><br><span class="line">    @extend .class1;</span><br><span class="line">    font-size:120%;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="Mixin"><a href="#Mixin" class="headerlink" title="Mixin"></a>Mixin</h3><p>类似于C语言的宏（macro），是可重用的代码块。<br>使用<code>@mixin</code>来定义一个代码块<br>使用<code>@include</code>来调用代码块<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">@mixin top &#123;</span><br><span class="line">    margin-top:10px;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">div &#123;</span><br><span class="line">    @include top;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>Mixin 最强大的地方在于可以指定参数和缺省值<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">@mixin top($var:10px) &#123;</span><br><span class="line">    margin-top: $var;</span><br><span class="line">&#125;</span><br><span class="line">可以在使用中，根据需要传入合适的参数：</span><br><span class="line">div &#123;</span><br><span class="line">    @include top(20px);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="颜色函数"><a href="#颜色函数" class="headerlink" title="颜色函数"></a>颜色函数</h3><p>SASS的颜色函数大的方面主要分为RGB、HSL和Opacity三大类函数，当然其还包括一些其他颜色函数，比如说adjust-color、change-color等等。这里记录几个常用的。</p>
+<h4 id="RGB"><a href="#RGB" class="headerlink" title="RGB"></a>RGB</h4><h5 id="rgba-函数"><a href="#rgba-函数" class="headerlink" title="rgba()函数"></a>rgba()函数</h5><p><code>rgba()</code>函数主要用来将一个颜色根据透明度转换成rgba颜色。其语法有两种格式：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">rgba($red,$green,$blue,$alpha)//将一个rgba颜色转译出来，和未转译的值一样</span><br><span class="line">rgba($color,$alpha) //将一个Hex颜色转换成rgba颜色</span><br></pre></td></tr></table></figure></p>
+<p><code>rgba($color,$alpha)</code>,一个参数是需要转换的颜色，他可以是任何颜色的表达方式，也可以是一个颜色变量；第二个参数是颜色的透明度，其值是0~1之间。该方法主要用语的场景是：得知了一个颜色比如#f36，要给这个颜色加一个透明度；CSS中不能直接获得目标效果，而用Sass就比较容易<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">//CSS</span><br><span class="line">color: rgba($f36,0.5);//这是无效的写法</span><br><span class="line"></span><br><span class="line">//SCSS</span><br><span class="line">.rgba &#123;</span><br><span class="line">    color: rgba(#f36,.5);</span><br><span class="line">&#125;</span><br><span class="line">SCSS文件转义出来就是</span><br><span class="line">.rgba &#123;</span><br><span class="line">  color: rgba(255, 51, 102, 0.5);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h5 id="Mix函数"><a href="#Mix函数" class="headerlink" title="Mix函数"></a>Mix函数</h5><p><code>mix()</code>函数是将两种颜色根据一定的比例混合在一起，生成另一种颜色。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mix($color-1,$color-2,$weight);</span><br></pre></td></tr></table></figure></p>
+<p><code>$color-1</code>和<code>$color-2</code>指的是你需要合并的颜色，颜色可以是任何表达式，也可以是颜色变量。<code>$weight</code>合并的比例，默认值为50%，其取值范围是0~1之间，如果取值是25%,这意味着第一个颜色所占比例为25%，第二个颜色所占比例为75%。</p>
+<h4 id="HSL"><a href="#HSL" class="headerlink" title="HSL"></a>HSL</h4><p>HSL给我们带来了一个更直观的颜色控制，“HSL”所表示的是“H:色相”，“S：饱和度”，“L：亮度”。色相是在色盘上的颜色，颜色的选择是使用饱和度：“0度是红色”，“120度为绿色”和“240度为蓝色”。</p>
+<p>#####lighten() &amp; darken()函数<br><code>lighten()</code>和<code>darken()</code>两个函数都是围绕颜色的亮度值做调整的，其中<code>lighten()</code>函数会让颜色变得更亮，与之相反的<code>darken()</code>函数会让颜色变得更暗。这个亮度值可以是0~1之间，不过常用的一般都在3%~20%之间。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">$baseColor: #ad141e;</span><br><span class="line">.lighten &#123;</span><br><span class="line">    background: lighten($baseColor,10%);</span><br><span class="line">&#125;</span><br><span class="line">.darken&#123;</span><br><span class="line">    background: darken($baseColor,10%);</span><br><span class="line">&#125;</span><br><span class="line">转义过后的CSS代码如下：</span><br><span class="line">//CSS</span><br><span class="line">.lighten &#123;</span><br><span class="line">  background: #db1926; </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.darken &#123;</span><br><span class="line">  background: #7f0f16; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h5 id="saturate-amp-desaturate-函数"><a href="#saturate-amp-desaturate-函数" class="headerlink" title="saturate() &amp; desaturate()函数"></a>saturate() &amp; desaturate()函数</h5><p>这两个函数是通过改变颜色的饱和度来得到一个新的颜色，他们和前面介绍的修改亮度得到新颜色的方法非常相似。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">//SCSS</span><br><span class="line">.saturate &#123;</span><br><span class="line">  background: saturate($baseColor,30%);</span><br><span class="line">&#125;</span><br><span class="line">.desaturate &#123;</span><br><span class="line">  background: desaturate($baseColor,30%);</span><br><span class="line">&#125;</span><br><span class="line">转义过后的CSS代码如下：</span><br><span class="line">//CSS</span><br><span class="line">.saturate &#123;</span><br><span class="line">  background: #c1000d; </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.desaturate &#123;</span><br><span class="line">  background: #903137; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h5 id="adjust-hue-函数"><a href="#adjust-hue-函数" class="headerlink" title="adjust-hue()函数"></a>adjust-hue()函数</h5><p>这个是通过调整颜色的色相换算一个新颜色。他需要一个颜色和色相度数值。通常这个度数值是在-360deg至360deg之间，可以是百分数：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">//SCSS</span><br><span class="line">.adjust-hue-deg &#123;</span><br><span class="line">  background: adjust-hue($baseColor,30deg);</span><br><span class="line">&#125;</span><br><span class="line">.adjust-hue-per &#123;</span><br><span class="line">  background: adjust-hue($baseColor,30%);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//CSS</span><br><span class="line">.adjust-hue-deg &#123;</span><br><span class="line">  background: #ad5614; </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.adjust-hue-per &#123;</span><br><span class="line">  background: #ad5614;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h5 id="grayscale-函数"><a href="#grayscale-函数" class="headerlink" title="grayscale()函数"></a>grayscale()函数</h5><p>这个函数会颜色的饱和度值直接调至0%，所以此函数与desaturate($color,100%)所起的功能是一样的。一般这个函数能将彩色颜色转换成不同程度的灰色。例如：</p>
+<h5 id="complement-函数"><a href="#complement-函数" class="headerlink" title="complement()函数"></a>complement()函数</h5><p>complement()函数可以在原色上得到一个补充色。这个函数与adjust-hue($color,180deg)取得的效果是一样的。</p>
+<p>#####invert()函数<br>invert()函数也是一个神奇的函数。根据颜色的R、G和B单独进行反相，然后合并到一起，当然其中的透度值A也可以结合进来。</p>
+<p>####Opacity</p>
+<p>#####alphpa()和opacity()<br>alphpa()和opacity()函数很简单，这个函数的主要功能是用来获取一个颜色的透明度值。如果颜色没有特别指定透明度，那么这两个函数得到的值都会是1。</p>
+<p>#####opacify() &amp; fade-in()函数<br>这两个函数是用来对已有颜色的透明度做一个加法运算，会让颜色更加不透明。其接受两个参数，第一个参数是原始颜色，第二个参数是你需要增加的透明度值，其取值范围主要是在0~1之间。当透明度值增加到大于1时，会以1计算，表示颜色不具有任何透明度。<br>其中fade-in()函数又名fade_in()函数。其所起作用等效。</p>
+<h5 id="transparentize-amp-fade-out-函数"><a href="#transparentize-amp-fade-out-函数" class="headerlink" title="transparentize() &amp; fade-out()函数"></a>transparentize() &amp; fade-out()函数</h5><p>transparentize()和fade-out()函数所起作用刚好与opacify()和fade-in()函数相反，让颜色更加的透明。这两个函数会让透明值做减法运算，当计算出来的结果小于0时会以0计算，表示全透明。</p>
+<h3 id="插入文件"><a href="#插入文件" class="headerlink" title="插入文件"></a>插入文件</h3><p>使用<code>@import</code>来插入外部文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@import &apos;path/filename.scss&apos;</span><br></pre></td></tr></table></figure></p>
+<p>如果插入的是 css 文件，那么则等同于 css 的 import 指令<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@import &quot;foo.css&quot;;</span><br></pre></td></tr></table></figure></p>
+<p>##高级用法</p>
+<p>###条件语句<br>使用 <code>@if</code>和<code>@else</code>来进行判断<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">　p &#123;</span><br><span class="line">　　　　@if 1 + 1 == 2 &#123; border: 1px solid; &#125;</span><br><span class="line">　　　　@if 1 &lt; 2 &#123; border: 2px dotted; &#125;</span><br><span class="line">　　&#125;</span><br><span class="line"></span><br><span class="line">　@if lightness($color) &gt; 30% &#123;</span><br><span class="line">　　　　background-color: #000;</span><br><span class="line">　　&#125; @else &#123;</span><br><span class="line">　　　　background-color: #fff;</span><br><span class="line">　　&#125;</span><br></pre></td></tr></table></figure></p>
+<p>###循环语句<br>循环语句有三种，<code>@for</code> <code>while</code> <code>each</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">//for</span><br><span class="line">@for $i from 1 to 10 &#123;</span><br><span class="line">    .border#&#123;$i&#125;&#123;</span><br><span class="line">         border:#&#123;$i&#125;px solid red; </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//while</span><br><span class="line">$i:3;</span><br><span class="line">@while $i&gt;0 &#123;</span><br><span class="line">    .item#&#123;$i&#125; &#123;</span><br><span class="line">        width:2px * $i;</span><br><span class="line">    &#125;</span><br><span class="line">    $i:$i - 1;</span><br><span class="line">&#125;</span><br><span class="line">//each</span><br><span class="line">@each $member in a, b, c, d &#123;</span><br><span class="line">    .#&#123;$member&#125; &#123;</span><br><span class="line">　　    background-image: url(&quot;/image/#&#123;$member&#125;.jpg&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>###自定义函数<br>使用 <code>@function</code>定义自定义函数<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">@function plusone($n) &#123;</span><br><span class="line">    @return $n + 1;</span><br><span class="line">&#125;</span><br><span class="line">button&#123;</span><br><span class="line">    width:plusone(19px);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/css-向/" rel="tag"># css 向</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/11/03/FlexBox/" rel="next" title="FlexBox 学习记录">
+                <i class="fa fa-chevron-left"></i> FlexBox 学习记录
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/11/10/Compass 笔记/" rel="prev" title="Compass 笔记">
+                Compass 笔记 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">fengqiyue.cheri</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">76</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">categories</span>
+                
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-name">tags</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/fengqiyue" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:mynameiszhangxu@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#基本语法"><span class="nav-number">1.</span> <span class="nav-text">基本语法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#变量"><span class="nav-number">1.1.</span> <span class="nav-text">变量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#计算功能"><span class="nav-number">1.2.</span> <span class="nav-text">计算功能</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#嵌套写法"><span class="nav-number">1.3.</span> <span class="nav-text">嵌套写法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Mixin"><span class="nav-number">1.4.</span> <span class="nav-text">Mixin</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#颜色函数"><span class="nav-number">1.5.</span> <span class="nav-text">颜色函数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#RGB"><span class="nav-number">1.5.1.</span> <span class="nav-text">RGB</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#rgba-函数"><span class="nav-number">1.5.1.1.</span> <span class="nav-text">rgba()函数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Mix函数"><span class="nav-number">1.5.1.2.</span> <span class="nav-text">Mix函数</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#HSL"><span class="nav-number">1.5.2.</span> <span class="nav-text">HSL</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#saturate-amp-desaturate-函数"><span class="nav-number">1.5.2.1.</span> <span class="nav-text">saturate() &amp; desaturate()函数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#adjust-hue-函数"><span class="nav-number">1.5.2.2.</span> <span class="nav-text">adjust-hue()函数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#grayscale-函数"><span class="nav-number">1.5.2.3.</span> <span class="nav-text">grayscale()函数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#complement-函数"><span class="nav-number">1.5.2.4.</span> <span class="nav-text">complement()函数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#transparentize-amp-fade-out-函数"><span class="nav-number">1.5.2.5.</span> <span class="nav-text">transparentize() &amp; fade-out()函数</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#插入文件"><span class="nav-number">1.6.</span> <span class="nav-text">插入文件</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">fengqiyue.cheri</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="前端," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="安装1sudo gem install -n /usr/local/bin compass 使用sudo gem install compass会报一个下面描述的错误，所以我使用了如上的命令。 While executing gem … (Errno::EPERM)    Operation not permitted - /usr/bin/compass 项目初始化创建一个名为『firstpro">
+<meta name="keywords" content="前端">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Compass 笔记">
+<meta property="og:url" content="http://cheri.love/2016/11/10/Compass 笔记/index.html">
+<meta property="og:site_name" content="枫祺玥的小客栈">
+<meta property="og:description" content="安装1sudo gem install -n /usr/local/bin compass 使用sudo gem install compass会报一个下面描述的错误，所以我使用了如上的命令。 While executing gem … (Errno::EPERM)    Operation not permitted - /usr/bin/compass 项目初始化创建一个名为『firstpro">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-06-05T06:17:57.641Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Compass 笔记">
+<meta name="twitter:description" content="安装1sudo gem install -n /usr/local/bin compass 使用sudo gem install compass会报一个下面描述的错误，所以我使用了如上的命令。 While executing gem … (Errno::EPERM)    Operation not permitted - /usr/bin/compass 项目初始化创建一个名为『firstpro">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://cheri.love/2016/11/10/Compass 笔记/"/>
+
+
+
+
+
+  <title>Compass 笔记 | 枫祺玥的小客栈</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">枫祺玥的小客栈</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://cheri.love/2016/11/10/Compass 笔记/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="fengqiyue.cheri">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="枫祺玥的小客栈">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Compass 笔记</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-11-10T12:44:00+08:00">
+                2016-11-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/技术/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo gem install -n /usr/local/bin compass</span><br></pre></td></tr></table></figure>
+<p>使用<code>sudo gem install compass</code>会报一个下面描述的错误，所以我使用了如上的命令。<br> While executing gem … (Errno::EPERM)<br>    Operation not permitted - /usr/bin/compass</p>
+<h2 id="项目初始化"><a href="#项目初始化" class="headerlink" title="项目初始化"></a>项目初始化</h2><p>创建一个名为『firstproject』的项目<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">compass create firstproject</span><br></pre></td></tr></table></figure></p>
+<p>进入该目录<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> firstproject</span><br></pre></td></tr></table></figure></p>
+<p>里面有一个config.rb文件，这是你的项目的配置文件。还有两个子目录sass和stylesheets，前者存放Sass源文件，后者存放编译后的css文件。</p>
+<h2 id="编译"><a href="#编译" class="headerlink" title="编译"></a>编译</h2><h3 id="terminal-命令"><a href="#terminal-命令" class="headerlink" title="terminal 命令"></a>terminal 命令</h3><p>写玩 scss 文件之后，要编译成 css 文件才能应用在网页上，编译的指令是<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">compass compile</span><br></pre></td></tr></table></figure></p>
+<p>命令在项目根目录下运行，会将sass子目录中的scss文件，编译成css文件，保存在stylesheets子目录中。<br>默认状态下，编译出来的css文件带有大量的注释。但是，生产环境需要压缩后的css文件，这时要使用–output-style参数。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">compass compile --output-style compressed</span><br></pre></td></tr></table></figure></p>
+<p>Compass只编译发生变动的文件，如果你要重新编译未变动的文件，需要使用–force参数<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">compass compile --force</span><br></pre></td></tr></table></figure></p>
+<p>在命令行模式下，除了一次性编译命令，compass还有自动编译命令，运行该命令后，只要scss文件发生变化，就会被自动编译成css文件。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">compass watch</span><br></pre></td></tr></table></figure></p>
+<h3 id="config-rb配置文件"><a href="#config-rb配置文件" class="headerlink" title="config.rb配置文件"></a>config.rb配置文件</h3><p>除了使用命令行参数，还可以在配置文件”config.rb”中指定编译模式。</p>
+<p><code>:expanded</code>模式表示编译后保留原格式，其他值还包括:nested、:compact和:compressed。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">output_style = :expanded</span><br></pre></td></tr></table></figure></p>
+<p>进入生产阶段时，就需要改为<code>:compressed</code>;<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">output_style = :compressed</span><br></pre></td></tr></table></figure></p>
+<p>也可以通过指定environment的值（:production或者:development），智能判断编译模式。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">environment = :development</span><br><span class="line">output_style = (environment == :production) ? :compressed : :expanded</span><br></pre></td></tr></table></figure></p>
+<h2 id="compass-模块"><a href="#compass-模块" class="headerlink" title="compass 模块"></a>compass 模块</h2><p>使用compass中封装的模块能够更加方便快速的编写css样式文件</p>
+<h3 id="reset-模块"><a href="#reset-模块" class="headerlink" title="reset 模块"></a>reset 模块</h3><p>为了避免不同的浏览器各式各样的标准，写样式之前是要重置浏览器的默认样式的。<br>写法如下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@important &quot;compass/reset&quot;;</span><br></pre></td></tr></table></figure></p>
+<p>@import命令，用来指定加载模块，此处就是用来加载 reset 模块，也可以从网上下载其他的样式重置模块。</p>
+<h3 id="CSS模块-和-Browser-Support-模块"><a href="#CSS模块-和-Browser-Support-模块" class="headerlink" title="CSS模块 和 Browser Support 模块"></a>CSS模块 和 Browser Support 模块</h3><p>因为浏览器内核有不止一种，所以需要提供一些css3跨浏览器的支持；在使用css3时很多时候都要调整bowser_support模块的支持。<br>举个例子：</p>
+<p>####圆角<br>一般如果自己写一个圆角的效果要这样写：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">.rounded &#123;</span><br><span class="line">　　　　-moz-border-radius: 5px;</span><br><span class="line">　　　　-webkit-border-radius: 5px;</span><br><span class="line">　　　　-o-border-radius: 5px;</span><br><span class="line">　　　　-ms-border-radius: 5px;</span><br><span class="line">　　　　-khtml-border-radius: 5px;</span><br><span class="line">　　　　border-radius: 5px;</span><br><span class="line">　　&#125;</span><br></pre></td></tr></table></figure></p>
+<p>而我们可以使用css3模块来避免重复的工作<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">//scss</span><br><span class="line">@import &quot;compass/css3&quot;;  //引入CSS3模块</span><br><span class="line">.rounded &#123;</span><br><span class="line">　　　　@include border-radius(5px);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">编译后的文件如下：</span><br><span class="line">//css</span><br><span class="line">.rounded &#123;</span><br><span class="line">　　　　-moz-border-radius: 5px;</span><br><span class="line">　　　　-webkit-border-radius: 5px;</span><br><span class="line">　　　　-o-border-radius: 5px;</span><br><span class="line">　　　　-ms-border-radius: 5px;</span><br><span class="line">　　　　-khtml-border-radius: 5px;</span><br><span class="line">　　　　border-radius: 5px;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>如果不需要-moz模块，这时可以调用browser模块，改变需要的模块<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">@import &quot;compass/support&quot;;</span><br><span class="line">//设置只支持chrome</span><br><span class="line">$supported-browsers:chrome;</span><br></pre></td></tr></table></figure></p>
+<p>同时还可以指定支持浏览器的最小版本号<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$browser-minimum-versions:(&quot;ie&quot;: &quot;8&quot;);</span><br></pre></td></tr></table></figure></p>
+<h4 id="透明度"><a href="#透明度" class="headerlink" title="透明度"></a>透明度</h4><p>透明（opacity）的写法为<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">@import &quot;compass/css3&quot;;</span><br><span class="line">#opacity &#123;</span><br><span class="line">    @include opacity(0.5); </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>编译过后的文件如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">#opacity &#123;</span><br><span class="line">　　　　filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0.5);</span><br><span class="line">　　　　opacity: 0.5;</span><br><span class="line">　　&#125;</span><br></pre></td></tr></table></figure></p>
+<h4 id="行内区块"><a href="#行内区块" class="headerlink" title="行内区块"></a>行内区块</h4><p>行内区块（inline-block）的写法为<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">@important &quot;compass/css&quot;</span><br><span class="line">#inline-block &#123;</span><br><span class="line">    @include inline-block;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>编译后的文件为：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">#inline-block &#123;</span><br><span class="line">　　 display: -moz-inline-stack;</span><br><span class="line">　　 display: inline-block;</span><br><span class="line">　　 vertical-align: middle;</span><br><span class="line">　　 *vertical-align: auto;</span><br><span class="line">　　 zoom: 1;</span><br><span class="line">    *display: inline;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="Typography模块"><a href="#Typography模块" class="headerlink" title="Typography模块"></a>Typography模块</h3><p>主要用来修饰一下文本样式，链接样式等</p>
+<h4 id="链接-Link"><a href="#链接-Link" class="headerlink" title="链接 Link"></a>链接 Link</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">//链接样式</span><br><span class="line">@import &quot;compass/typography/links&quot;;</span><br><span class="line">a&#123;</span><br><span class="line">    @include hover-link();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>编译后为:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">a &#123;</span><br><span class="line">  text-decoration: none;</span><br><span class="line">&#125;</span><br><span class="line">a:hover, a:focus &#123;</span><br><span class="line">  text-decoration: underline;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h4 id="链接颜色-link-color"><a href="#链接颜色-link-color" class="headerlink" title="链接颜色 link-color"></a>链接颜色 link-color</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">//修改不同状态下的超链接颜色</span><br><span class="line">@import &quot;compass/typography/links&quot;;</span><br><span class="line">a&#123;</span><br><span class="line">    @include link-colors(#00c, #0cc, #c0c, #ccc, #cc0);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>编译后的文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">//依次参数列表</span><br><span class="line">a &#123;</span><br><span class="line">  color: #00c;</span><br><span class="line">&#125;</span><br><span class="line">a:visited &#123;</span><br><span class="line">  color: #ccc;</span><br><span class="line">&#125;</span><br><span class="line">a:focus &#123;</span><br><span class="line">  color: #cc0;</span><br><span class="line">&#125;</span><br><span class="line">a:hover &#123;</span><br><span class="line">  color: #0cc;</span><br><span class="line">&#125;</span><br><span class="line">a:active &#123;</span><br><span class="line">  color: #c0c;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h4 id="列表布局-list"><a href="#列表布局-list" class="headerlink" title="列表布局 list"></a>列表布局 list</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">@import &quot;compass/typography/lists&quot;;</span><br><span class="line">.list-unstyled&#123;</span><br><span class="line">    @include no-bullets();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>编译后的CSS文件为：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">.list-unstyled &#123;</span><br><span class="line">  list-style: none;</span><br><span class="line">&#125;</span><br><span class="line">.list-unstyled li &#123;</span><br><span class="line">  list-style-image: none;</span><br><span class="line">  list-style-type: none;</span><br><span class="line">  margin-left: 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="Layout-模块"><a href="#Layout-模块" class="headerlink" title="Layout 模块"></a>Layout 模块</h3><p>该模块提供布局功能<br>比如，指定页面的footer部分总是出现在浏览器最底端：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">@import &quot;compass/layout&quot;</span><br><span class="line"># footer &#123;</span><br><span class="line">    @include &quot;sticky-footer(54px)&quot;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>编译后的文件为：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">#footer html, #footer body &#123;</span><br><span class="line">  height: 100%;</span><br><span class="line">&#125;</span><br><span class="line">#footer #root &#123;</span><br><span class="line">  clear: both;</span><br><span class="line">  min-height: 100%;</span><br><span class="line">  height: auto !important;</span><br><span class="line">  height: 100%;</span><br><span class="line">  margin-bottom: -54px;</span><br><span class="line">&#125;</span><br><span class="line">#footer #root #root_footer &#123;</span><br><span class="line">  height: 54px;</span><br><span class="line">&#125;</span><br><span class="line">#footer #footer &#123;</span><br><span class="line">  clear: both;</span><br><span class="line">  position: relative;</span><br><span class="line">  height: 54px;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>指定子元素占满父元素的空间:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">@import &quot;compass/layout&quot;;</span><br><span class="line">#stretch-full &#123;</span><br><span class="line">    @inlcude stretch;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>编译后的文件为：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">#stretch-full &#123;</span><br><span class="line">  position: absolute;</span><br><span class="line">  top: 0;</span><br><span class="line">  bottom: 0;</span><br><span class="line">  left: 0;</span><br><span class="line">  right: 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="utilities模块"><a href="#utilities模块" class="headerlink" title="utilities模块"></a>utilities模块</h3><p>该模块提供一些不属于其他模块的功能。<br>比如，清除浮动：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">@import &quot;compass/utilities&quot;</span><br><span class="line">.clearfix &#123;</span><br><span class="line">    @include clearfix </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>表格：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">@import &quot;compass/utilities&quot;;</span><br><span class="line">　　table &#123;</span><br><span class="line">　　　　@include table-scaffolding;</span><br><span class="line">　　&#125;</span><br></pre></td></tr></table></figure></p>
+<p>编译后生成<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">table th &#123;</span><br><span class="line">    text-align: center;</span><br><span class="line">    font-weight: bold;</span><br><span class="line">&#125;</span><br><span class="line">table td,</span><br><span class="line">    table th &#123;</span><br><span class="line">        padding: 2px;</span><br><span class="line">　　&#125;</span><br><span class="line">table td.numeric,</span><br><span class="line">table th.numeric &#123;</span><br><span class="line">    text-align: right;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>##Helper函数<br>除了模块，Compass还提供一系列函数。<br>有些函数非常有用，比如image-width()和image-height()返回图片的宽和高。<br>再比如，inline-image()可以将图片转为data协议的数据。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">@import &quot;compass&quot;;</span><br><span class="line">　　.icon &#123; background-image: inline-image(&quot;icon.png&quot;);&#125;</span><br></pre></td></tr></table></figure></p>
+<p>编译后得到:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">　　.icon &#123; background-image: url(&apos;data:image/png;base64,iBROR...QmCC&apos;);&#125;</span><br></pre></td></tr></table></figure></p>
+<p>函数与mixin的主要区别是，不需要使用@include命令，可以直接调用。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/前端/" rel="tag"># 前端</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/11/09/Sass/" rel="next" title="Sass 语法笔记">
+                <i class="fa fa-chevron-left"></i> Sass 语法笔记
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/11/12/正则表达式笔记/" rel="prev" title="正则表达式笔记">
+                正则表达式笔记 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">fengqiyue.cheri</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">76</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">categories</span>
+                
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-name">tags</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/fengqiyue" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:mynameiszhangxu@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装"><span class="nav-number">1.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#项目初始化"><span class="nav-number">2.</span> <span class="nav-text">项目初始化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#编译"><span class="nav-number">3.</span> <span class="nav-text">编译</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#terminal-命令"><span class="nav-number">3.1.</span> <span class="nav-text">terminal 命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#config-rb配置文件"><span class="nav-number">3.2.</span> <span class="nav-text">config.rb配置文件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#compass-模块"><span class="nav-number">4.</span> <span class="nav-text">compass 模块</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#reset-模块"><span class="nav-number">4.1.</span> <span class="nav-text">reset 模块</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CSS模块-和-Browser-Support-模块"><span class="nav-number">4.2.</span> <span class="nav-text">CSS模块 和 Browser Support 模块</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#透明度"><span class="nav-number">4.2.1.</span> <span class="nav-text">透明度</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#行内区块"><span class="nav-number">4.2.2.</span> <span class="nav-text">行内区块</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Typography模块"><span class="nav-number">4.3.</span> <span class="nav-text">Typography模块</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#链接-Link"><span class="nav-number">4.3.1.</span> <span class="nav-text">链接 Link</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#链接颜色-link-color"><span class="nav-number">4.3.2.</span> <span class="nav-text">链接颜色 link-color</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#列表布局-list"><span class="nav-number">4.3.3.</span> <span class="nav-text">列表布局 list</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Layout-模块"><span class="nav-number">4.4.</span> <span class="nav-text">Layout 模块</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#utilities模块"><span class="nav-number">4.5.</span> <span class="nav-text">utilities模块</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">fengqiyue.cheri</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

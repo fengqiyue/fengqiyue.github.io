@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="前端," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="字符串获取方法charAt() 方法charAt(index)方法,传入值是一个索引，返回值为一个字符，如果未找到，则返回一个空字符串123var str = &apos;abcde&apos;;console.log(str.charAt(2));        // cconsole.log(str.charAt(8));        // 空字符串 charCodeAt()方法传入值是一个索引，返回指定位置的">
+<meta name="keywords" content="前端">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JS 字符串方法的笔记">
+<meta property="og:url" content="http://cheri.love/2016/10/27/JS 字符串方法的笔记/index.html">
+<meta property="og:site_name" content="枫祺玥的小客栈">
+<meta property="og:description" content="字符串获取方法charAt() 方法charAt(index)方法,传入值是一个索引，返回值为一个字符，如果未找到，则返回一个空字符串123var str = &apos;abcde&apos;;console.log(str.charAt(2));        // cconsole.log(str.charAt(8));        // 空字符串 charCodeAt()方法传入值是一个索引，返回指定位置的">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-06-05T06:26:16.389Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JS 字符串方法的笔记">
+<meta name="twitter:description" content="字符串获取方法charAt() 方法charAt(index)方法,传入值是一个索引，返回值为一个字符，如果未找到，则返回一个空字符串123var str = &apos;abcde&apos;;console.log(str.charAt(2));        // cconsole.log(str.charAt(8));        // 空字符串 charCodeAt()方法传入值是一个索引，返回指定位置的">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://cheri.love/2016/10/27/JS 字符串方法的笔记/"/>
+
+
+
+
+
+  <title>JS 字符串方法的笔记 | 枫祺玥的小客栈</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">枫祺玥的小客栈</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://cheri.love/2016/10/27/JS 字符串方法的笔记/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="fengqiyue.cheri">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="枫祺玥的小客栈">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">JS 字符串方法的笔记</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-10-27T14:05:00+08:00">
+                2016-10-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/技术/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h2><h3 id="获取方法"><a href="#获取方法" class="headerlink" title="获取方法"></a>获取方法</h3><h4 id="charAt-方法"><a href="#charAt-方法" class="headerlink" title="charAt() 方法"></a>charAt() 方法</h4><p><code>charAt(index)</code>方法,传入值是一个索引，返回值为一个字符，如果未找到，则返回一个空字符串<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> str = <span class="string">'abcde'</span>;</span><br><span class="line"><span class="built_in">console</span>.log(str.charAt(<span class="number">2</span>));        <span class="comment">// c</span></span><br><span class="line"><span class="built_in">console</span>.log(str.charAt(<span class="number">8</span>));        <span class="comment">// 空字符串</span></span><br></pre></td></tr></table></figure></p>
+<h4 id="charCodeAt-方法"><a href="#charCodeAt-方法" class="headerlink" title="charCodeAt()方法"></a>charCodeAt()方法</h4><p>传入值是一个索引，返回指定位置的字符的Unicode编码；和<code>charAt()</code>方法类似，区别是一个返回字符，一个返回字符的编码<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> str = <span class="string">'abcde'</span>;</span><br><span class="line"><span class="built_in">console</span>.log(str.charCodeAt(<span class="number">0</span>));        <span class="comment">//返回97</span></span><br></pre></td></tr></table></figure></p>
+<h4 id="fromCharCode-方法"><a href="#fromCharCode-方法" class="headerlink" title="fromCharCode()方法"></a>fromCharCode()方法</h4><p>fromCharCode()接收一个或多个Unicode值，然后返回一个字符串。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> str = <span class="built_in">String</span>.fromCharCode(<span class="number">97</span>, <span class="number">98</span>, <span class="number">99</span>, <span class="number">100</span>, <span class="number">101</span>)    </span><br><span class="line"><span class="built_in">console</span>.log(str);   <span class="comment">//返回abcde</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="查找方法"><a href="#查找方法" class="headerlink" title="查找方法"></a>查找方法</h3><h4 id="indexOf-方法"><a href="#indexOf-方法" class="headerlink" title="indexOf()方法"></a>indexOf()方法</h4><p><code>indexOf()方法</code>用来检索指定的字符串值在字符串中首次出现的位置。<br>可以接收一个或两个参数，第一个参数表示要查找的字符串，第二个参数表示开始查找的位置，默认从起始位置开始查找<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> str = <span class="string">'abcdea'</span>;</span><br><span class="line">str.indexOf(<span class="string">'a'</span>); <span class="comment">// 0</span></span><br><span class="line">str.indexOf(<span class="string">'a'</span>,<span class="number">1</span>) <span class="comment">// 5</span></span><br><span class="line">str.indexOf(<span class="string">'cde'</span>) <span class="comment">// 2</span></span><br></pre></td></tr></table></figure></p>
+<h4 id="lastIndexOf-方法"><a href="#lastIndexOf-方法" class="headerlink" title="lastIndexOf()方法"></a>lastIndexOf()方法</h4><p>lastIndexOf()语法与indexOf()类似，它返回的是一个指定的子字符串值最后出现的位置，其检索顺序是从后向前。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> str = <span class="string">'abcdeab'</span>;</span><br><span class="line"><span class="built_in">console</span>.log(str.lastIndexOf(<span class="string">'a'</span>));    <span class="comment">// 5</span></span><br><span class="line"><span class="built_in">console</span>.log(str.lastIndexOf(<span class="string">'a'</span>, <span class="number">3</span>));    <span class="comment">//0  从第索引3的位置往前检索</span></span><br><span class="line"><span class="built_in">console</span>.log(str.lastIndexOf(<span class="string">'ab'</span>));    <span class="comment">// 5</span></span><br></pre></td></tr></table></figure></p>
+<h4 id="search-方法"><a href="#search-方法" class="headerlink" title="search()方法"></a>search()方法</h4><p>用于检索字符串中指定的子字符串，或检索与正则表达式相匹配的子字符串。<br>传入值可以是一个字符串，也可以是一个正则表达式。<br>返回值为第一个匹配的子字符串的起始位置，如果没有匹配的，则返回-1。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> str = <span class="string">'abcDEF'</span>;</span><br><span class="line"><span class="built_in">console</span>.log(str.search(<span class="string">'c'</span>));    <span class="comment">// 2</span></span><br><span class="line"><span class="built_in">console</span>.log(str.search(<span class="string">'d'</span>));    <span class="comment">// -1</span></span><br><span class="line"><span class="built_in">console</span>.log(str.search(<span class="regexp">/d/i</span>));    <span class="comment">// 3</span></span><br></pre></td></tr></table></figure></p>
+<h4 id="match-方法"><a href="#match-方法" class="headerlink" title="match()方法"></a>match()方法</h4><p>在字符串内检索指定的值，或找到一个或多个正则表达式的匹配。<br>传入值是子字符串或是没有进行全局匹配的正则表达式。<br>返回一个数组，该数组的第0个元素存放的是匹配文本，返回的数组含有两个对象属性index和input，分别表示<strong>匹配文本的起始字符索引</strong>和<strong>对元字符串的引用</strong>。<br>若是没有匹配到，则返回 null<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> str = <span class="string">'1a2b3c4d5e'</span>;</span><br><span class="line"><span class="built_in">console</span>.log(str.match(<span class="string">'h'</span>));    <span class="comment">// null</span></span><br><span class="line"><span class="built_in">console</span>.log(str.match(<span class="string">'b'</span>));    <span class="comment">// ["b", index: 3, input: "1a2b3c4d5e"]</span></span><br><span class="line"><span class="built_in">console</span>.log(str.match(<span class="regexp">/b/</span>));    <span class="comment">// ["b", index: 3, input: "1a2b3c4d5e"]</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="截取方法"><a href="#截取方法" class="headerlink" title="截取方法"></a>截取方法</h3><h4 id="substring-方法"><a href="#substring-方法" class="headerlink" title="substring()方法"></a>substring()方法</h4><p>最常用到的字符串截取方法。<br>接收一个或两个参数：要截取的开始位置和结束位置；只传入一个参数时，结束位置为字符串末尾。<br><strong>传入参数为负数时，视为传入 0。</strong><br><strong>传入的第一个参数大于第二个时，会自动把比较小的参数放在前面</strong><br>返回值为一个新字符串，内容是从start处到end-1处的所有字符。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> str = <span class="string">'01234567'</span>;</span><br><span class="line"><span class="built_in">console</span>.log(str.substring(<span class="number">3</span>,<span class="number">5</span>)); <span class="comment">//  34</span></span><br><span class="line"><span class="built_in">console</span>.log(str.substring(<span class="number">3</span>));  <span class="comment">//  34567 </span></span><br><span class="line"><span class="built_in">console</span>.log(str.substring(<span class="number">-1</span>)); <span class="comment">// 01234567 </span></span><br><span class="line"><span class="built_in">console</span>.log(str.substring(<span class="number">5</span>,<span class="number">3</span>)); <span class="comment">// 34</span></span><br></pre></td></tr></table></figure></p>
+<h4 id="slice-方法"><a href="#slice-方法" class="headerlink" title="slice()方法"></a>slice()方法</h4><p>和 <code>substring</code>方法类似，但是可以传入负数作为参数。<br>如果参数是负数，则该参数规定的是从字符串的尾部开始算起的位置。也就是说，-1 指字符串的最后一个字符。<br><strong> 传入的第一个参数大于或者等于第二个参数时，会返回一个空字符串 </strong><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> str = <span class="string">'abcdefg'</span>;</span><br><span class="line"><span class="built_in">console</span>.log(str.slice(<span class="number">1</span>, <span class="number">4</span>));    <span class="comment">//  bcd</span></span><br><span class="line"><span class="built_in">console</span>.log(str.slice(<span class="number">-3</span>, <span class="number">-1</span>));    <span class="comment">// ef</span></span><br><span class="line"><span class="built_in">console</span>.log(str.slice(<span class="number">1</span>, <span class="number">-1</span>));    <span class="comment">// bcdef</span></span><br><span class="line"><span class="built_in">console</span>.log(str.slice(<span class="number">-1</span>, <span class="number">-3</span>));    <span class="comment">//返回空字符串</span></span><br></pre></td></tr></table></figure></p>
+<h4 id="substr-方法"><a href="#substr-方法" class="headerlink" title="substr()方法"></a>substr()方法</h4><p>用于截取字符串。<br>可以传入一个或者两个参数，第一个参数表示开始位置的索引，第二个参数表示截取字符串的长度。<br>若只传入一个参数，则从开始位置一直取到字符串末尾为止。<br>若传入截取长度大于实际长度，则截取到字符串末尾为止。<br>若传入值的开始位置为负数，则从字符串末尾开始算起，即 -1 位置为字符串最后一个字符<br><strong>若传入的第二个参数小于或等于0，返回值为空字符串。</strong><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> str = <span class="string">'abcdefg'</span>;</span><br><span class="line"><span class="built_in">console</span>.log(str.substr(<span class="number">1</span>)); <span class="comment">// bcdefg </span></span><br><span class="line"><span class="built_in">console</span>.log(str.substr(<span class="number">1</span>,<span class="number">3</span>)); <span class="comment">// bcd </span></span><br><span class="line"><span class="built_in">console</span>.log(str.substr(<span class="number">1</span>,<span class="number">100</span>)); <span class="comment">// bcdefg </span></span><br><span class="line"><span class="built_in">console</span>.log(str.substr(<span class="number">-1</span>));  <span class="comment">// g</span></span><br><span class="line"><span class="built_in">console</span>.log(str.substr(<span class="number">1</span>, <span class="number">0</span>)); <span class="comment">// 空字符串</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="其他方法"><a href="#其他方法" class="headerlink" title="其他方法"></a>其他方法</h3><h4 id="replace-方法"><a href="#replace-方法" class="headerlink" title="replace()方法"></a>replace()方法</h4><p>用来进行字符串替换操作，它可以接收两个参数，前者为被替换的子字符串（可以是正则），后者为用来替换的文本。<br>若第一个参数为字符串或者非全局匹配的正则，那么替换只执行一次。<br>若第一个参数为全局匹配的正则，那么会进行多次替换<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> str = <span class="string">'abcdeabcde'</span>;</span><br><span class="line"><span class="built_in">console</span>.log(str.replace(<span class="string">'a'</span>, <span class="string">'A'</span>)); <span class="comment">// Abcdeabcde</span></span><br><span class="line"><span class="built_in">console</span>.log(str.replace(<span class="regexp">/a/</span>, <span class="string">'A'</span>)); <span class="comment">//  Abcdeabcde</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> str = <span class="string">'abcdeabcdeABCDE'</span>;</span><br><span class="line"><span class="built_in">console</span>.log(str.replace(<span class="regexp">/a/g</span>, <span class="string">'A'</span>));    <span class="comment">//返回AbcdeAbcdeABCDE</span></span><br><span class="line"><span class="built_in">console</span>.log(str.replace(<span class="regexp">/a/gi</span>, <span class="string">'$'</span>));    <span class="comment">//返回$bcde$bcde$BCDE</span></span><br></pre></td></tr></table></figure></p>
+<h4 id="split-方法"><a href="#split-方法" class="headerlink" title="split()方法"></a>split()方法</h4><p>用于把一个字符串分割成字符串数组。<br>可以接收两个参数。第一个参数表示分割位置(参考符)或正则表达式，第二个参数表示返回数组的允许最大长度(一般情况下不设置)。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> str = <span class="string">'a|b|c|d|e'</span>;</span><br><span class="line"><span class="built_in">console</span>.log(str.split(<span class="string">'|'</span>));    <span class="comment">//返回["a", "b", "c", "d", "e"]</span></span><br><span class="line"><span class="built_in">console</span>.log(str.split(<span class="string">'|'</span>, <span class="number">3</span>));    <span class="comment">//返回["a", "b", "c"]</span></span><br><span class="line"><span class="built_in">console</span>.log(str.split(<span class="string">''</span>));    <span class="comment">//返回["a", "|", "b", "|", "c", "|", "d", "|", "e"]</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> str = <span class="string">'a1b2c3d4e'</span>;</span><br><span class="line"><span class="built_in">console</span>.log(str.split(<span class="regexp">/\d/</span>)); <span class="comment">//返回["a", "b", "c", "d", "e"]</span></span><br></pre></td></tr></table></figure></p>
+<h4 id="toLowerCase-和toUpperCase"><a href="#toLowerCase-和toUpperCase" class="headerlink" title=") toLowerCase()和toUpperCase()"></a>) toLowerCase()和toUpperCase()</h4><p>toLowerCase()方法可以把字符串中的大写字母转换为小写。<br>toUpperCase()方法可以把字符串中的小写字母转换为大写。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> str = <span class="string">'JavaScript'</span>;</span><br><span class="line"><span class="built_in">console</span>.log(str.toLowerCase());    <span class="comment">//返回javascript</span></span><br><span class="line"><span class="built_in">console</span>.log(str.toUpperCase());    <span class="comment">//返回JAVASCRIPT</span></span><br></pre></td></tr></table></figure>
+<h4 id="toFixed"><a href="#toFixed" class="headerlink" title="toFixed()"></a>toFixed()</h4><p>toFixed() 方法可把 Number 四舍五入为指定小数位数的数字。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">NumberObject.toFixed(num)</span><br></pre></td></tr></table></figure></p>
+<p><code>num</code>是 0 ~ 20 之间的值，包括 0 和 20;缺省值是 0;<br>当调用该方法的对象不是 Number 时抛出 TypeError 异常<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(123).toFixed(2)  //  &quot;123.00&quot;</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/前端/" rel="tag"># 前端</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/10/26/Manacher算法/" rel="next" title="Manacher 算法">
+                <i class="fa fa-chevron-left"></i> Manacher 算法
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/11/03/FlexBox/" rel="prev" title="FlexBox 学习记录">
+                FlexBox 学习记录 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">fengqiyue.cheri</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">76</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">categories</span>
+                
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-name">tags</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/fengqiyue" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:mynameiszhangxu@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#字符串"><span class="nav-number">1.</span> <span class="nav-text">字符串</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#获取方法"><span class="nav-number">1.1.</span> <span class="nav-text">获取方法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#charAt-方法"><span class="nav-number">1.1.1.</span> <span class="nav-text">charAt() 方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#charCodeAt-方法"><span class="nav-number">1.1.2.</span> <span class="nav-text">charCodeAt()方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#fromCharCode-方法"><span class="nav-number">1.1.3.</span> <span class="nav-text">fromCharCode()方法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查找方法"><span class="nav-number">1.2.</span> <span class="nav-text">查找方法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#indexOf-方法"><span class="nav-number">1.2.1.</span> <span class="nav-text">indexOf()方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#lastIndexOf-方法"><span class="nav-number">1.2.2.</span> <span class="nav-text">lastIndexOf()方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#search-方法"><span class="nav-number">1.2.3.</span> <span class="nav-text">search()方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#match-方法"><span class="nav-number">1.2.4.</span> <span class="nav-text">match()方法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#截取方法"><span class="nav-number">1.3.</span> <span class="nav-text">截取方法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#substring-方法"><span class="nav-number">1.3.1.</span> <span class="nav-text">substring()方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#slice-方法"><span class="nav-number">1.3.2.</span> <span class="nav-text">slice()方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#substr-方法"><span class="nav-number">1.3.3.</span> <span class="nav-text">substr()方法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#其他方法"><span class="nav-number">1.4.</span> <span class="nav-text">其他方法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#replace-方法"><span class="nav-number">1.4.1.</span> <span class="nav-text">replace()方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#split-方法"><span class="nav-number">1.4.2.</span> <span class="nav-text">split()方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#toLowerCase-和toUpperCase"><span class="nav-number">1.4.3.</span> <span class="nav-text">) toLowerCase()和toUpperCase()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#toFixed"><span class="nav-number">1.4.4.</span> <span class="nav-text">toFixed()</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">fengqiyue.cheri</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

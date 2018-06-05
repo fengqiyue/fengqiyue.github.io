@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="前端," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="游戏介绍开心或者不开心的时候，写点简单的小东西也是个不错的选择。这次写的是一个十分简单的九宫格排序游戏，样子是这样的：通关的条件很简单：把数字按照从小到大的顺序排列好就可以了。也就是排列成这样：下面来说一下实现： 实现思路HTML部分分层次的说，页面主要分两块：左边是一块名为 game 的 div 区域，用于放置游戏需要的棋盘和小方块；右边一块 div 名为 control，用来显示游戏时间和按钮">
+<meta name="keywords" content="前端">
+<meta property="og:type" content="article">
+<meta property="og:title" content="一个简单的九宫格排序游戏js实现">
+<meta property="og:url" content="http://cheri.love/2016/10/10/一个简单的九宫格排序游戏js实现/index.html">
+<meta property="og:site_name" content="枫祺玥的小客栈">
+<meta property="og:description" content="游戏介绍开心或者不开心的时候，写点简单的小东西也是个不错的选择。这次写的是一个十分简单的九宫格排序游戏，样子是这样的：通关的条件很简单：把数字按照从小到大的顺序排列好就可以了。也就是排列成这样：下面来说一下实现： 实现思路HTML部分分层次的说，页面主要分两块：左边是一块名为 game 的 div 区域，用于放置游戏需要的棋盘和小方块；右边一块 div 名为 control，用来显示游戏时间和按钮">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://obdnk0ees.bkt.clouddn.com/image/九宫格.png">
+<meta property="og:image" content="http://obdnk0ees.bkt.clouddn.com/九宫格通关.png">
+<meta property="og:image" content="http://obdnk0ees.bkt.clouddn.com/image/九宫格布局.png">
+<meta property="og:updated_time" content="2018-06-05T06:47:03.947Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="一个简单的九宫格排序游戏js实现">
+<meta name="twitter:description" content="游戏介绍开心或者不开心的时候，写点简单的小东西也是个不错的选择。这次写的是一个十分简单的九宫格排序游戏，样子是这样的：通关的条件很简单：把数字按照从小到大的顺序排列好就可以了。也就是排列成这样：下面来说一下实现： 实现思路HTML部分分层次的说，页面主要分两块：左边是一块名为 game 的 div 区域，用于放置游戏需要的棋盘和小方块；右边一块 div 名为 control，用来显示游戏时间和按钮">
+<meta name="twitter:image" content="http://obdnk0ees.bkt.clouddn.com/image/九宫格.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://cheri.love/2016/10/10/一个简单的九宫格排序游戏js实现/"/>
+
+
+
+
+
+  <title>一个简单的九宫格排序游戏js实现 | 枫祺玥的小客栈</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">枫祺玥的小客栈</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://cheri.love/2016/10/10/一个简单的九宫格排序游戏js实现/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="fengqiyue.cheri">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="枫祺玥的小客栈">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">一个简单的九宫格排序游戏js实现</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-10-10T13:49:00+08:00">
+                2016-10-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/技术/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="游戏介绍"><a href="#游戏介绍" class="headerlink" title="游戏介绍"></a>游戏介绍</h2><p>开心或者不开心的时候，写点简单的小东西也是个不错的选择。<br>这次写的是一个十分简单的九宫格排序游戏，样子是这样的：<br><img src="http://obdnk0ees.bkt.clouddn.com/image/九宫格.png" alt="九宫格排序游戏"><br>通关的条件很简单：把数字按照从小到大的顺序排列好就可以了。也就是排列成这样：<br><img src="http://obdnk0ees.bkt.clouddn.com/九宫格通关.png" alt="九宫格排序游戏通关"><br>下面来说一下实现：</p>
+<h2 id="实现思路"><a href="#实现思路" class="headerlink" title="实现思路"></a>实现思路</h2><h3 id="HTML部分"><a href="#HTML部分" class="headerlink" title="HTML部分"></a>HTML部分</h3><p>分层次的说，页面主要分两块：左边是一块名为 game 的 div 区域，用于放置游戏需要的棋盘和小方块；右边一块 div 名为 control，用来显示游戏时间和按钮：<br><img src="http://obdnk0ees.bkt.clouddn.com/image/九宫格布局.png" alt="九宫格排序游戏界面布局"><br>上图基本展示了代码的层级关系，具体代码如下所示：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">title</span>&gt;</span>九宫格排序游戏<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">href</span>=<span class="string">"jiugongge.css"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"all"</span>&gt;</span> </span><br><span class="line">	<span class="comment">&lt;!--总体区域--&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"game"</span>&gt;</span></span><br><span class="line">		<span class="comment">&lt;!--九宫格区域--&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"d1"</span> <span class="attr">onclick</span>=<span class="string">"move(1)"</span>&gt;</span>1<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"d2"</span> <span class="attr">onclick</span>=<span class="string">"move(2)"</span>&gt;</span>2<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"d3"</span> <span class="attr">onclick</span>=<span class="string">"move(3)"</span>&gt;</span>3<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"d4"</span> <span class="attr">onclick</span>=<span class="string">"move(4)"</span>&gt;</span>4<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"d5"</span> <span class="attr">onclick</span>=<span class="string">"move(5)"</span>&gt;</span>5<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"d6"</span> <span class="attr">onclick</span>=<span class="string">"move(6)"</span>&gt;</span>6<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"d7"</span> <span class="attr">onclick</span>=<span class="string">"move(7)"</span>&gt;</span>7<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"d8"</span> <span class="attr">onclick</span>=<span class="string">"move(8)"</span>&gt;</span>8<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"control"</span>&gt;</span></span><br><span class="line">		<span class="comment">&lt;!--控制按钮区域--&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">span</span> <span class="attr">id</span>=<span class="string">"timeText"</span>&gt;</span>总用时<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">span</span> <span class="attr">id</span>=<span class="string">"timer"</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">button</span> <span class="attr">id</span>=<span class="string">"start"</span> <span class="attr">onclick</span>=<span class="string">"start()"</span>&gt;</span>开始<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">button</span> <span class="attr">id</span>=<span class="string">"restart"</span> <span class="attr">onclick</span>=<span class="string">"restart()"</span>&gt;</span>重新开始<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"jiugongge.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p><strong>为了不导致误会，这里把棋盘所处的 <code>&lt;div id=&quot;game&quot;&gt;</code>称之为『大div』（棋盘），把棋子（也就是小方块）所处的<code>&lt;div id=&quot;d1&quot;&gt;</code>称之为『小div』（一共八个棋子，要留空一块用来移动）。</strong></p>
+<h3 id="CSS-部分"><a href="#CSS-部分" class="headerlink" title="CSS 部分"></a>CSS 部分</h3><p>CSS部分是最吼的！<br>为了避免浏览器不同标准导致的意外，我先无脑拷贝一份CSS初始化代码（来自淘宝网）。<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">body</span>, <span class="selector-tag">h1</span>, <span class="selector-tag">h2</span>, <span class="selector-tag">h3</span>, <span class="selector-tag">h4</span>, <span class="selector-tag">h5</span>, <span class="selector-tag">h6</span>, <span class="selector-tag">hr</span>, <span class="selector-tag">p</span>, <span class="selector-tag">blockquote</span>, <span class="selector-tag">dl</span>, <span class="selector-tag">dt</span>, <span class="selector-tag">dd</span>, <span class="selector-tag">ul</span>, <span class="selector-tag">ol</span>, <span class="selector-tag">li</span>, <span class="selector-tag">pre</span>, <span class="selector-tag">form</span>, <span class="selector-tag">fieldset</span>, <span class="selector-tag">legend</span>, <span class="selector-tag">button</span>, <span class="selector-tag">input</span>, <span class="selector-tag">textarea</span>, <span class="selector-tag">th</span>, <span class="selector-tag">td</span> &#123; <span class="attribute">margin</span>:<span class="number">0</span>; <span class="attribute">padding</span>:<span class="number">0</span>; &#125; </span><br><span class="line">  <span class="selector-tag">body</span>, <span class="selector-tag">button</span>, <span class="selector-tag">input</span>, <span class="selector-tag">select</span>, <span class="selector-tag">textarea</span> &#123; <span class="attribute">font</span>:<span class="number">12px</span>/<span class="number">1.5</span>tahoma, arial, \<span class="number">5</span>b8b\<span class="number">4</span>f53; &#125; </span><br><span class="line"> <span class="selector-tag">h1</span>, <span class="selector-tag">h2</span>, <span class="selector-tag">h3</span>, <span class="selector-tag">h4</span>, <span class="selector-tag">h5</span>, <span class="selector-tag">h6</span>&#123; <span class="attribute">font-size</span>:<span class="number">100%</span>; &#125; </span><br><span class="line">  <span class="selector-tag">address</span>, <span class="selector-tag">cite</span>, <span class="selector-tag">dfn</span>, <span class="selector-tag">em</span>, <span class="selector-tag">var</span> &#123; <span class="attribute">font-style</span>:normal; &#125; </span><br><span class="line">  <span class="selector-tag">code</span>, <span class="selector-tag">kbd</span>, <span class="selector-tag">pre</span>, <span class="selector-tag">samp</span> &#123; <span class="attribute">font-family</span>:couriernew, courier, monospace; &#125; <span class="selector-tag">small</span>&#123; <span class="attribute">font-size</span>:<span class="number">12px</span>; &#125;</span><br><span class="line">  <span class="selector-tag">ul</span>, <span class="selector-tag">ol</span> &#123; <span class="attribute">list-style</span>:none; &#125;</span><br><span class="line">  <span class="selector-tag">a</span> &#123; <span class="attribute">text-decoration</span>:none; &#125; </span><br><span class="line">  <span class="selector-tag">a</span><span class="selector-pseudo">:hover</span> &#123; <span class="attribute">text-decoration</span>:underline; &#125;</span><br><span class="line">  <span class="selector-tag">sup</span> &#123; <span class="attribute">vertical-align</span>:text-top; &#125;</span><br><span class="line">  <span class="selector-tag">sub</span>&#123; <span class="attribute">vertical-align</span>:text-bottom; &#125;</span><br><span class="line">  <span class="selector-tag">legend</span> &#123; <span class="attribute">color</span>:<span class="number">#000</span>; &#125;</span><br><span class="line">  <span class="selector-tag">fieldset</span>, <span class="selector-tag">img</span> &#123; <span class="attribute">border</span>:<span class="number">0</span>; &#125;</span><br><span class="line">  <span class="selector-tag">button</span>, <span class="selector-tag">input</span>, <span class="selector-tag">select</span>, <span class="selector-tag">textarea</span> &#123; <span class="attribute">font-size</span>:<span class="number">100%</span>; &#125;</span><br><span class="line">  <span class="selector-tag">table</span> &#123; <span class="attribute">border-collapse</span>:collapse; <span class="attribute">border-spacing</span>:<span class="number">0</span>; &#125;</span><br><span class="line"><span class="comment">/*  样式初始化*/</span></span><br></pre></td></tr></table></figure></p>
+<p>接下来我把想说的直接写在注释里，值得一提的是，小方块（棋子）滑动的实现用的是 CSS 的<code>transition</code>实现的，比 JS 实现方便到不知道哪里去了（大雾(/ω＼)）。<br>完整的CSS代码：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">body</span>, <span class="selector-tag">h1</span>, <span class="selector-tag">h2</span>, <span class="selector-tag">h3</span>, <span class="selector-tag">h4</span>, <span class="selector-tag">h5</span>, <span class="selector-tag">h6</span>, <span class="selector-tag">hr</span>, <span class="selector-tag">p</span>, <span class="selector-tag">blockquote</span>, <span class="selector-tag">dl</span>, <span class="selector-tag">dt</span>, <span class="selector-tag">dd</span>, <span class="selector-tag">ul</span>, <span class="selector-tag">ol</span>, <span class="selector-tag">li</span>, <span class="selector-tag">pre</span>, <span class="selector-tag">form</span>, <span class="selector-tag">fieldset</span>, <span class="selector-tag">legend</span>, <span class="selector-tag">button</span>, <span class="selector-tag">input</span>, <span class="selector-tag">textarea</span>, <span class="selector-tag">th</span>, <span class="selector-tag">td</span> &#123; <span class="attribute">margin</span>:<span class="number">0</span>; <span class="attribute">padding</span>:<span class="number">0</span>; &#125; </span><br><span class="line">  <span class="selector-tag">body</span>, <span class="selector-tag">button</span>, <span class="selector-tag">input</span>, <span class="selector-tag">select</span>, <span class="selector-tag">textarea</span> &#123; <span class="attribute">font</span>:<span class="number">12px</span>/<span class="number">1.5</span>tahoma, arial, \<span class="number">5</span>b8b\<span class="number">4</span>f53; &#125; </span><br><span class="line"> <span class="selector-tag">h1</span>, <span class="selector-tag">h2</span>, <span class="selector-tag">h3</span>, <span class="selector-tag">h4</span>, <span class="selector-tag">h5</span>, <span class="selector-tag">h6</span>&#123; <span class="attribute">font-size</span>:<span class="number">100%</span>; &#125; </span><br><span class="line">  <span class="selector-tag">address</span>, <span class="selector-tag">cite</span>, <span class="selector-tag">dfn</span>, <span class="selector-tag">em</span>, <span class="selector-tag">var</span> &#123; <span class="attribute">font-style</span>:normal; &#125; </span><br><span class="line">  <span class="selector-tag">code</span>, <span class="selector-tag">kbd</span>, <span class="selector-tag">pre</span>, <span class="selector-tag">samp</span> &#123; <span class="attribute">font-family</span>:couriernew, courier, monospace; &#125; <span class="selector-tag">small</span>&#123; <span class="attribute">font-size</span>:<span class="number">12px</span>; &#125;</span><br><span class="line">  <span class="selector-tag">ul</span>, <span class="selector-tag">ol</span> &#123; <span class="attribute">list-style</span>:none; &#125;</span><br><span class="line">  <span class="selector-tag">a</span> &#123; <span class="attribute">text-decoration</span>:none; &#125; </span><br><span class="line">  <span class="selector-tag">a</span><span class="selector-pseudo">:hover</span> &#123; <span class="attribute">text-decoration</span>:underline; &#125;</span><br><span class="line">  <span class="selector-tag">sup</span> &#123; <span class="attribute">vertical-align</span>:text-top; &#125;</span><br><span class="line">  <span class="selector-tag">sub</span>&#123; <span class="attribute">vertical-align</span>:text-bottom; &#125;</span><br><span class="line">  <span class="selector-tag">legend</span> &#123; <span class="attribute">color</span>:<span class="number">#000</span>; &#125;</span><br><span class="line">  <span class="selector-tag">fieldset</span>, <span class="selector-tag">img</span> &#123; <span class="attribute">border</span>:<span class="number">0</span>; &#125;</span><br><span class="line">  <span class="selector-tag">button</span>, <span class="selector-tag">input</span>, <span class="selector-tag">select</span>, <span class="selector-tag">textarea</span> &#123; <span class="attribute">font-size</span>:<span class="number">100%</span>; &#125;</span><br><span class="line">  <span class="selector-tag">table</span> &#123; <span class="attribute">border-collapse</span>:collapse; <span class="attribute">border-spacing</span>:<span class="number">0</span>; &#125;</span><br><span class="line"><span class="comment">/*  样式初始化*/</span></span><br><span class="line"></span><br><span class="line"><span class="selector-tag">body</span> &#123;           <span class="comment">/*浏览器屏幕大小自动适配 */</span></span><br><span class="line">  <span class="attribute">width</span>: <span class="number">100%</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">100%</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-id">#all</span> &#123;</span><br><span class="line">  <span class="attribute">position</span>: relative;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">100%</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">800px</span>;</span><br><span class="line">  <span class="attribute">margin</span>: <span class="number">0</span> auto;     <span class="comment">/*居中*/</span></span><br><span class="line">  <span class="attribute">margin-top</span>: <span class="number">20px</span>;   <span class="comment">/*我开心才写的，你不喜欢可以删掉*/</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-id">#game</span> &#123;     <span class="comment">/*大div（棋盘）*/</span></span><br><span class="line">  <span class="attribute">position</span>: absolute;</span><br><span class="line">  <span class="attribute">display</span>: inline-block;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">450px</span>;</span><br><span class="line">  <span class="attribute">height</span>:<span class="number">450px</span>;</span><br><span class="line">  <span class="attribute">background-color</span>: <span class="number">#66ffcc</span>;  <span class="comment">/*初音绿*/</span></span><br><span class="line">  <span class="attribute">box-shadow</span>: <span class="number">0</span> <span class="number">0</span> <span class="number">10px</span> <span class="number">#66ffcc</span>;</span><br><span class="line">  <span class="attribute">margin</span>: <span class="number">0</span> auto;   <span class="comment">/*居中*/</span></span><br><span class="line">  <span class="attribute">top</span>:<span class="number">0px</span>;</span><br><span class="line">  <span class="attribute">right</span>: <span class="number">0px</span>;</span><br><span class="line">  <span class="attribute">bottom</span>: <span class="number">0px</span>;</span><br><span class="line">  <span class="attribute">left</span>: <span class="number">0px</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-id">#game</span> <span class="selector-tag">div</span> &#123;    <span class="comment">/*小div（棋子）*/</span></span><br><span class="line">  <span class="attribute">position</span>: absolute;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">149px</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">149px</span>;</span><br><span class="line">  <span class="attribute">box-shadow</span>: <span class="number">1px</span> <span class="number">1px</span> <span class="number">2px</span> <span class="number">#777</span>;</span><br><span class="line">  <span class="attribute">background-color</span>: <span class="number">#66ccff</span>; <span class="comment">/*天依蓝*/</span></span><br><span class="line">  <span class="attribute">color</span>: white;</span><br><span class="line">  <span class="attribute">text-align</span>: center;</span><br><span class="line">  <span class="attribute">font-size</span>: <span class="number">150px</span>;</span><br><span class="line">  <span class="attribute">line-height</span>: <span class="number">150px</span>;</span><br><span class="line">  <span class="attribute">cursor</span>: pointer;</span><br><span class="line">    <span class="attribute">-webkit-transition</span>: <span class="number">0.3s</span>;<span class="comment">/*浏览器前缀，兼容其他浏览器 safari &amp;&amp; chrome*/</span></span><br><span class="line">       <span class="attribute">-moz-transition</span>: <span class="number">0.3s</span>;<span class="comment">/*firefox*/</span></span><br><span class="line">        <span class="attribute">-ms-transition</span>: <span class="number">0.3s</span>;<span class="comment">/*ie*/</span></span><br><span class="line">         <span class="attribute">-o-transition</span>: <span class="number">0.3s</span>;<span class="comment">/*opera*/</span></span><br><span class="line">            <span class="attribute">transition</span>: <span class="number">0.3s</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-id">#game</span> <span class="selector-tag">div</span><span class="selector-pseudo">:hover</span>&#123;</span><br><span class="line">    <span class="attribute">color</span>: <span class="number">#ffe171</span>; <span class="comment">/*悬浮变色*/</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-id">#control</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">150px</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">450px</span>;</span><br><span class="line">  <span class="attribute">display</span>: inline-block;</span><br><span class="line">  <span class="attribute">float</span>: right;</span><br><span class="line">  <span class="attribute">position</span>: absolute;</span><br><span class="line">  <span class="attribute">left</span>:<span class="number">80%</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-id">#control</span> <span class="selector-tag">button</span>,<span class="selector-tag">span</span>&#123;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">25px</span>;</span><br><span class="line">    <span class="attribute">font-size</span>: <span class="number">20px</span>;</span><br><span class="line">    <span class="attribute">color</span>: <span class="number">#222</span>;</span><br><span class="line">    <span class="attribute">margin-top</span>: <span class="number">10px</span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-id">#start</span>&#123;</span><br><span class="line">    <span class="attribute">display</span>: inline-block;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">100px</span>;</span><br><span class="line">    <span class="attribute">background-color</span>: <span class="number">#66ccff</span>;</span><br><span class="line">    <span class="attribute">text-shadow</span>: <span class="number">1px</span> <span class="number">1px</span> <span class="number">2px</span> <span class="number">#ffe171</span>;<span class="comment">/*字体阴影*/</span></span><br><span class="line">    <span class="attribute">border-radius</span>: <span class="number">5px</span>;              <span class="comment">/*圆角属性*/</span></span><br><span class="line">    <span class="attribute">box-shadow</span>: <span class="number">2px</span> <span class="number">2px</span> <span class="number">5px</span> <span class="number">#4c98f5</span>;<span class="comment">/*盒子阴影*/</span></span><br><span class="line">    <span class="attribute">text-align</span>: center;             <span class="comment">/*文字居中*/</span></span><br><span class="line">    <span class="attribute">cursor</span>: pointer;                <span class="comment">/*光标变形*/</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-id">#restart</span>&#123;</span><br><span class="line">    <span class="attribute">display</span>: inline-block;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">100px</span>;</span><br><span class="line">    <span class="attribute">background-color</span>: <span class="number">#66ccff</span>;</span><br><span class="line">    <span class="attribute">text-shadow</span>: <span class="number">1px</span> <span class="number">1px</span> <span class="number">2px</span> <span class="number">#ffe171</span>;</span><br><span class="line">    <span class="attribute">border-radius</span>: <span class="number">5px</span>;</span><br><span class="line">    <span class="attribute">box-shadow</span>: <span class="number">2px</span> <span class="number">2px</span> <span class="number">5px</span> <span class="number">#4c98f5</span>;</span><br><span class="line">    <span class="attribute">text-align</span>: center;</span><br><span class="line">    <span class="attribute">cursor</span>: pointer;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*一一确定小div（棋子）的初始位置，本游戏棋盘宽450px*/</span></span><br><span class="line"><span class="selector-id">#d1</span>&#123;</span><br><span class="line">    <span class="attribute">left</span>: <span class="number">0px</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-id">#d2</span>&#123;</span><br><span class="line">    <span class="attribute">left</span>: <span class="number">150px</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-id">#d3</span>&#123;</span><br><span class="line">    <span class="attribute">left</span>: <span class="number">300px</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-id">#d4</span>&#123;</span><br><span class="line">    <span class="attribute">top</span>: <span class="number">150px</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-id">#d5</span>&#123;</span><br><span class="line">    <span class="attribute">top</span>: <span class="number">150px</span>;</span><br><span class="line">    <span class="attribute">left</span>: <span class="number">150px</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-id">#d6</span>&#123;</span><br><span class="line">    <span class="attribute">top</span>: <span class="number">150px</span>;</span><br><span class="line">    <span class="attribute">left</span>: <span class="number">300px</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-id">#d7</span>&#123;</span><br><span class="line">    <span class="attribute">top</span>: <span class="number">300px</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-id">#d8</span>&#123;</span><br><span class="line">    <span class="attribute">left</span>: <span class="number">150px</span>;</span><br><span class="line">    <span class="attribute">top</span>: <span class="number">300px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>###JS 部分<br>JS代码中，主要有这么几个函数：</p>
+<ul>
+<li><code>move(id)</code>    传入值是当前被点击的小方块（棋子）的编号（该编号只和棋子本身的数字有关，和棋盘上的位置无关）,当小方块（棋子）被点击时，会调用<code>whereCanTo(cur_div)</code>函数来判断是否能移动和能移动到那个位置，并进行移动。</li>
+<li><code>whereCanTo(cur_div)</code> 传入值是当前被点击的小方块在棋盘上的位置（和棋子本身的编号无关），返回值是一个数字，表示能移动到的位置，返回0表示不能移动。</li>
+<li><code>start()</code>   点击『开始/暂停』按钮后触发，该按钮对应的方法是一个toggle，暂停时调用会开始游戏，进行游戏的时候调用会暂停游戏。该方法会通过<code>setInterval(timer,1000)</code>调用<code>timer()</code>方法，以此实现计时器。<br>*<code>timer()</code>  <code>start()</code>方法每1000毫秒调用一次，以此实现计时器，并把时间显示到 DOM 中。</li>
+<li><code>restart()</code>   点击『重新开始』时调用该方法，会把时间计0，然后调用<code>random_d()</code>方法把棋子全部打乱。</li>
+<li><code>random_d()</code>  将所有的棋子打乱，实现的思路是模拟人的操作。<br>全部代码如下：<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> time = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> pause = <span class="literal">true</span>;  <span class="comment">//值为 true 的时候，说明当前状态为暂停</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> set_timer;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> d = <span class="built_in">Array</span>(<span class="number">10</span>); <span class="comment">//用于保存小div的编号</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> d_direct = <span class="keyword">new</span> <span class="built_in">Array</span>(      <span class="comment">//记录当前位置的方块可以移动到哪些位置</span></span><br><span class="line">        [<span class="number">0</span>], <span class="comment">//为了逻辑简明，不使用第一项</span></span><br><span class="line">        [<span class="number">2</span>,<span class="number">4</span>],  <span class="comment">//1号位的方块可以移动到2号位和4号位</span></span><br><span class="line">        [<span class="number">1</span>,<span class="number">3</span>,<span class="number">5</span>],</span><br><span class="line">        [<span class="number">2</span>,<span class="number">6</span>],</span><br><span class="line">        [<span class="number">1</span>,<span class="number">5</span>,<span class="number">7</span>],</span><br><span class="line">        [<span class="number">2</span>,<span class="number">4</span>,<span class="number">6</span>,<span class="number">8</span>],</span><br><span class="line">        [<span class="number">3</span>,<span class="number">5</span>,<span class="number">9</span>],</span><br><span class="line">        [<span class="number">4</span>,<span class="number">8</span>],</span><br><span class="line">        [<span class="number">5</span>,<span class="number">7</span>,<span class="number">9</span>],</span><br><span class="line">        [<span class="number">6</span>,<span class="number">8</span>]</span><br><span class="line">    );</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> d_position = <span class="keyword">new</span> <span class="built_in">Array</span>(    <span class="comment">//保存方块的位置</span></span><br><span class="line">        [<span class="number">0</span>],       <span class="comment">//为了逻辑简明，不使用第一项</span></span><br><span class="line">        [<span class="number">0</span>,<span class="number">0</span>],     <span class="comment">//第一个表示left,第二个表示top，比如第一块的位置为let:0px,top:0px</span></span><br><span class="line">        [<span class="number">150</span>,<span class="number">0</span>],  <span class="comment">//方块的大小为 150px * 150px</span></span><br><span class="line">        [<span class="number">300</span>,<span class="number">0</span>],</span><br><span class="line">        [<span class="number">0</span>,<span class="number">150</span>],</span><br><span class="line">        [<span class="number">150</span>,<span class="number">150</span>],</span><br><span class="line">        [<span class="number">300</span>,<span class="number">150</span>],</span><br><span class="line">        [<span class="number">0</span>,<span class="number">300</span>],</span><br><span class="line">        [<span class="number">150</span>,<span class="number">300</span>],</span><br><span class="line">        [<span class="number">300</span>,<span class="number">300</span>]</span><br><span class="line">    );</span><br><span class="line"></span><br><span class="line">d[<span class="number">1</span>]=<span class="number">1</span>;d[<span class="number">2</span>]=<span class="number">2</span>;d[<span class="number">3</span>]=<span class="number">3</span>;d[<span class="number">4</span>]=<span class="number">4</span>;d[<span class="number">5</span>]=<span class="number">5</span>;d[<span class="number">6</span>]=<span class="number">6</span>;d[<span class="number">7</span>]=<span class="number">7</span>;d[<span class="number">8</span>]=<span class="number">8</span>;d[<span class="number">9</span>]=<span class="number">0</span>;   <span class="comment">//默认按照顺序排好，方块只有八块，第九块没有，</span></span><br><span class="line">                                                                  <span class="comment">//所以为0，我们用0表示空白块</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">move</span>(<span class="params">id</span>) </span>&#123; <span class="comment">//用于移动方块的函数</span></span><br><span class="line">    <span class="keyword">var</span> i = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span>(d[i] != id)&#123;   <span class="comment">// 用于确定当前触发函数的是哪个区域(编号属于大DIV而不是小方块)</span></span><br><span class="line">        i++;</span><br><span class="line">    &#125; </span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> target_d = <span class="number">0</span>; <span class="comment">//用于保存小方块可以去的区域，0表示不能移动</span></span><br><span class="line"></span><br><span class="line">    target_d = whereCanTo(i);</span><br><span class="line">    <span class="comment">//用来找出小DIV可以去的位置，如果返回0，表示不能移动，如果可以移动，则返回可以去的位置编号</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>(target_d != <span class="number">0</span>)&#123;</span><br><span class="line">        d[i] = <span class="number">0</span>; <span class="comment">//如果当前可以移动，则把当前小方块移走，当前位置设置为无方块</span></span><br><span class="line">        d[target_d] = id; <span class="comment">//把目标大DIV设置为被点击的小DIV的编号</span></span><br><span class="line">        <span class="built_in">document</span>.getElementById(<span class="string">"d"</span>+id).style.left = d_position[target_d][<span class="number">0</span>]+<span class="string">"px"</span>;</span><br><span class="line">        <span class="built_in">document</span>.getElementById(<span class="string">"d"</span>+id).style.top = d_position[target_d][<span class="number">1</span>]+<span class="string">"px"</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> finish_flag = <span class="literal">true</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">var</span> k=<span class="number">1</span>; k&lt;<span class="number">9</span>; ++k)&#123;  <span class="comment">//用于判断游戏是否通关</span></span><br><span class="line">        <span class="keyword">if</span>( d[k] != k)&#123;</span><br><span class="line">            finish_flag=<span class="literal">false</span>;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">            <span class="comment">//如果大DIV保存的编号和它本身的编号不同，则表示还不是全部按照顺序排的，那么设置为false，跳出循环</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>(finish_flag==<span class="literal">true</span>)&#123;</span><br><span class="line">        <span class="keyword">if</span>(!pause)</span><br><span class="line">            start();   <span class="comment">//此时调用 start() 函数，效果是暂停游戏,</span></span><br><span class="line">                       <span class="comment">//start() 是一个 toggle，暂停时调用会开始游戏，进行游戏的时候调用会暂停游戏</span></span><br><span class="line">        alert(<span class="string">"恭喜通关！"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">whereCanTo</span>(<span class="params">cur_div</span>) </span>&#123;  <span class="comment">//参数是大div的编号</span></span><br><span class="line">    <span class="keyword">var</span> j = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">var</span> move_flag = <span class="literal">false</span>; <span class="comment">//方块能否移动的标记</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span>(j=<span class="number">0</span>; j&lt;d_direct[cur_div].length; j++)&#123;</span><br><span class="line">        <span class="keyword">if</span> (d[ d_direct[cur_div][j] ]== <span class="number">0</span>) &#123;</span><br><span class="line">            move_flag = <span class="literal">true</span>;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(move_flag)&#123;</span><br><span class="line">        <span class="keyword">return</span> d_direct[cur_div][j];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//定时函数，每一秒执行一次</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">timer</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    time+=<span class="number">1</span>;<span class="comment">//一秒钟加一，单位是秒</span></span><br><span class="line">    <span class="keyword">var</span> min=<span class="built_in">parseInt</span>(time/<span class="number">60</span>);<span class="comment">//把秒转换为分钟</span></span><br><span class="line">    <span class="keyword">var</span> sec=time%<span class="number">60</span>;<span class="comment">//取余就是秒</span></span><br><span class="line">    <span class="built_in">document</span>.getElementById(<span class="string">"timer"</span>).innerHTML=min+<span class="string">"分"</span>+sec+<span class="string">"秒"</span>;<span class="comment">//把时间更新显示出来</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">start</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(pause)&#123;</span><br><span class="line">        <span class="built_in">document</span>.getElementById(<span class="string">"start"</span>).innerHTML = <span class="string">"暂停"</span>; <span class="comment">//当前状态为游戏进行中，把开始按钮切换为暂停 </span></span><br><span class="line">        pause = <span class="literal">false</span>;<span class="comment">//暂停标志设置为false</span></span><br><span class="line">        set_timer = setInterval(timer,<span class="number">1000</span>);<span class="comment">//启动定时,每1000毫秒调用一次</span></span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="built_in">document</span>.getElementById(<span class="string">"start"</span>).innerHTML = <span class="string">"开始"</span>;</span><br><span class="line">        pause = <span class="literal">true</span>;</span><br><span class="line">        clearInterval(set_timer);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">restart</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    time=<span class="number">0</span>;<span class="comment">//把时间设置为0</span></span><br><span class="line">    random_d();<span class="comment">//把方块随机打乱函数</span></span><br><span class="line">    <span class="keyword">if</span>(pause)<span class="comment">//如果暂停，则开始计时</span></span><br><span class="line">        start();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">random_d</span>(<span class="params"></span>)</span>&#123; <span class="comment">//模拟人的操作，为了避免随机的时候直接碰巧通关，所以先走上几步</span></span><br><span class="line">    move(<span class="number">6</span>);</span><br><span class="line">    move(<span class="number">5</span>);</span><br><span class="line">    move(<span class="number">2</span>);</span><br><span class="line">    move(<span class="number">1</span>);</span><br><span class="line">    move(<span class="number">4</span>);</span><br><span class="line">    <span class="keyword">var</span> i = <span class="number">30</span>;   <span class="comment">//要是觉得打散的不够彻底，可以多循环几次。</span></span><br><span class="line">    <span class="keyword">while</span>(i&gt;<span class="number">0</span>)&#123;</span><br><span class="line">        move(<span class="built_in">parseInt</span>(<span class="built_in">Math</span>.random()*<span class="number">9</span>));</span><br><span class="line">        i--;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">window</span>.onload=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;  <span class="comment">//初始化函数，页面加载的时候调用重置函数，重新开始</span></span><br><span class="line">    restart();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>实际上，还可以使用另外一种打散的方式，原理是随机调换小div的位置，但是这样做会有相当的概率导致你永远都不能通关，随机打散的代码如下：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">random_d</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">       <span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">9</span>; i&gt;<span class="number">1</span>; --i)&#123;</span><br><span class="line">        <span class="keyword">var</span> to=<span class="built_in">parseInt</span>(<span class="built_in">Math</span>.random()*(i<span class="number">-1</span>)+<span class="number">1</span>);<span class="comment">//产生随机数，范围为1到i，不能超出范围，因为没这个id的DIV</span></span><br><span class="line">        <span class="keyword">if</span>(d[i]!=<span class="number">0</span>)&#123;          <span class="comment">//把当前的DIV位置设置为随机产生的DIV的位置</span></span><br><span class="line">            <span class="built_in">document</span>.getElementById(<span class="string">"d"</span>+d[i]).style.left=d_position[to][<span class="number">0</span>]+<span class="string">"px"</span>;</span><br><span class="line">            <span class="built_in">document</span>.getElementById(<span class="string">"d"</span>+d[i]).style.top=d_position[to][<span class="number">1</span>]+<span class="string">"px"</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(d[to]!=<span class="number">0</span>)&#123;           <span class="comment">//把随机产生的DIV的位置设置为当前的DIV的位置</span></span><br><span class="line">            <span class="built_in">document</span>.getElementById(<span class="string">"d"</span>+d[to]).style.left=d_position[i][<span class="number">0</span>]+<span class="string">"px"</span>;</span><br><span class="line">            <span class="built_in">document</span>.getElementById(<span class="string">"d"</span>+d[to]).style.top=d_position[i][<span class="number">1</span>]+<span class="string">"px"</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">var</span> tem=d[to];         <span class="comment">//然后把它们两个的DIV保存的编号对调一下</span></span><br><span class="line">        d[to]=d[i];</span><br><span class="line">        d[i]=tem;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>##代码部分：<br>所有的代码都在文章中写出来了，<a href="https://github.com/fengqiyue/orderingGame" target="_blank" rel="noopener">github的地址点此</a>。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/前端/" rel="tag"># 前端</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/08/03/移动电台类软件格局分析/" rel="next" title="移动电台类软件格局分析">
+                <i class="fa fa-chevron-left"></i> 移动电台类软件格局分析
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/10/17/费米问题/" rel="prev" title="费米问题">
+                费米问题 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">fengqiyue.cheri</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">76</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">categories</span>
+                
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-name">tags</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/fengqiyue" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:mynameiszhangxu@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#游戏介绍"><span class="nav-number">1.</span> <span class="nav-text">游戏介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实现思路"><span class="nav-number">2.</span> <span class="nav-text">实现思路</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#HTML部分"><span class="nav-number">2.1.</span> <span class="nav-text">HTML部分</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CSS-部分"><span class="nav-number">2.2.</span> <span class="nav-text">CSS 部分</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">fengqiyue.cheri</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

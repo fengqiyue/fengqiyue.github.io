@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="swift," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="实际上这是在学习一个XCode上的一个教程，这个教程演示了做一个名为『FoodTracker』的Dome。语言版本：Swift2.0XCode版本：7.3 Here We Go！把 UI 稍微做一下在 StoryBoard 拖几个组件进去：一个Label、一个TextField、以及一个Button。这就是暂时需要的所有东西，设置好约束，让它们竖着排成一列就好，样式什么的，暂时随便设置一下就行了，">
+<meta name="keywords" content="swift">
+<meta property="og:type" content="article">
+<meta property="og:title" content="『FoodTracker』(一)">
+<meta property="og:url" content="http://cheri.love/2016/03/30/『FoodTracker』(一)/index.html">
+<meta property="og:site_name" content="枫祺玥的小客栈">
+<meta property="og:description" content="实际上这是在学习一个XCode上的一个教程，这个教程演示了做一个名为『FoodTracker』的Dome。语言版本：Swift2.0XCode版本：7.3 Here We Go！把 UI 稍微做一下在 StoryBoard 拖几个组件进去：一个Label、一个TextField、以及一个Button。这就是暂时需要的所有东西，设置好约束，让它们竖着排成一列就好，样式什么的，暂时随便设置一下就行了，">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-06-05T07:55:31.919Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="『FoodTracker』(一)">
+<meta name="twitter:description" content="实际上这是在学习一个XCode上的一个教程，这个教程演示了做一个名为『FoodTracker』的Dome。语言版本：Swift2.0XCode版本：7.3 Here We Go！把 UI 稍微做一下在 StoryBoard 拖几个组件进去：一个Label、一个TextField、以及一个Button。这就是暂时需要的所有东西，设置好约束，让它们竖着排成一列就好，样式什么的，暂时随便设置一下就行了，">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://cheri.love/2016/03/30/『FoodTracker』(一)/"/>
+
+
+
+
+
+  <title>『FoodTracker』(一) | 枫祺玥的小客栈</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">枫祺玥的小客栈</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://cheri.love/2016/03/30/『FoodTracker』(一)/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="fengqiyue.cheri">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="枫祺玥的小客栈">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">『FoodTracker』(一)</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-03-30T00:25:00+08:00">
+                2016-03-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/技术/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>实际上这是在学习一个XCode上的一个教程，这个教程演示了做一个名为『FoodTracker』的Dome。<br>语言版本：Swift2.0<br>XCode版本：7.3</p>
+<h2 id="Here-We-Go！"><a href="#Here-We-Go！" class="headerlink" title="Here We Go！"></a>Here We Go！</h2><h2 id="把-UI-稍微做一下"><a href="#把-UI-稍微做一下" class="headerlink" title="把 UI 稍微做一下"></a>把 UI 稍微做一下</h2><p>在 StoryBoard 拖几个组件进去：一个<code>Label</code>、一个<code>TextField</code>、以及一个<code>Button</code>。这就是暂时需要的所有东西，设置好约束，让它们竖着排成一列就好，样式什么的，暂时随便设置一下就行了，这里让我比较疑惑的是：教程中把这三个组件都放到了 <code>StackView</code> 里去了，这个东西我还从来没有用过，不过暂时也不会造成什么影响，先继续看下去。</p>
+<h2 id="先实现个小功能"><a href="#先实现个小功能" class="headerlink" title="先实现个小功能"></a>先实现个小功能</h2><p>在Storyboard 里，先把<code>Label</code> 和 <code>TextField</code>组件使用 Control-drag 大法拉到 <code>ViewController.swift</code>文件中，分别设置变量名为：mealNameLabel 和 nameTextField。这时候他们的标记是<code>@IBOutlet</code>。<br>再把<code>button</code>也Control-drag过来，取函数名为<code>setDefaultLabelText</code>，不同的是这个的<code>connection</code> 要选 <code>action</code>，并将type设置为<code>UIButton</code>，它的标记是<code>@IBAction</code>。<br>（『IB』是『Interface Builder』的缩写哦。）<br><code>Button</code>按钮既然链接的是个 Action，那么肯定是要做点什么的嘛，在这里我们写一个方法，作用是让使用者点击这个<code>Button</code>后，把 在<code>Label</code>组件里显示的内容设置为一个我们想要的东西，在这里我们就设置为这样的一个字符串好了：”Cheri is good”。写起来也很容易，像下面这样：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@IBAction</span> <span class="function"><span class="keyword">func</span> <span class="title">setDefaultLabelText</span><span class="params">(sender: UIButton)</span></span> &#123;</span><br><span class="line">       mealNameLabel.text = <span class="string">"Cheri is good"</span></span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<p>还记得我们给<code>Label</code>组件起名为<code>mealNameLabel</code>吧，只需要把我们想设置的字符串赋予<code>mealNameLabel.text</code>就行啦。</p>
+<h3 id="使用代理"><a href="#使用代理" class="headerlink" title="使用代理"></a>使用代理</h3><p>接下来我们要做的事情是这样的：在<code>TextField</code>中输入一些东西，然后让<code>Label</code>组件显示我们输入的东西。<br>为了完成这个需求，我们需要用到代理（delegate）。<br><code>ViewController.swift</code>文件中有一部分自动生成的代码：<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">override</span> <span class="function"><span class="keyword">func</span> <span class="title">viewDidLoad</span><span class="params">()</span></span> &#123;</span><br><span class="line">       <span class="keyword">super</span>.viewDidLoad()</span><br><span class="line">       <span class="comment">// Do any additional setup after loading the view, typically from a nib.</span></span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure></p>
+<p>我们需要在<code>super.viewDidLoad()</code>这一句的下面加上我们对代理的使用：<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nameTextField.delegate = <span class="keyword">self</span></span><br></pre></td></tr></table></figure></p>
+<p>使用这行代码，我们就能通过对delegate的调用来处理 <code>TextField</code>组件的内容。</p>
+<p>首先我们需要在<code>override func vieDidLoad（）{}</code>方法后面加上两个方法，像这样：<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">override</span> <span class="function"><span class="keyword">func</span> <span class="title">viewDidLoad</span><span class="params">()</span></span> &#123;        <span class="keyword">super</span>.viewDidLoad()</span><br><span class="line">       <span class="comment">//通过 dalagate 的回调，处理 TextField 输入的内容</span></span><br><span class="line">       nameTextField.delegate = <span class="keyword">self</span></span><br><span class="line">   &#125;</span><br><span class="line">   </span><br><span class="line">   <span class="comment">// MARK: UITextFieldDelegation</span></span><br><span class="line">   <span class="function"><span class="keyword">func</span> <span class="title">textFieldShouldReturn</span><span class="params">(textField:UITextField)</span></span> -&gt; <span class="type">Bool</span> &#123;</span><br><span class="line">   &#125;</span><br><span class="line">   </span><br><span class="line">   <span class="function"><span class="keyword">func</span> <span class="title">textFieldDidEndEditing</span><span class="params">(textField:UITextField)</span></span> &#123;</span><br><span class="line">          &#125;</span><br></pre></td></tr></table></figure></p>
+<p>其中<code>TextFieldShouldReturn</code>方法需要对<code>textField</code>使用<code>resignFirstResponder()</code>以取消其第一反馈者的身份。<br>而<code>textFieldDidEndEditing</code>方法则是将用户在<code>textField</code>组件中输入的内容传递给<code>Label</code>组件。<br>实现后，看上去是这样的:</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// MARK: UITextFieldDelegation</span></span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">textFieldShouldReturn</span><span class="params">(textField:UITextField)</span></span> -&gt; <span class="type">Bool</span> &#123;</span><br><span class="line">        <span class="comment">//Hide the keyboard</span></span><br><span class="line">        textField.resignFirstResponder()</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">    &#125;</span><br><span class="line">        </span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">textFieldDidEndEditing</span><span class="params">(textField:UITextField)</span></span> &#123;</span><br><span class="line">        mealNameLabel.text = textField.text</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>这样一来，第一个小功能就实现了：在<code>TextField</code>中输入内容，按回车后，输入的内容会显示在<code>Label 中</code>,点击<code>button</code>后会把<code>Label</code>中的内容设置为默认值（cheri is good）。<br>千万不要忘记了给代码最开始的<code>class ViewController</code>后面加上一个<code>UITextFieldDelegate</code>类型像这样：<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ViewController</span>: <span class="title">UIViewController</span>, <span class="title">UITextFieldDelegate</span> </span>&#123;&#125;</span><br></pre></td></tr></table></figure></p>
+<p>全部代码如下：<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> UIKit</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ViewController</span>: <span class="title">UIViewController</span>, <span class="title">UITextFieldDelegate</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@IBOutlet</span> <span class="keyword">weak</span> <span class="keyword">var</span> nameTextField: <span class="type">UITextField</span>!</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@IBOutlet</span> <span class="keyword">weak</span> <span class="keyword">var</span> mealNameLabel: <span class="type">UILabel</span>!</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">func</span> <span class="title">viewDidLoad</span><span class="params">()</span></span> &#123;</span><br><span class="line">        <span class="keyword">super</span>.viewDidLoad()</span><br><span class="line">        <span class="comment">// Do any additional setup after loading the view, typically from a nib.</span></span><br><span class="line">        </span><br><span class="line">        <span class="comment">//通过 dalagate 的回调，处理 TextField 输入的内容</span></span><br><span class="line">        nameTextField.delegate = <span class="keyword">self</span></span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// MARK: UITextFieldDelegation</span></span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">textFieldShouldReturn</span><span class="params">(textField:UITextField)</span></span> -&gt; <span class="type">Bool</span> &#123;</span><br><span class="line">        <span class="comment">//Hide the keyboard</span></span><br><span class="line">        textField.resignFirstResponder()</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">textFieldDidEndEditing</span><span class="params">(textField:UITextField)</span></span> &#123;</span><br><span class="line">        mealNameLabel.text = textField.text</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    </span><br><span class="line">    <span class="comment">// MARK: Actions</span></span><br><span class="line">    </span><br><span class="line">    <span class="meta">@IBAction</span> <span class="function"><span class="keyword">func</span> <span class="title">setDefaultLabelText</span><span class="params">(sender: UIButton)</span></span> &#123;</span><br><span class="line">        mealNameLabel.text = <span class="string">"Cheri is good"</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>这个程序可以从<a href="https://developer.apple.com/sample-code/swift/downloads/Start-Dev-iOS-Apps-03.zip" target="_blank" rel="noopener">这个链接</a>下载到</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/swift/" rel="tag"># swift</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/11/25/What I Learned When I Almost Died【翻译】/" rel="next" title="What I Learn When I Almost Died【翻译】">
+                <i class="fa fa-chevron-left"></i> What I Learn When I Almost Died【翻译】
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/04/04/『FoodTracker』(二)/" rel="prev" title="『FoodTracker』(二)">
+                『FoodTracker』(二) <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">fengqiyue.cheri</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">76</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">categories</span>
+                
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-name">tags</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/fengqiyue" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:mynameiszhangxu@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Here-We-Go！"><span class="nav-number">1.</span> <span class="nav-text">Here We Go！</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#把-UI-稍微做一下"><span class="nav-number">2.</span> <span class="nav-text">把 UI 稍微做一下</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#先实现个小功能"><span class="nav-number">3.</span> <span class="nav-text">先实现个小功能</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#使用代理"><span class="nav-number">3.1.</span> <span class="nav-text">使用代理</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">fengqiyue.cheri</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

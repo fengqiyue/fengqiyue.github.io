@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="前端," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="关于使用1.创建一个正则你可以使用一个正则表达式字面量：let re = /ab+c/;或者调用RegExp对象的构造函数let re = new RegExp(&amp;quot;ab+c&amp;quot;);2.确定一个需要被检测的部分比如：let str = &amp;#39;ababc&amp;#39;;\W3.检测一下这个「待测品」能否通过检验re.test(str);  //true如果你运行一下 re.test(">
+<meta name="keywords" content="前端">
+<meta property="og:type" content="article">
+<meta property="og:title" content="正则表达式笔记">
+<meta property="og:url" content="http://cheri.love/2016/11/12/正则表达式笔记/index.html">
+<meta property="og:site_name" content="枫祺玥的小客栈">
+<meta property="og:description" content="关于使用1.创建一个正则你可以使用一个正则表达式字面量：let re = /ab+c/;或者调用RegExp对象的构造函数let re = new RegExp(&amp;quot;ab+c&amp;quot;);2.确定一个需要被检测的部分比如：let str = &amp;#39;ababc&amp;#39;;\W3.检测一下这个「待测品」能否通过检验re.test(str);  //true如果你运行一下 re.test(">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-06-05T06:37:40.721Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="正则表达式笔记">
+<meta name="twitter:description" content="关于使用1.创建一个正则你可以使用一个正则表达式字面量：let re = /ab+c/;或者调用RegExp对象的构造函数let re = new RegExp(&amp;quot;ab+c&amp;quot;);2.确定一个需要被检测的部分比如：let str = &amp;#39;ababc&amp;#39;;\W3.检测一下这个「待测品」能否通过检验re.test(str);  //true如果你运行一下 re.test(">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://cheri.love/2016/11/12/正则表达式笔记/"/>
+
+
+
+
+
+  <title>正则表达式笔记 | 枫祺玥的小客栈</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">枫祺玥的小客栈</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://cheri.love/2016/11/12/正则表达式笔记/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="fengqiyue.cheri">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="枫祺玥的小客栈">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">正则表达式笔记</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-11-12T21:12:00+08:00">
+                2016-11-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/技术/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="关于使用"><a href="#关于使用" class="headerlink" title="关于使用"></a>关于使用</h2><p>1.创建一个正则<br>你可以使用一个正则表达式字面量：<br><code>let re = /ab+c/;</code><br>或者调用RegExp对象的构造函数<br><code>let re = new RegExp(&quot;ab+c&quot;);</code><br>2.确定一个需要被检测的部分<br>比如：<code>let str = &#39;ababc&#39;;</code><br>\W3.检测一下这个「待测品」能否通过检验<br><code>re.test(str);</code>  //true<br>如果你运行一下 <code>re.test(str);</code> 你会得到一个<code>true</code>,说明「待测品」通过了测试。</p>
+<h2 id="元字符"><a href="#元字符" class="headerlink" title="元字符"></a>元字符</h2><p><code>\b</code> 用于匹配一个位置，用于单词分界处<br>例子：<code>\bhi\b</code>用于查找一个单独的单词”hi”;</p>
+<p><code>.</code> 用于匹配换行符外的任意字符</p>
+<p><code>*</code> 该元字符前面的内容可连续重复使用任意次<br>常用组合：<code>.*</code> 匹配任意数量不包含换行符的字符。</p>
+<p><code>+</code> 该元字符前面的内容可连续重复使用1次或任意次</p>
+<p><code>?</code> 该元字符前面的内容可以连续重复使用0次或者1次</p>
+<p><code>{n}</code> 该元字符前面的内容可以连续重复使用n次</p>
+<p><code>{n,}</code> 该元字符前面的内容可以连续重复使用n次或更多次</p>
+<p><code>{n, m}</code> 该元字符前面的内容可以连续重复使用 n 到 m 次</p>
+<p><code>\d</code> 用来匹配一位数字<br>常用写法：<code>\d{n}</code>；例如<code>\d{2}</code>意味着<code>\d\d</code>，表示匹配两位数字；<code>\d{5}</code>表示匹配五位数字。常用组合：<code>\d+</code> 匹配一个或者多个连续的数字<br>同义词： <code>[0-9]</code>同样能匹配一位数字，和<code>\d</code>效果一样</p>
+<p><code>\s</code> 用于匹配任意空白符，包括空格键，tab键和换行符</p>
+<p><code>\w</code> 用于匹配 字母/数字/下划线<br>同义词：[a-z0-9A-Z_]也完全等同于\w（如果只考虑英文的话）。<br>例子：<code>\ba\w*\b</code> 用于匹配”a”开头的一个单词<br>     <code>\b\w{6}\b</code>匹配正好6个字符的单词</p>
+<p><code>^</code> 匹配一个开头位置<br><code>$</code> 匹配一个结束位置<br>例子：<code>^\d{5,12}$</code> 匹配一个5到12位的数字</p>
+<h2 id="转义"><a href="#转义" class="headerlink" title="转义"></a>转义</h2><p>当你需要查找元字符本身的话，比如你查找.,或者<em>等，直接查找就会出现问题，所以需要使用<code>\</code>来取消这些字符的特殊含义。<br>需要匹配 <code>.</code> 时，使用<code>\.</code><br>需要匹配 `</em><code>时，使用</code>*<code>需要匹配</code>` 时，使用<code>\\</code></p>
+<h2 id="分枝条件"><a href="#分枝条件" class="headerlink" title="分枝条件"></a>分枝条件</h2><p>用<code>|</code>分割不同的规则，满足任一种就能被匹配<br>例子：<code>0\d{2}-\d{8} | 0\d{3}-d{7}</code>;能用来匹配两种格式的电话：010-12345678或者0571-1234567</p>
+<h2 id="分组"><a href="#分组" class="headerlink" title="分组"></a>分组</h2><p>需要重复一段正则表达式时，需要用小括号进行分组（即：指定子表达式）<br>例子：<code>(\d{1,3}){3}\d{1,3}</code>，小括号后面的<code>{3}</code>表示小括号内的内容重复三次。</p>
+<h2 id="反义"><a href="#反义" class="headerlink" title="反义"></a>反义</h2><p><code>\W</code>    匹配任意不是字母，数字，下划线，汉字的字符<br><code>\S</code>    匹配任意不是空白符的字符<br><code>\D</code>    匹配任意非数字的字符<br><code>\B</code>    匹配不是单词开头或结束的位置<br><code>[^x]</code>    匹配除了x以外的任意字符<br><code>[^aeiou]</code>    匹配除了aeiou这几个字母以外的任意字符<br>例子：<code>\S+</code>匹配不包含空白符的字符串。<br><code>&lt;a[^&gt;]+&gt;</code>匹配用尖括号括起来的以a开头的字符串</p>
+<h2 id="后向引用"><a href="#后向引用" class="headerlink" title="后向引用"></a>后向引用</h2><p>后向引用用于重复搜索前面某个分组匹配的文本。例如，<code>\1</code>代表分组1匹配的文本,<code>\2</code>代表分组2匹配的文本。<br>例子：<code>\b(\w+)\b\s+\1\b</code>可以用来匹配重复的单词，像hello hello, 或者hi hi。这个表达式首先是一个单词，也就是单词开始处和结束处之间的多于一个的字母或数字(<code>\b(\w+)\b</code>)，这个单词会被捕获到编号为1的分组中，然后是1个或几个空白符(<code>\s+</code>)，最后是分组1中捕获的内容（也就是前面匹配的那个单词）(<code>\1</code>)。</p>
+<p>自定义组名：可以自定义组名，使用这样的语法：<code>(?&lt;Word&gt;\w+)</code>或者用<code>&#39;</code>替换尖括号：<code>(?&#39;Word&#39;\w+)</code>。<br>这样就把<code>\w+</code>的组名指定为Word了。要反向引用这个分组捕获的内容，你可以使用<code>\k&lt;Word&gt;</code>，所以上一个例子也可以写成这样：<code>\b(?&lt;Word&gt;\w+)\b\s+\k&lt;Word&gt;\b</code>。</p>
+<ul>
+<li>分组0对应整个正则表达式。</li>
+<li>可以使用(?:exp)这样的语法来剥夺一个分组对组号分配的参与权</li>
+<li>实际上组号分配过程是要从左向右扫描两遍的：第一遍只给未命名组分配，第二遍只给命名组分配－－因此所有命名组的组号都大于未命名的组号。</li>
+</ul>
+<h2 id="零宽断言"><a href="#零宽断言" class="headerlink" title="零宽断言"></a>零宽断言</h2><p><code>(?=exp)</code> 断言此位置之后能匹配表达式exp（零宽度正预测先行断言）<br>例子：<code>\b\w+(?=ing\b)</code> 匹配一个<code>ing</code>结尾单词前面的部分，比如匹配’learning’的’learn’</p>
+<p><code>(?&lt;exp)</code> 断言此位置之前能匹配表达式exp（零宽度正回顾后发断言）<br>例子：<code>(?&lt;=\bre)\w+\b</code> 匹配一个’re’开头的单词的后面部分，比如’reading’的’ading’</p>
+<h2 id="负向零宽断言"><a href="#负向零宽断言" class="headerlink" title="负向零宽断言"></a>负向零宽断言</h2><p><code>(?!exp)</code> 断言此位置后面不能匹配表达式 exp；<br>例子： <code>\b\w*q(?!u)\w*\b</code> 匹配字母’q’后面不是字母’u’的单词<br>备注：和表达式<code>\b\w*q[^u]\w*\b</code>不同的是，如果使用了<code>[^u]</code>则对于’q’出现在单词尾部的单词不能正常匹配，因为<code>[^u]</code>必须占据一位。而负向零宽断言不消费任何字符。</p>
+<h2 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h2><p>小括号的另一种用途是通过语法(?#comment)来包含注释<br>例子：<code>2[0-4]\d(?#200-249)|25[0-5](?#250-255)|[01]?\d\d?(?#0-199)</code></p>
+<h2 id="贪婪与懒惰"><a href="#贪婪与懒惰" class="headerlink" title="贪婪与懒惰"></a>贪婪与懒惰</h2><p>贪婪匹配：匹配尽可能多的字符(默认)。<br>例子：<code>a.*b</code>，它将会匹配最长的以a开始，以b结束的字符串。如果用它来搜索aabab的话，它会匹配整个字符串’aabab’。</p>
+<p>懒惰匹配：匹配尽可能少的字符（只需要加上一个<code>?</code>）。<br>例子：<code>a.*?b</code>;匹配最短的，以a开始，以b结束的字符串。如果把它应用于aabab的话，它会匹配aab（第一到第三个字符）和ab（第四到第五个字符）。</p>
+<h2 id="处理选项"><a href="#处理选项" class="headerlink" title="处理选项"></a>处理选项</h2><p>/i (忽略大小写)<br>/g (全文查找出现的所有匹配字符)<br>/m (多行查找)<br>/gi(全文查找、忽略大小写)<br>/ig(全文查找、忽略大小写)</p>
+<p>gnoreCase(忽略大小写)：匹配时不区分大小写。</p>
+<p>Multiline(多行模式)：更改^和$的含义，使它们分别在任意一行的行首和行尾匹配，而不仅仅在整个字符串的开头和结尾匹配。(在此模式下,$的精确含意是:匹配\n之前的位置以及字符串结束前的位置.)</p>
+<p>Singleline(单行模式)    ：更改.的含义，使它与每一个字符匹配（包括换行符\n）。</p>
+<p>IgnorePatternWhitespace(忽略空白)：忽略表达式中的非转义空白并启用由#标记的注释。</p>
+<p>ExplicitCapture(显式捕获)：仅捕获已被显式命名的组。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/前端/" rel="tag"># 前端</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/11/10/Compass 笔记/" rel="next" title="Compass 笔记">
+                <i class="fa fa-chevron-left"></i> Compass 笔记
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/11/13/Grunt 笔记/" rel="prev" title="Grunt 笔记">
+                Grunt 笔记 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">fengqiyue.cheri</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">76</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">categories</span>
+                
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-name">tags</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/fengqiyue" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:mynameiszhangxu@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#关于使用"><span class="nav-number">1.</span> <span class="nav-text">关于使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#元字符"><span class="nav-number">2.</span> <span class="nav-text">元字符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#转义"><span class="nav-number">3.</span> <span class="nav-text">转义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分枝条件"><span class="nav-number">4.</span> <span class="nav-text">分枝条件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分组"><span class="nav-number">5.</span> <span class="nav-text">分组</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#反义"><span class="nav-number">6.</span> <span class="nav-text">反义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#后向引用"><span class="nav-number">7.</span> <span class="nav-text">后向引用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#零宽断言"><span class="nav-number">8.</span> <span class="nav-text">零宽断言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#负向零宽断言"><span class="nav-number">9.</span> <span class="nav-text">负向零宽断言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#注释"><span class="nav-number">10.</span> <span class="nav-text">注释</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#贪婪与懒惰"><span class="nav-number">11.</span> <span class="nav-text">贪婪与懒惰</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#处理选项"><span class="nav-number">12.</span> <span class="nav-text">处理选项</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">fengqiyue.cheri</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

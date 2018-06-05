@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="css 向," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Flexbox 也算有比较多的属性，把它们记录一下，方便以后查看。Flexbox 有两个轴，水平方向为主轴（main axia），竖直方向为辅轴，或称交叉轴（cross axis），左上为起点（start），右下为终点（end），类似于数学上的第四象限。本文中的方向默认为 LTR （left to right）排版也就是从左向右为正方向的排版模式。 容器属性容器属性都要写在父元素上。容器属性一共有">
+<meta name="keywords" content="css 向">
+<meta property="og:type" content="article">
+<meta property="og:title" content="FlexBox 学习记录">
+<meta property="og:url" content="http://cheri.love/2016/11/03/FlexBox/index.html">
+<meta property="og:site_name" content="枫祺玥的小客栈">
+<meta property="og:description" content="Flexbox 也算有比较多的属性，把它们记录一下，方便以后查看。Flexbox 有两个轴，水平方向为主轴（main axia），竖直方向为辅轴，或称交叉轴（cross axis），左上为起点（start），右下为终点（end），类似于数学上的第四象限。本文中的方向默认为 LTR （left to right）排版也就是从左向右为正方向的排版模式。 容器属性容器属性都要写在父元素上。容器属性一共有">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-06-05T06:19:30.840Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="FlexBox 学习记录">
+<meta name="twitter:description" content="Flexbox 也算有比较多的属性，把它们记录一下，方便以后查看。Flexbox 有两个轴，水平方向为主轴（main axia），竖直方向为辅轴，或称交叉轴（cross axis），左上为起点（start），右下为终点（end），类似于数学上的第四象限。本文中的方向默认为 LTR （left to right）排版也就是从左向右为正方向的排版模式。 容器属性容器属性都要写在父元素上。容器属性一共有">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://cheri.love/2016/11/03/FlexBox/"/>
+
+
+
+
+
+  <title>FlexBox 学习记录 | 枫祺玥的小客栈</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">枫祺玥的小客栈</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://cheri.love/2016/11/03/FlexBox/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="fengqiyue.cheri">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="枫祺玥的小客栈">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">FlexBox 学习记录</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-11-03T11:57:00+08:00">
+                2016-11-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/技术/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>Flexbox 也算有比较多的属性，把它们记录一下，方便以后查看。<br>Flexbox 有两个轴，水平方向为主轴（main axia），竖直方向为辅轴，或称交叉轴（cross axis），左上为起点（start），右下为终点（end），类似于数学上的第四象限。<br>本文中的方向默认为 LTR （left to right）排版也就是从左向右为正方向的排版模式。</p>
+<h2 id="容器属性"><a href="#容器属性" class="headerlink" title="容器属性"></a>容器属性</h2><p>容器属性都要写在父元素上。<br>容器属性一共有6个：<br><em>flex-direction  子项目的排列方向
+</em>flex-wrap 子项目换行方案<br><em>flex-flow 前两个属性的简写
+</em>justify-content 子项目沿主轴对齐方案<br><em>align-item 子项目沿辅轴对齐方案
+</em>align-content 多轴线沿辅轴对齐方案</p>
+<p>首先要为父容器设置 <code>display:flex</code>或<code>display:inlin-flex</code></p>
+<h3 id="flex-diretion"><a href="#flex-diretion" class="headerlink" title="flex-diretion"></a>flex-diretion</h3><p>控制父容器内部项目的排列方向，<br>默认为 <code>flex-direction:row</code>，表示从左向右水平排列<br>可选值为：</p>
+<ul>
+<li>row-reverse ：从右向左水平排列</li>
+<li>column：从上到下竖直排列</li>
+<li>column-reverse：下到上竖直排列</li>
+</ul>
+<h3 id="flex-wrap"><a href="#flex-wrap" class="headerlink" title="flex-wrap"></a>flex-wrap</h3><p>默认情况下，子项目都排在一条线（只有一条轴线）上，<code>flex-wrap</code>属性定义，如果一条轴线排不下，如何换行。<br>默认为<code>flex-wrap:nowrap</code>,表示单行显示（也就是不换行），这时候每个子项目的宽度会被按比例压缩。<br>可选值为：</p>
+<ul>
+<li>wrap 换行显示，第一行在上多出来的子项目在下。</li>
+<li>wrap-reverse 换行显示，第一行在下（仍然是从左向右排序）。</li>
+</ul>
+<h3 id="简写方式-flex-flow"><a href="#简写方式-flex-flow" class="headerlink" title="简写方式:flex-flow"></a>简写方式:flex-flow</h3><p><code>flex-flow</code>是用于同时设定<code>flex-diretion</code>和<code>flex-wrap</code>属性的简写方法，也是推荐写法<br>默认值为：<code>flex-flow:row nowrap</code><br>可以只写一个值，也可以同时写两个值，第一个值规定了<code>flex-diretion</code>，第二个值规定了<code>flex-wrap</code>,两个值用空格隔开。<br>只传入一个值的时候，会自动判断该值用于规定什么属性。</p>
+<h3 id="justify-content"><a href="#justify-content" class="headerlink" title="justify-content"></a>justify-content</h3><p>用于规定主轴方向的子项目的对齐方式<br>默认值为<code>justify-content:flex-start</code>,表示：子项目沿主轴起始位置靠齐（左对齐）。<br>其他可选值为：</p>
+<ul>
+<li>flex-end：子项目沿主轴结束位置靠齐（右对齐）。</li>
+<li>center：沿主轴的中间位置靠齐（居中）。</li>
+<li>space-between：子项目会平均地分布在行里。第一个子项目位于主轴起点位置，最后一个子项目在主轴终点位置。</li>
+<li>space-around：子项目会平均地分布在行里，两端保留「子项目间距的一半」的空间。</li>
+</ul>
+<h3 id="align-items"><a href="#align-items" class="headerlink" title="align-items"></a>align-items</h3><p>和 <code>justisy-content</code>类似，其规定了辅轴方向子项目的对齐方式<br>默认值为<code>justify-item:stretch</code> 表示：如果项目未设置高度或设为auto，将占满整个容器。<br>其他可选值为：</p>
+<ul>
+<li>flex-start：与辅轴的起点对齐（顶端对齐）。</li>
+<li>flex-end：与辅轴终点对齐（底端对其）。</li>
+<li>center：与辅轴轴的中点对齐（竖直居中）。</li>
+<li>baseline: 项目的第一行文字的基线对齐。</li>
+</ul>
+<h3 id="align-content"><a href="#align-content" class="headerlink" title="align-content"></a>align-content</h3><p>定义了多根轴线的对齐方式，如果只有一根轴线（也就是<code>flex-wrap:nowrap</code>），该属性不起作用，与<code>justify-content</code>类似。<br>默认值为：<code>stretch（默认值）</code>表示轴线占满整个容器<br>其他可选值为：</p>
+<ul>
+<li>flex-start：与辅轴的起点对齐（顶端对齐）。</li>
+<li>flex-end：与辅轴终点对齐（底端对其）。</li>
+<li>center：与辅轴轴的中点对齐（竖直居中）。</li>
+<li>space-between：与辅轴两端对齐，轴线之间的间隔平均分布。</li>
+<li>space-around：轴线会平均地分布在行里，两端保留「轴线间距的一半」的空间。</li>
+</ul>
+<h2 id="项目属性"><a href="#项目属性" class="headerlink" title="项目属性"></a>项目属性</h2><p>项目属性一共6个</p>
+<ul>
+<li>order 子项目的序列号</li>
+<li>flex-grow</li>
+<li>flex-shrink</li>
+<li>flex-basis </li>
+<li>flex 上面三个flex开头的属性的简写</li>
+<li>align-self</li>
+</ul>
+<h3 id="order"><a href="#order" class="headerlink" title="order"></a>order</h3><p>子项目的序列号，值是一个无单位的整数，数值越小，排列越靠前，序列号可以为负数。<br>默认为：0</p>
+<h3 id="flex-grow"><a href="#flex-grow" class="headerlink" title="flex-grow"></a>flex-grow</h3><p>用来定义子项目的放大比例，值是一个无单位的整数。<br>默认为 0，表示即时有剩余空间，也不放大。<br>如果所有的子项目的<code>flex-grow</code>值都相同(比如都是1)，则它们将等分剩余空间。如果一个项目的<code>flex-grow</code>属性为2，其他项目都为1，则前者占据的剩余空间将比其他项多一倍。</p>
+<h3 id="flex-shrink"><a href="#flex-shrink" class="headerlink" title="flex-shrink"></a>flex-shrink</h3><p>用来定义子项目的收缩比例，值是一个无单位的整数，和<code>flex-grow</code>类似，负值对该属性无效<br>默认为 1，即如果空间不足，该项目将缩小。<br><code>flex-shrink</code>属性为0，则空间不足时，也不缩小。<br>如果所有子项目<code>flex-shrink</code>属性都为0,并且子项目宽度之和大于容器宽度，那么子项目会撑破容器。</p>
+<h3 id="flex-basis"><a href="#flex-basis" class="headerlink" title="flex-basis"></a>flex-basis</h3><p><code>flex-basis</code>属性定义了在分配多余空间之前，项目占据的主轴空间（main size）<br>默认值为:auto,表示项目本来的大小。<br>它可以设为跟width或height属性一样的值（比如350px），则项目将占据固定空间。</p>
+<h3 id="flex"><a href="#flex" class="headerlink" title="flex"></a>flex</h3><p><code>flex</code>属性是<code>flex-grow</code>, <code>flex-shrink</code> 和 <code>flex-basis</code>的简写，默认值为0 1 auto。后两个属性可选。<br>该属性有两个快捷值：auto (1 1 auto) 和 none (0 0 auto)。<br>建议优先使用这个属性，而不是单独写三个分离的属性，因为浏览器会推算相关值。</p>
+<h3 id="align-self"><a href="#align-self" class="headerlink" title="align-self"></a>align-self</h3><p>用法基本和<code>align-items</code>相同，可覆盖align-items属性。<br>默认值为auto，表示继承父元素的align-items属性<br>如果没有父元素，则等同于stretch。<br>其他可选值为：</p>
+<ul>
+<li>flex-start：与辅轴的起点对齐（顶端对齐）。</li>
+<li>flex-end：与辅轴终点对齐（底端对其）。</li>
+<li>center：与辅轴轴的中点对齐（竖直居中）。</li>
+<li>baseline: 项目的第一行文字的基线对齐。</li>
+<li>stretch: 如果项目未设置高度或设为auto，将占满整个容器</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">.item &#123;</span><br><span class="line">  align-self: auto | flex-start | flex-end | center | baseline | stretch;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/css-向/" rel="tag"># css 向</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/10/27/JS 字符串方法的笔记/" rel="next" title="JS 字符串方法的笔记">
+                <i class="fa fa-chevron-left"></i> JS 字符串方法的笔记
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/11/09/Sass/" rel="prev" title="Sass 语法笔记">
+                Sass 语法笔记 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">fengqiyue.cheri</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">76</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">categories</span>
+                
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-name">tags</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/fengqiyue" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:mynameiszhangxu@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#容器属性"><span class="nav-number">1.</span> <span class="nav-text">容器属性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#flex-diretion"><span class="nav-number">1.1.</span> <span class="nav-text">flex-diretion</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#flex-wrap"><span class="nav-number">1.2.</span> <span class="nav-text">flex-wrap</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#简写方式-flex-flow"><span class="nav-number">1.3.</span> <span class="nav-text">简写方式:flex-flow</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#justify-content"><span class="nav-number">1.4.</span> <span class="nav-text">justify-content</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#align-items"><span class="nav-number">1.5.</span> <span class="nav-text">align-items</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#align-content"><span class="nav-number">1.6.</span> <span class="nav-text">align-content</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#项目属性"><span class="nav-number">2.</span> <span class="nav-text">项目属性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#order"><span class="nav-number">2.1.</span> <span class="nav-text">order</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#flex-grow"><span class="nav-number">2.2.</span> <span class="nav-text">flex-grow</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#flex-shrink"><span class="nav-number">2.3.</span> <span class="nav-text">flex-shrink</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#flex-basis"><span class="nav-number">2.4.</span> <span class="nav-text">flex-basis</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#flex"><span class="nav-number">2.5.</span> <span class="nav-text">flex</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#align-self"><span class="nav-number">2.6.</span> <span class="nav-text">align-self</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">fengqiyue.cheri</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

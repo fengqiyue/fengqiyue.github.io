@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="前端," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="原文链接：https://tutorialzine.com/2017/07/javascript-async-await-explained 很长一段时间以来，js 开发者不得不依赖于回调方法来组织异步代码。以至于我们都曾饱受回调地狱之苦，时不时还会回忆起被代码支配的恐惧。谢天谢地，Promises 方法为我们提供了更多组织异步代码的姿势，如今极大多数开发者都采用了 Promise 来避免回调地域">
+<meta name="keywords" content="前端">
+<meta property="og:type" content="article">
+<meta property="og:title" content="10分钟学会js的Async&#x2F;Await【翻译】">
+<meta property="og:url" content="http://cheri.love/2017/11/01/10分钟学会js的Async-Await【翻译】/index.html">
+<meta property="og:site_name" content="枫祺玥的小客栈">
+<meta property="og:description" content="原文链接：https://tutorialzine.com/2017/07/javascript-async-await-explained 很长一段时间以来，js 开发者不得不依赖于回调方法来组织异步代码。以至于我们都曾饱受回调地狱之苦，时不时还会回忆起被代码支配的恐惧。谢天谢地，Promises 方法为我们提供了更多组织异步代码的姿势，如今极大多数开发者都采用了 Promise 来避免回调地域">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-06-05T06:10:48.029Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="10分钟学会js的Async&#x2F;Await【翻译】">
+<meta name="twitter:description" content="原文链接：https://tutorialzine.com/2017/07/javascript-async-await-explained 很长一段时间以来，js 开发者不得不依赖于回调方法来组织异步代码。以至于我们都曾饱受回调地狱之苦，时不时还会回忆起被代码支配的恐惧。谢天谢地，Promises 方法为我们提供了更多组织异步代码的姿势，如今极大多数开发者都采用了 Promise 来避免回调地域">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://cheri.love/2017/11/01/10分钟学会js的Async-Await【翻译】/"/>
+
+
+
+
+
+  <title>10分钟学会js的Async/Await【翻译】 | 枫祺玥的小客栈</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">枫祺玥的小客栈</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://cheri.love/2017/11/01/10分钟学会js的Async-Await【翻译】/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="fengqiyue.cheri">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="枫祺玥的小客栈">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">10分钟学会js的Async/Await【翻译】</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-11-01T17:13:00+08:00">
+                2017-11-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/翻译/" itemprop="url" rel="index">
+                    <span itemprop="name">翻译</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>原文链接：<a href="https://tutorialzine.com/2017/07/javascript-async-await-explained" target="_blank" rel="noopener">https://tutorialzine.com/2017/07/javascript-async-await-explained</a></p>
+<p>很长一段时间以来，js 开发者不得不依赖于回调方法来组织异步代码。以至于我们都曾饱受回调地狱之苦，时不时还会回忆起被<a href="https://tutorialzine.com/media/2017/07/callback-hell.jpg" target="_blank" rel="noopener">代码</a>支配的恐惧。<br>谢天谢地，Promises 方法为我们提供了更多组织异步代码的姿势，如今极大多数开发者都采用了 Promise 来避免回调地域的折磨。<br>随着 Async/Awai 的出现，我们能把异步代码写的更优雅。</p>
+<h2 id="Async-Await-究竟是啥"><a href="#Async-Await-究竟是啥" class="headerlink" title="Async/Await 究竟是啥"></a>Async/Await 究竟是啥</h2><p>Async/Awai 一种被期待已久的优雅写法，这种写法会让你的异步代码写起来更舒服也更加容易被阅读。它的底层依然使用了 Promise，并且能和所有基于 Promise 的 api 兼容。<br><code>async</code> 和 <code>await</code>这两个关键字将会帮助我们厘清异步代码。<br><strong> Async -声明了一个异步函数（ <code>async function someName(){...}</code>） </strong></p>
+<ul>
+<li>自动的将一个普通函数转化为 Promise </li>
+<li>当调用异步函数时，函数返回值会被 resolve 处理</li>
+<li>异步函数函数可以使用<code>await</code><br><strong> Await -可以暂停异步函数的执行（var result = await someAsyncCall();）</strong></li>
+<li>在 Promise 前使用，<code>await</code>的代码将会在 Promise 执行完并返回结果之后再执行</li>
+<li><code>await</code> 只能和 Promise 一起使用，不能和 callback 一起使用</li>
+<li><code>await</code> 只能用在 <code>async</code> 函数中<br>下面是一个有助于帮助理解的小例子：<br>任务：从服务器获取一个json文件<br>为了完成这个需求，我们必须等待服务器响应之后再获取数据，所以需要使用异步函数<br>以下代码使用了两种方式来实现，借用了  <a href="https://github.com/axios/axios" target="_blank" rel="noopener">axios</a><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">    <span class="comment">// Promise 写法</span></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">getJSON</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="comment">// 创建一个 Promise</span></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>( <span class="function"><span class="keyword">function</span>(<span class="params">resolve</span>) </span>&#123;</span><br><span class="line">            axios.get(<span class="string">'https://tutorialzine.com/misc/files/example.json'</span>)</span><br><span class="line">                .then( <span class="function"><span class="keyword">function</span>(<span class="params">json</span>) </span>&#123;</span><br><span class="line">                    <span class="comment">//.then 中可以获取到请求的返回值</span></span><br><span class="line">                    <span class="comment">// 我们使用 resolve 返回结果                 </span></span><br><span class="line">                    resolve(json);</span><br><span class="line">                &#125;);</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//Async/Await 写法</span></span><br><span class="line">    <span class="comment">//`async`关键字会自动创建一个Promise并返回</span></span><br><span class="line">    <span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">getJSONAsync</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="comment">// `await`关键字可让我们不用去写 then 上下文</span></span><br><span class="line">        <span class="comment">// 下句的赋值语句会等 await 后面的内容执行完，在执行赋值</span></span><br><span class="line">        <span class="keyword">let</span> json = <span class="keyword">await</span> axios.get(<span class="string">'https://tutorialzine.com/misc/files/example.json'</span>);    </span><br><span class="line">        <span class="comment">// json 变量会获得 get 请求的返回值</span></span><br><span class="line">        <span class="comment">// 我们像同步方法那样直接返回 json 变量即可</span></span><br><span class="line">        <span class="keyword">return</span> json;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="string">``</span><span class="string">` </span></span><br><span class="line"><span class="string">很显然，用 Async/Await 组织代码更简短易读， 除了写法以外，功能上是完全一模一样的：都会获取到 Promise 的返回值，然后在后续步骤处理该值。我们可以这样调用上文的异步代码</span></span><br><span class="line"><span class="string">`</span><span class="string">``</span>js</span><br><span class="line">    getJSONAsync().then(<span class="function"><span class="keyword">function</span>(<span class="params">result</span>)</span>&#123;</span><br><span class="line">        <span class="comment">//do something</span></span><br><span class="line">    &#125;)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><a href="https://segmentfault.com/a/1190000011813934" target="_blank" rel="noopener">1 分钟读完《10 分钟学会 JavaScript 的 Async/Await》</a></p>
+<h2 id="那么，Async-Await-能完全替代-Promise-吗"><a href="#那么，Async-Await-能完全替代-Promise-吗" class="headerlink" title="那么，Async/Await 能完全替代 Promise 吗"></a>那么，Async/Await 能完全替代 Promise 吗</h2><p>答案是<strong>不能</strong>。Async/Await 的底层仍在使用 Promise。从长远来看，完全理解 Promise 对你会有很大帮助，并且我强烈推荐大家好好研究一下 Promise。<br>有些场景下，我们不希望每个异步方法都阻碍整个方法的执行，比如来看下面这例子<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">    <span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">getABC</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> A = <span class="keyword">await</span> getValueA(); <span class="comment">// getValueA takes 2 second to finish</span></span><br><span class="line">  <span class="keyword">let</span> B = <span class="keyword">await</span> getValueB(); <span class="comment">// getValueB takes 4 second to finish</span></span><br><span class="line">  <span class="keyword">let</span> C = <span class="keyword">await</span> getValueC(); <span class="comment">// getValueC takes 3 second to finish</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> A*B*C;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>每一个 await 后面的方法都会打断 <code>getABC()</code> 执行，直到自身返回结果，这样一来getABC()就需要 2+4+3 = 9 秒才能执行完毕<br>这并不是我们希望的，因为 <code>getValueA()</code> <code>getValueB()`</code> getValueC()<code>是相互独立的，我们希望他们能同步执行，这样一来</code>getABC()` 就只需要花费 max(2,4,3) = 4 秒。<br>为了满足这样的需求，我们使用 Promise.all() 这样就可以让这些异步方法并行而不是一个一个执行。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">getABC</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="comment">// Promise.all() allows us to send all requests at the same time. </span></span><br><span class="line">  <span class="keyword">let</span> results = <span class="keyword">await</span> <span class="built_in">Promise</span>.all([ getValueA, getValueB, getValueC ]); </span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> results.reduce(<span class="function">(<span class="params">total,value</span>) =&gt;</span> total * value);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>如此一来，我么就能节省不少时间，在 <code>getValueB()</code>完成之前，<code>getValueA()</code> 和 <code>getValueC()</code> 就已经完成，一样我们就只花了 4 秒而不是 9 秒</p>
+<h2 id="Async-Await-的异常处理"><a href="#Async-Await-的异常处理" class="headerlink" title="Async/Await 的异常处理"></a>Async/Await 的异常处理</h2><p>Async/Await 的另一个好处是我们可以直接用 try/catch 进行处理，像这样：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">doSomethingAsync</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="comment">// This async call may fail.</span></span><br><span class="line">        <span class="keyword">let</span> result = <span class="keyword">await</span> someAsyncCall();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">catch</span>(error) &#123;</span><br><span class="line">        <span class="comment">// If it does we will catch the error here.</span></span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>如果需要的话，我们还可以在执行异步方法的时候捕获错误，因为当我们调用异步方法的时候，可以给返回的 Promise 增加一个 .catch 句柄<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Async function without a try/catch block.</span></span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">doSomethingAsync</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="comment">// This async call may fail.</span></span><br><span class="line">    <span class="keyword">let</span> result = <span class="keyword">await</span> someAsyncCall();</span><br><span class="line">    <span class="keyword">return</span> result;  </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// We catch the error upon calling the function.</span></span><br><span class="line">doSomethingAsync().</span><br><span class="line">    .then(successHandler)</span><br><span class="line">    .catch(errorHandler);</span><br></pre></td></tr></table></figure></p>
+<p>选择哪一种方法去抛出异常是很重要的，你可以选择你喜欢的并坚定地使用这种方式，同时使用 try/catch and .catch() 可能会导致一些意料之外的问题。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/前端/" rel="tag"># 前端</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/09/24/绝色/" rel="next" title="绝色">
+                <i class="fa fa-chevron-left"></i> 绝色
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/11/09/对象数组按 key 进行排序/" rel="prev" title="对象数组按 key 进行排序">
+                对象数组按 key 进行排序 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">fengqiyue.cheri</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">76</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">categories</span>
+                
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-name">tags</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/fengqiyue" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:mynameiszhangxu@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Async-Await-究竟是啥"><span class="nav-number">1.</span> <span class="nav-text">Async/Await 究竟是啥</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#那么，Async-Await-能完全替代-Promise-吗"><span class="nav-number">2.</span> <span class="nav-text">那么，Async/Await 能完全替代 Promise 吗</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Async-Await-的异常处理"><span class="nav-number">3.</span> <span class="nav-text">Async/Await 的异常处理</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">fengqiyue.cheri</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

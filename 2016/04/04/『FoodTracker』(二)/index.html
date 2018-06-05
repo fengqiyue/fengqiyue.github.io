@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="swift," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="这次实现一个选取相册内照片的功能 把 UI 先准备一下在上次的基础上，加一个 imageView，当用户点击这个 iamgeView 的时候，会打开此设备上的相册，用户选择的照片就会出现在 imageView 中。Here We go.在 storyBoard的 Object Library中拖一个 imageView到 上次做的button下面，在Size inspector将其 intrins">
+<meta name="keywords" content="swift">
+<meta property="og:type" content="article">
+<meta property="og:title" content="『FoodTracker』(二)">
+<meta property="og:url" content="http://cheri.love/2016/04/04/『FoodTracker』(二)/index.html">
+<meta property="og:site_name" content="枫祺玥的小客栈">
+<meta property="og:description" content="这次实现一个选取相册内照片的功能 把 UI 先准备一下在上次的基础上，加一个 imageView，当用户点击这个 iamgeView 的时候，会打开此设备上的相册，用户选择的照片就会出现在 imageView 中。Here We go.在 storyBoard的 Object Library中拖一个 imageView到 上次做的button下面，在Size inspector将其 intrins">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-06-05T07:44:45.812Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="『FoodTracker』(二)">
+<meta name="twitter:description" content="这次实现一个选取相册内照片的功能 把 UI 先准备一下在上次的基础上，加一个 imageView，当用户点击这个 iamgeView 的时候，会打开此设备上的相册，用户选择的照片就会出现在 imageView 中。Here We go.在 storyBoard的 Object Library中拖一个 imageView到 上次做的button下面，在Size inspector将其 intrins">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://cheri.love/2016/04/04/『FoodTracker』(二)/"/>
+
+
+
+
+
+  <title>『FoodTracker』(二) | 枫祺玥的小客栈</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">枫祺玥的小客栈</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://cheri.love/2016/04/04/『FoodTracker』(二)/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="fengqiyue.cheri">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="枫祺玥的小客栈">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">『FoodTracker』(二)</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-04-04T17:53:00+08:00">
+                2016-04-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/技术/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>这次实现一个选取相册内照片的功能</p>
+<h2 id="把-UI-先准备一下"><a href="#把-UI-先准备一下" class="headerlink" title="把 UI 先准备一下"></a>把 UI 先准备一下</h2><p>在上次的基础上，加一个 imageView，当用户点击这个 iamgeView 的时候，会打开此设备上的相册，用户选择的照片就会出现在 imageView 中。<br>Here We go.<br>在 <code>storyBoard</code>的 <code>Object Library</code>中拖一个 <code>imageView</code>到 上次做的<code>button</code>下面，在<code>Size inspector</code>将其 <code>intrinsic Size</code> 选择为 <code>placeholder</code>，并把<code>width</code>和<code>Height</code>都设置为 320。<br>然后加个 1:1 aspect ratio 的约束来限制形状。<br>接下来，从电脑里拉个图过来放到<code>Assetsxcassets</code>文件中，把名字改为<code>defaultphoto</code>,(放在 2x 的那个位置，这个尺寸合适 ipone6，6s)，之后记得在<code>Storyboard</code>的<code>imageView</code>的<code>Attributes inspector</code>里，把 <code>image</code> 设置为 <code>defaultphoto</code></p>
+<h2 id="把-StoryBoard-的东西通过-“Control-drag”-到代码"><a href="#把-StoryBoard-的东西通过-“Control-drag”-到代码" class="headerlink" title="把 StoryBoard 的东西通过 “Control-drag” 到代码"></a>把 StoryBoard 的东西通过 “Control-drag” 到代码</h2><p>选择 <code>imageView</code> and “Control-drag” 到<code>ViewControl.swift</code>文件，并起名为<code>photoImageView</code>,<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@IBOutlet</span> <span class="keyword">weak</span> <span class="keyword">var</span> photoImageView: <span class="type">UIImageView</span>!</span><br></pre></td></tr></table></figure></p>
+<h2 id="为-imageView-创建一个『tap』手势"><a href="#为-imageView-创建一个『tap』手势" class="headerlink" title="为 imageView 创建一个『tap』手势"></a>为 <code>imageView</code> 创建一个『tap』手势</h2><p>从<code>Object Library</code>中拖一个 <code>tap gesture</code>到 <code>imageView</code>上面去。<br>然后把 <code>tap gesture</code>通过 “Control-drag”连接到<code>ViewControl.swift</code>文件，起名为<code>selectImageFromPhotoLibrary</code>，类型选择为 <code>UITapGestureRecognize</code><br>like this:<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@IBAction</span> <span class="function"><span class="keyword">func</span> <span class="title">selectImageFromPhotoLibrary</span><span class="params">(sender: UITapGestureRecognizer)</span></span> &#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>先在这个方法中加行代码来确保用户如果点击了图片区域，键盘会自动隐藏起来<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//隐藏键盘</span></span><br><span class="line">nameTextField.resignFirstResponder()</span><br></pre></td></tr></table></figure></p>
+<p>然后创建一个 image picker controller<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// UIImagePickerController 是个用来让用户选择图片的 view controller</span></span><br><span class="line"><span class="keyword">let</span> imagePickerController = <span class="type">UIImagePickerController</span>()</span><br></pre></td></tr></table></figure></p>
+<p>再加一行代码,干吗用的注释说的很清楚了：只能选，不能干别的<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Only allow photos to be picked, not taken.</span></span><br><span class="line">imagePickerController.sourceType = .<span class="type">PhotoLibrary</span></span><br></pre></td></tr></table></figure></p>
+<p>设置一下代理<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Make sure ViewController is notified when the user picks an image.</span></span><br><span class="line">imagePickerController.delegate = <span class="keyword">self</span></span><br></pre></td></tr></table></figure></p>
+<p>最后，加一行代码,目的是：当用户选了图片的时候，确保 ViewController 被通知<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">presentViewController(imagePickerController, animated: <span class="literal">true</span>, completion: <span class="literal">nil</span>)</span><br></pre></td></tr></table></figure></p>
+<p>Ok，现在我们完成了<code>selectImageFromPhotoLibrary</code>方法，接下来干另一件事：写一下<code>UIImagePickerControllerDelegate</code>的方法。</p>
+<p>在<code>selectImageFromPhotoLibrary()</code>方法外面，我们需要写两个方法：<code>imagePickerControllerDidCancel()</code>和<code>imagePickerController()</code>这个方法属于 UIImagePickerControllerDelegate.<br>代码如下：<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// MARK: UIImagePickerControllerDelegate</span></span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">imagePickerControllerDidCancel</span><span class="params">(picker: UIImagePickerController)</span></span> &#123;</span><br><span class="line">        <span class="comment">// 用户取消的话，释放 picker</span></span><br><span class="line">        dismissViewControllerAnimated(<span class="literal">true</span>, completion: <span class="literal">nil</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">imagePickerController</span><span class="params">(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject])</span></span> &#123;</span><br><span class="line">        <span class="comment">// 获得被选中的图片</span></span><br><span class="line">        <span class="keyword">let</span> selectedImage = info[<span class="type">UIImagePickerControllerOriginalImage</span>] <span class="keyword">as</span>! <span class="type">UIImage</span></span><br><span class="line">        </span><br><span class="line">        <span class="comment">//把选中的图片传给 photoImage </span></span><br><span class="line">        photoImageView.image = selectedImage</span><br><span class="line">        </span><br><span class="line">        <span class="comment">//释放 Picker</span></span><br><span class="line">        dismissViewControllerAnimated(<span class="literal">true</span>, completion: <span class="literal">nil</span>)</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
+<p>这样就行了，可以运行 app 啦。<br>值得注意的是，这次用到的代理有两个：<code>UIImagePickerControllerDelegate</code>,<code>UINavigationControllerDelegate</code>,因为<br>想用前者的话，必须要用到后者，所以都要写上，像这样：<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ViewController</span>: <span class="title">UIViewController</span>, <span class="title">UITextFieldDelegate</span>, <span class="title">UIImagePickerControllerDelegate</span>, <span class="title">UINavigationControllerDelegate</span> </span>&#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>不然会报错的。</p>
+<p><strong>最后说一个我犯得错误，浪费我很久时间，这个错误是『当我点击图片的时候，死活都不会弹出来相册』，最后我发现原因在于：StoryBoard 中，查看 ImageView 的 Attribut inspector，其中有一项叫做 “interacion”,它有两个可选的属性”User Interaction Enable”和”Multiple touch”，如果你没有在”User Interaction Enable”前面的小方框中打钩的话，程序是不会弹出相册的，引以为戒</strong><br>如果你还是运行不顺利的话，记得仔细观察一下 StroyBoard 中的各种组件是否都正确的关联起来了。<br>这个程序可以从<a href="https://developer.apple.com/sample-code/swift/downloads/Start-Dev-iOS-Apps-04.zip" target="_blank" rel="noopener">这个链接</a>下载到</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/swift/" rel="tag"># swift</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/03/30/『FoodTracker』(一)/" rel="next" title="『FoodTracker』(一)">
+                <i class="fa fa-chevron-left"></i> 『FoodTracker』(一)
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/04/12/『FoodTracker』(三)/" rel="prev" title="『FoodTracker』(三)">
+                『FoodTracker』(三) <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">fengqiyue.cheri</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">76</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">categories</span>
+                
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-name">tags</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/fengqiyue" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:mynameiszhangxu@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#把-UI-先准备一下"><span class="nav-number">1.</span> <span class="nav-text">把 UI 先准备一下</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#把-StoryBoard-的东西通过-“Control-drag”-到代码"><span class="nav-number">2.</span> <span class="nav-text">把 StoryBoard 的东西通过 “Control-drag” 到代码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#为-imageView-创建一个『tap』手势"><span class="nav-number">3.</span> <span class="nav-text">为 imageView 创建一个『tap』手势</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">fengqiyue.cheri</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

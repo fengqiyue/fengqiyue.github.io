@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="前端," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="参考文章：https://css-tricks.com/custom-controls-in-html5-video-full-screen/https://blog.hellojs.org/creating-a-custom-html5-video-player-and-the-shadow-dom-a98f29261be4 原生用户控件对于 &amp;lt;video&amp;gt;标签，有一个名为 ‘con">
+<meta name="keywords" content="前端">
+<meta property="og:type" content="article">
+<meta property="og:title" content="H5 浏览器自定义用户控件的实现">
+<meta property="og:url" content="http://cheri.love/2017/08/01/H5 浏览器自定义用户控件/index.html">
+<meta property="og:site_name" content="枫祺玥的小客栈">
+<meta property="og:description" content="参考文章：https://css-tricks.com/custom-controls-in-html5-video-full-screen/https://blog.hellojs.org/creating-a-custom-html5-video-player-and-the-shadow-dom-a98f29261be4 原生用户控件对于 &amp;lt;video&amp;gt;标签，有一个名为 ‘con">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-06-05T06:20:39.869Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="H5 浏览器自定义用户控件的实现">
+<meta name="twitter:description" content="参考文章：https://css-tricks.com/custom-controls-in-html5-video-full-screen/https://blog.hellojs.org/creating-a-custom-html5-video-player-and-the-shadow-dom-a98f29261be4 原生用户控件对于 &amp;lt;video&amp;gt;标签，有一个名为 ‘con">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://cheri.love/2017/08/01/H5 浏览器自定义用户控件/"/>
+
+
+
+
+
+  <title>H5 浏览器自定义用户控件的实现 | 枫祺玥的小客栈</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">枫祺玥的小客栈</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://cheri.love/2017/08/01/H5 浏览器自定义用户控件/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="fengqiyue.cheri">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="枫祺玥的小客栈">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">H5 浏览器自定义用户控件的实现</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-08-01T14:09:00+08:00">
+                2017-08-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/技术/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>参考文章：<br><a href="https://css-tricks.com/custom-controls-in-html5-video-full-screen/" target="_blank" rel="noopener">https://css-tricks.com/custom-controls-in-html5-video-full-screen/</a><br><a href="https://blog.hellojs.org/creating-a-custom-html5-video-player-and-the-shadow-dom-a98f29261be4" target="_blank" rel="noopener">https://blog.hellojs.org/creating-a-custom-html5-video-player-and-the-shadow-dom-a98f29261be4</a></p>
+<h2 id="原生用户控件"><a href="#原生用户控件" class="headerlink" title="原生用户控件"></a>原生用户控件</h2><p>对于 <code>&lt;video&gt;</code>标签，有一个名为 ‘controls’ 的属性，按如下写法就能给播放器增加原生的暂停/开始、进度条、音量、视频最大化这些基础功能。<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">video</span> <span class="attr">id</span>=<span class="string">"myVideo"</span> <span class="attr">controls</span> &gt;</span><span class="tag">&lt;/<span class="name">video</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="自定义用户控件"><a href="#自定义用户控件" class="headerlink" title="自定义用户控件"></a>自定义用户控件</h2><p>但是原生控件往往无法满足我们的一些需求，所以自定义用户控件还是很必要的。<br>首先声明一个变量，我们把 <code>&lt;video id=&quot;video&quot;&gt;&lt;/video&gt;</code>做如下定义<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">let videoElement = document.getElementById(&apos;video&apos;);</span><br><span class="line">let $videoElement = $(&apos;#video&apos;);</span><br></pre></td></tr></table></figure></p>
+<p>如何实现自定义控件，说起来也很简单，只需要借助几个 H5 播放器的事件和属性就可以了：</p>
+<h4 id="暂停和开始"><a href="#暂停和开始" class="headerlink" title="暂停和开始"></a>暂停和开始</h4><p>暂停和开始是最基本的功能了，实现起来很简单<br>开始：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">videoElement.play()</span><br></pre></td></tr></table></figure></p>
+<p>暂停：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">videoElement.pause()</span><br></pre></td></tr></table></figure></p>
+<p>所以只需要在当前视频暂停的时候调用<code>play()</code>方法就可以继续播放，同理在视频正在播放的时候调用<code>pause()</code>就可以了。<br>提的一提的是『如何判断当前视频是否暂停』<br>如果仅用<code>videoElement.paused</code>来判断视频暂停可能会有如下报错：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">The play() request was interrupted by a call to pause().</span><br></pre></td></tr></table></figure></p>
+<p>经过上网查询，最后使用了isPlaying 变量来判断视频是否暂停<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> isPlaying = videoElement.currentTime &gt; <span class="number">0</span> &amp;&amp; !videoElement.paused &amp;&amp; !videoElement.ended &amp;&amp; videoElement.readyState &gt; <span class="number">2</span>;</span><br></pre></td></tr></table></figure></p>
+<p>最后暂停/开始事件的方法如下：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> playpauseToggle = <span class="function"><span class="keyword">function</span>(<span class="params">e</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">let</span> isPlaying = videoElement.currentTime &gt; <span class="number">0</span> &amp;&amp; !videoElement.paused &amp;&amp; !videoElement.ended &amp;&amp; videoElement.readyState &gt; <span class="number">2</span>;</span><br><span class="line">    <span class="keyword">if</span>(!isPlaying) &#123;</span><br><span class="line">        videoElement.play();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">        videoElement.pause();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="视频当前时长-总时长"><a href="#视频当前时长-总时长" class="headerlink" title="视频当前时长/总时长"></a>视频当前时长/总时长</h3><p>这个就很容易了，借助两个参数即可；<br><code>duration</code> 属性可以获取视频总时长<br><code>currentTime</code> 属性可以获取视频当前时长<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">videoElement.duration //视频总时长</span><br><span class="line">videoElement.currentTime//视频当前时长</span><br></pre></td></tr></table></figure></p>
+<p>视频总时长在视频载入后获取一次即可，<br>视频当前时间则不同，每当视频进度更新一次后，视频当前时间就需要随之更新<br><code>loadedmetadata</code>事件：获取视频元数据。<br><code>timeupdate</code>事件：视频播放后，更新播放进度的事件。 会有明确的进度变化，可以获取到currentTime<br>值得一提的是，用<code>duration</code> 和 <code>currentTime</code> 获取到的数据格式是保留了若干位小数，以秒为单位的一个值，通常需要根据需要格式化一下，我为了将『十分钟二十四秒』格式化为<code>10:24</code>这样的格式，创建了如下方法<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> numberToTime = <span class="function"><span class="keyword">function</span>(<span class="params">number</span>)</span>&#123;</span><br><span class="line">        number = <span class="built_in">parseInt</span>(number,<span class="number">10</span>);</span><br><span class="line">        <span class="keyword">let</span> minues = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">let</span> second = <span class="number">0</span>;</span><br><span class="line">    </span><br><span class="line">        minues = <span class="built_in">parseInt</span>(number / <span class="number">60</span>, <span class="number">10</span>);</span><br><span class="line">        second = number % <span class="number">60</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(minues&lt;<span class="number">10</span>)&#123;</span><br><span class="line">            minues = <span class="string">'0'</span>+ minues</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(second&lt;<span class="number">10</span>)&#123;</span><br><span class="line">            second = <span class="string">'0'</span>+ second</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> minues + <span class="string">':'</span> + second;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
+<p>以及监听对应事件并更新当前时间的代码如下<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$videoElement.on(<span class="string">'loadedmetadata'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">   $(<span class="string">'.duration'</span>).text(numberToTime(videoElement.duration));</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">$videoElement.on(<span class="string">'timeupdate'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">   $(<span class="string">'.current'</span>).text(numberToTime(videoElement.currentTime));</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"> <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"progressTime"</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">"current"</span>&gt;</span>00:00<span class="tag">&lt;/<span class="name">span</span>&gt;</span> / <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">"duration"</span>&gt;</span>00:00<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="进度条"><a href="#进度条" class="headerlink" title="进度条"></a>进度条</h3><p>没有进度条的视频不是好视频，实现一个进度条很重要。<br>声明一点：进度条这里的样式我使用了 <a href="http://v3.bootcss.com/components/#progress" target="_blank" rel="noopener">bootstrap 的进度条样式</a>。<br>dom 结构如下：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"progress"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"progress-bar progress-bar-primary"</span> <span class="attr">role</span>=<span class="string">"progressbar"</span> <span class="attr">aria-valuenow</span>=<span class="string">"60"</span> <span class="attr">aria-valuemin</span>=<span class="string">"0"</span> <span class="attr">aria-valuemax</span>=<span class="string">"100"</span> <span class="attr">style</span>=<span class="string">"width: 0%;"</span>&gt;</span>  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"bufferBar progress-bar progress-bar-buffered"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>有两个条，一个是当前进度，一个是缓冲进度。<br>基本原理也很简单，获取  当前时间/总时长 * 100% 的值，然后把这个值赋给进度条对应 dom 的样式中的 ‘width’，通过<code>timeupdate</code>事件不断更新即可。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$videoElement.on(<span class="string">'timeupdate'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> currentPos = videoElement.currentTime;</span><br><span class="line">    <span class="keyword">let</span> maxduration = videoElement.duration;</span><br><span class="line">    <span class="keyword">let</span> percentage = <span class="number">100</span> * currentPos / maxduration;</span><br><span class="line">    $(<span class="string">'.progress-bar-primary'</span>).css(<span class="string">'width'</span>, percentage + <span class="string">'%'</span>);</span><br><span class="line"> &#125;)</span><br></pre></td></tr></table></figure></p>
+<p>缓冲进度条和上面的实现基本一致，对应上面<code>currentPos</code>值的是<code>videoElement.buffered.end(0)</code>，缓冲进度条应该监听<code>progress</code>事件，而不是 <code>timeupdate</code>事件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">progress事件：	当浏览器正在下载音频/视频时触发。</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$videoElement.on(<span class="string">'progress'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">       <span class="keyword">let</span> currentPos = videoElement.buffered.end(<span class="number">0</span>);</span><br><span class="line">       <span class="keyword">let</span> maxduration = videoElement.duration;</span><br><span class="line">       <span class="keyword">let</span> percentage = <span class="number">100</span> * currentPos / maxduration;</span><br><span class="line">       $(<span class="string">'.progress-bar-primary'</span>).css(<span class="string">'width'</span>, percentage + <span class="string">'%'</span>);</span><br><span class="line">    &#125;)</span><br></pre></td></tr></table></figure>
+<p><small>注意：此处只是讲述获取方法，具体样式和取值的变化要根据实际项目进行调整</small></p>
+<p>进度条不但要能看进度，还要能拖拽进度<br>拖拽进度的思路是：根据鼠标在进度条上的<code>mousedown</code>事件和<code>mouseup</code>事件鼠标的 X 坐标量（含正负）变化来确定当前进度的变化程度。</p>
+<p>具体代码如下：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> timeDrag = <span class="literal">false</span>;   <span class="comment">/* Drag status */</span></span><br><span class="line">$(<span class="string">'.progress'</span>).mousedown(<span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">    timeDrag = <span class="literal">true</span>;</span><br><span class="line">    updatebar(e.pageX);</span><br><span class="line">&#125;);</span><br><span class="line">$(<span class="built_in">document</span>).mouseup(<span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(timeDrag) &#123;</span><br><span class="line">        timeDrag = <span class="literal">false</span>;</span><br><span class="line">        updatebar(e.pageX);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line">$(<span class="built_in">document</span>).mousemove(<span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(timeDrag) &#123;</span><br><span class="line">        updatebar(e.pageX);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line"> </span><br><span class="line"><span class="keyword">let</span> updatebar = <span class="function"><span class="keyword">function</span>(<span class="params">x</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> progress = $(<span class="string">'.progress'</span>);</span><br><span class="line">    <span class="keyword">let</span> maxduration = videoElement.duration; <span class="comment">//视频总时长</span></span><br><span class="line">    <span class="keyword">let</span> position = x - progress.offset().left; <span class="comment">//变化量</span></span><br><span class="line">    <span class="keyword">let</span> percentage = <span class="number">100</span> * position / progress.width();</span><br><span class="line"> </span><br><span class="line">    <span class="comment">//超出范围的修正</span></span><br><span class="line">    <span class="keyword">if</span>(percentage &gt; <span class="number">100</span>) &#123;</span><br><span class="line">        percentage = <span class="number">100</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(percentage &lt; <span class="number">0</span>) &#123;</span><br><span class="line">        percentage = <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="comment">//更新进度条和当前时间</span></span><br><span class="line">    $(<span class="string">'progress-bar'</span>).css(<span class="string">'width'</span>, percentage+<span class="string">'%'</span>);</span><br><span class="line">    videoElement.currentTime = maxduration * percentage / <span class="number">100</span>;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<h3 id="音量"><a href="#音量" class="headerlink" title="音量"></a>音量</h3><p>音量的控制很容易，主要借助以下方法和属性，具体的交互可以随心所欲的实现。之前还有看过一篇文章是介绍丧心病狂的音量键的，可以学习学习[滑稽]：<a href="http://adquan.com/post-10-41045.html" target="_blank" rel="noopener">http://adquan.com/post-10-41045.html</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">videoElement.muted = true //静音</span><br><span class="line">videoElement.muted = false //解除静音</span><br><span class="line"></span><br><span class="line">videoElement.volume = 1 //设置音量为最大值</span><br><span class="line">videoElement.volume = 0.5 //设置音量为50%</span><br><span class="line">videoElement.volume = 0 //设置音量为最小值</span><br></pre></td></tr></table></figure></p>
+<h2 id="倍速播放"><a href="#倍速播放" class="headerlink" title="倍速播放"></a>倍速播放</h2><p>倍速播放很容易，把交互稍微写好点就行，实现方式非常简单 用 <code>playbackRate</code>就行，和控制音量差不多。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">videoElement.playbackRate = 0.5; 0.5倍速播放</span><br><span class="line">videoElement.playbackRate = 1;正常播放</span><br><span class="line">videoElement.playbackRate = 1.5; 1.5倍速播放</span><br><span class="line">videoElement.playbackRate = 2; 2倍速播放</span><br></pre></td></tr></table></figure></p>
+<h3 id="全屏"><a href="#全屏" class="headerlink" title="全屏"></a>全屏</h3><p>全屏是一个兼容起来有点麻烦的功能。<br>如果你要为 firefox 写用户控件的话，调用全屏 api 的就得是 <code>&lt;video&gt;</code>和<code>&lt;div class=&quot;controls&quot;&gt;&lt;div&gt;</code>的共同父元素,不然会发现全屏后，你的用户控件看不到了。（但然，firefox 原生的用户控件比 chrome 的好看一百倍，所以你要是用原生的用户控件，那直接 <code>element.requestFullscreen()</code>就行）<br><small>同时我们也记下这个 tips ：能调用全屏 api 的不只是<code>&lt;video&gt;</code></small></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"live__player"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">video</span>&gt;</span><span class="tag">&lt;/<span class="name">video</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"controls"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">``` </span><br><span class="line">```js</span><br><span class="line">//全屏</span><br><span class="line">function fullScreenOn(element) &#123;</span><br><span class="line">    if(element.requestFullscreen) &#123;</span><br><span class="line">        element.requestFullscreen();</span><br><span class="line">    &#125; else if(element.mozRequestFullScreen) &#123;</span><br><span class="line">        $('.live__player')[0].mozRequestFullScreen();</span><br><span class="line">    &#125; else if(element.msRequestFullscreen)&#123; </span><br><span class="line">        element.msRequestFullscreen(); </span><br><span class="line">    &#125; else if(element.oRequestFullscreen)&#123;</span><br><span class="line">        element.oRequestFullscreen();</span><br><span class="line">    &#125; else if(element.webkitRequestFullscreen)</span><br><span class="line">    &#123;</span><br><span class="line">        element.webkitRequestFullScreen();</span><br><span class="line">    &#125; else&#123;</span><br><span class="line"></span><br><span class="line">        var docHtml = document.documentElement;</span><br><span class="line">        var docBody = document.body;</span><br><span class="line">        var videobox = document.getElementById('sfLive');</span><br><span class="line">        var cssText = 'width:100%;height:100%;overflow:hidden;';</span><br><span class="line">        docHtml.style.cssText = cssText;</span><br><span class="line">        docBody.style.cssText = cssText;</span><br><span class="line">        videobox.style.cssText = cssText+';'+'margin:0px;padding:0px;';</span><br><span class="line">        document.IsFullScreen = true;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    $controls.css('z-index','2147483647');</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>此处传入的值就是<code>videoElement</code><br>    <small><code>(videoElement = document.getElementById(&#39;video&#39;);)</code></small></p>
+<p>另外一点，最后一行代码做的是：把我们自定义控件的 z-index 属性设置为浏览器最大值。原因是，webkit 内核的浏览器在全屏的时候，视频的 z-index 变为了浏览器允许的最大值，我们把自定义控件的 z-index 也设置为最大值，就能避免用户控件被视频遮住。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">:-webkit-full-screen &#123;</span><br><span class="line">    z-index: 2147483647;//最大值</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>同样的，退出全屏模式的代码如下：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fullScreenOff</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">document</span>.exitFullscreen) &#123;</span><br><span class="line">        <span class="built_in">document</span>.exitFullscreen();</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="built_in">document</span>.msExitFullscreen) &#123;</span><br><span class="line">        <span class="built_in">document</span>.msExitFullscreen();</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="built_in">document</span>.mozCancelFullScreen) &#123;</span><br><span class="line">        <span class="built_in">document</span>.mozCancelFullScreen();</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span>(<span class="built_in">document</span>.oRequestFullscreen)&#123;</span><br><span class="line">        <span class="built_in">document</span>.oCancelFullScreen();</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="built_in">document</span>.webkitExitFullscreen)&#123;</span><br><span class="line">        <span class="built_in">document</span>.webkitExitFullscreen();</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">var</span> docHtml = <span class="built_in">document</span>.documentElement;</span><br><span class="line">        <span class="keyword">var</span> docBody = <span class="built_in">document</span>.body;</span><br><span class="line">        <span class="keyword">var</span> videobox = <span class="built_in">document</span>.getElementById(<span class="string">'sfLive'</span>);</span><br><span class="line">        docHtml.style.cssText = <span class="string">""</span>;</span><br><span class="line">        docBody.style.cssText = <span class="string">""</span>;</span><br><span class="line">        videobox.style.cssText = <span class="string">""</span>;</span><br><span class="line">        <span class="built_in">document</span>.IsFullScreen = <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    $(<span class="string">'.live__playcontrol'</span>).css(<span class="string">'z-index'</span>,<span class="string">'1'</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>检查视频是否全屏的代码如下：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> isFullScreen =  <span class="built_in">document</span>.fullscreenElement ||</span><br><span class="line">                    <span class="built_in">document</span>.webkitFullscreenElement ||</span><br><span class="line">                    <span class="built_in">document</span>.mozFullScreenElement ||</span><br><span class="line">                    <span class="built_in">document</span>.msFullscreenElement</span><br></pre></td></tr></table></figure></p>
+<h3 id="踩坑"><a href="#踩坑" class="headerlink" title="踩坑"></a>踩坑</h3><ol>
+<li>视频开始/暂停的判断依据<br> 文中已写，代码如下 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> isPlaying = videoElement.currentTime &gt; <span class="number">0</span> &amp;&amp; !videoElement.paused &amp;&amp; !videoElement.ended &amp;&amp; videoElement.readyState &gt; <span class="number">2</span>;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<ol start="2">
+<li><p>firefox 全屏后，自定义的用户控件不见了<br> 文中已写，和其他浏览器不同，firefox 不是用 <code>&lt;video&gt;</code>元素的 dom 对象去调用<code>requestFullscreen()</code>,而是用 <code>&lt;video&gt;</code>元素的父元素去调。</p>
+</li>
+<li><p>shadowDom 隐藏的问题<br>如果你发现，你明明把  <code>&lt;video&gt;</code>元素的属性<code>controls</code>去掉了，但是原生控件依然显示，那么只有用 CSS 去干掉它</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">video</span><span class="selector-pseudo">::-webkit-media-controls-enclosure</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>:none <span class="meta">!important</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>可以在下列链接中查看 <code>&lt;video&gt;</code> 的属性和事件<br><a href="http://www.w3school.com.cn/tags/html_ref_audio_video_dom.asp" target="_blank" rel="noopener">HTML 5 视频/音频参考手册</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/前端/" rel="tag"># 前端</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/07/03/浏览器渲染相关/" rel="next" title="浏览器渲染流程初步">
+                <i class="fa fa-chevron-left"></i> 浏览器渲染流程初步
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/08/22/div 捕获 keydown 事件 tabindex/" rel="prev" title="div 捕获 keydown 事件">
+                div 捕获 keydown 事件 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">fengqiyue.cheri</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">76</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">categories</span>
+                
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-name">tags</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/fengqiyue" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:mynameiszhangxu@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#原生用户控件"><span class="nav-number">1.</span> <span class="nav-text">原生用户控件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#自定义用户控件"><span class="nav-number">2.</span> <span class="nav-text">自定义用户控件</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#暂停和开始"><span class="nav-number">2.0.1.</span> <span class="nav-text">暂停和开始</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#视频当前时长-总时长"><span class="nav-number">2.1.</span> <span class="nav-text">视频当前时长/总时长</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#进度条"><span class="nav-number">2.2.</span> <span class="nav-text">进度条</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#音量"><span class="nav-number">2.3.</span> <span class="nav-text">音量</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#倍速播放"><span class="nav-number">3.</span> <span class="nav-text">倍速播放</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#全屏"><span class="nav-number">3.1.</span> <span class="nav-text">全屏</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#踩坑"><span class="nav-number">3.2.</span> <span class="nav-text">踩坑</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">fengqiyue.cheri</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

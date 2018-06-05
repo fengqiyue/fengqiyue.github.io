@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="swift," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="今天写的文章是说明如何增加一个用来评分的 button ，button的外观是五颗星星，评几分就点第几颗星星就行。代码是前几天写的，今天才写了博客。开始吧。 一个新的.swift 文件来控制评分部分新建一个 .swift文件，起名为 RatingControl.swift  Subclass ofUIView创建视图有两种主要方法，一种是通过代码写初始化一个视图，另一种就是通过Storyboard">
+<meta name="keywords" content="swift">
+<meta property="og:type" content="article">
+<meta property="og:title" content="『FoodTracker』(三)">
+<meta property="og:url" content="http://cheri.love/2016/04/12/『FoodTracker』(三)/index.html">
+<meta property="og:site_name" content="枫祺玥的小客栈">
+<meta property="og:description" content="今天写的文章是说明如何增加一个用来评分的 button ，button的外观是五颗星星，评几分就点第几颗星星就行。代码是前几天写的，今天才写了博客。开始吧。 一个新的.swift 文件来控制评分部分新建一个 .swift文件，起名为 RatingControl.swift  Subclass ofUIView创建视图有两种主要方法，一种是通过代码写初始化一个视图，另一种就是通过Storyboard">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-06-05T07:55:53.967Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="『FoodTracker』(三)">
+<meta name="twitter:description" content="今天写的文章是说明如何增加一个用来评分的 button ，button的外观是五颗星星，评几分就点第几颗星星就行。代码是前几天写的，今天才写了博客。开始吧。 一个新的.swift 文件来控制评分部分新建一个 .swift文件，起名为 RatingControl.swift  Subclass ofUIView创建视图有两种主要方法，一种是通过代码写初始化一个视图，另一种就是通过Storyboard">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://cheri.love/2016/04/12/『FoodTracker』(三)/"/>
+
+
+
+
+
+  <title>『FoodTracker』(三) | 枫祺玥的小客栈</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">枫祺玥的小客栈</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://cheri.love/2016/04/12/『FoodTracker』(三)/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="fengqiyue.cheri">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="枫祺玥的小客栈">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">『FoodTracker』(三)</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-04-12T14:47:00+08:00">
+                2016-04-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/技术/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>今天写的文章是说明如何增加一个用来评分的 button ，button的外观是五颗星星，评几分就点第几颗星星就行。<br>代码是前几天写的，今天才写了博客。开始吧。</p>
+<h2 id="一个新的-swift-文件来控制评分部分"><a href="#一个新的-swift-文件来控制评分部分" class="headerlink" title="一个新的.swift 文件来控制评分部分"></a>一个新的.swift 文件来控制评分部分</h2><p>新建一个 .swift文件，起名为 RatingControl.swift  Subclass of<br><code>UIView</code><br>创建视图有两种主要方法，一种是通过代码写初始化一个视图，另一种就是通过<code>Storyboard</code>，这次试用第一种方法：<br>在代码中做个注释：<br><code>// MARK: Initialization</code><br>然后写代码，like this：<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">init</span>?(coder aDecoder: <span class="type">NSCoder</span>) &#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>这时候Xcode会告诉你有个错误，直接点击 error 而后 <code>fix-it</code><br>之后代码变成了这样：<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">required</span> <span class="keyword">init</span>?(coder aDecoder: <span class="type">NSCoder</span>) &#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>然后再加一行代码，让你的代码看上去像是这样：<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">required</span> <span class="keyword">init</span>?(coder aDecoder: <span class="type">NSCoder</span>) &#123;</span><br><span class="line">    <span class="keyword">super</span>.<span class="keyword">init</span>(coder: aDecoder)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="显示自定义视图"><a href="#显示自定义视图" class="headerlink" title="显示自定义视图"></a>显示自定义视图</h2><p>打开 Storyboard ,拖一个 view 对象到 stack 中，放在 image view 下面<br>然后选中 view 对象的尺寸检查器（Size inspector），在尺寸检查器最下面的地方，选择<code>Placeholder</code>，其中高度填写 44，宽度填写 240<br>接下来，选择 view 对象的身份检查器（Identity inspector），将其第一行的 Class 选为<code>RatingControl</code></p>
+<h2 id="给视图中增加-Button"><a href="#给视图中增加-Button" class="headerlink" title="给视图中增加 Button"></a>给视图中增加 Button</h2><p>###创建一个 button<br>在初始化函数（<code>init?(coder:)</code>）中，写代码：<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> button = <span class="type">UIButton</span>(frame: <span class="type">CGRect</span>(x: <span class="number">0</span>, y: <span class="number">0</span>, width: <span class="number">44</span>, height: <span class="number">44</span>))</span><br><span class="line">button.backgroundColor = <span class="type">UIColor</span>.blueColor()</span><br></pre></td></tr></table></figure></p>
+<p>第一行定义了  button 并经行了初始化，这里是一个正方形，我们是要用星星评分，所以这个代码等会会改<br>第二行是为了让 button 显示个颜色，方便观察，这行代码等会要删掉<br>然后再加一行代码，用来把创建的按钮加到视图中去<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">addSubview(button)</span><br></pre></td></tr></table></figure></p>
+<p>现在你的代码看上去应该是这样的：<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">required</span> <span class="keyword">init</span>?(coder aDecoder: <span class="type">NSCoder</span>) &#123;</span><br><span class="line">    <span class="keyword">super</span>.<span class="keyword">init</span>(coder: aDecoder)</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">let</span> button = <span class="type">UIButton</span>(frame: <span class="type">CGRect</span>(x: <span class="number">0</span>, y: <span class="number">0</span>, width: <span class="number">44</span>, height: <span class="number">44</span>))</span><br><span class="line">    button.backgroundColor = <span class="type">UIColor</span>.redColor()</span><br><span class="line">    addSubview(button)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>为了告诉堆栈视图（stack view）怎么去布置 button ，我们要提供给他一个button需要占据的尺寸，代码这样写：<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">override</span> <span class="function"><span class="keyword">func</span> <span class="title">intrinsicContentSize</span><span class="params">()</span></span> -&gt; <span class="type">CGSize</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="type">CGSize</span>(width: <span class="number">240</span>, height: <span class="number">44</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>现在可以运行一下你的程序了，正确的样子应该是图片视图下面出现了一个 蓝色的正方形</p>
+<h3 id="现在，给-button-加-action"><a href="#现在，给-button-加-action" class="headerlink" title="现在，给 button 加 action"></a>现在，给 button 加 action</h3><p>给 button 加上一个动作很简单，我们举个例子：当我们点击 button 时，就会输出『 Button pressed 👍』<br>做法很简单：<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">ratingButtonTapped</span><span class="params">(button: UIButton)</span></span> &#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"Button pressed 👍"</span>)</span><br></pre></td></tr></table></figure></p>
+<p>动作写好了，现在让 button 知道自己有这么一个动作要执行<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">button.addTarget(<span class="keyword">self</span>, action: #selector(<span class="type">RatingControl</span>.ratingButtonTapped(<span class="number">_</span>:)), forControlEvents: .<span class="type">TouchDown</span>) <span class="comment">//第二个参数是要采用哪个action方法，第三个参数是针对哪种事件，".TouchDown"指的是『按下去』这个事件</span></span><br></pre></td></tr></table></figure></p>
+<p><code>addTarget()</code>这个方法的作用是将一个操作对象和方法与控件相连接。<br>现在你的代码是这样的：<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//MARK :Initialization</span></span><br><span class="line"><span class="keyword">required</span> <span class="keyword">init</span>?(coder aDecoder: <span class="type">NSCoder</span>) &#123;</span><br><span class="line">    <span class="keyword">super</span>.<span class="keyword">init</span>(coder: aDecoder)</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">let</span> button = <span class="type">UIButton</span>(frame: <span class="type">CGRect</span>(x: <span class="number">0</span>, y: <span class="number">0</span>, width: <span class="number">44</span>, height: <span class="number">44</span>))</span><br><span class="line">    button.backgroundColor = <span class="type">UIColor</span>.redColor()</span><br><span class="line">    button.addTarget(<span class="keyword">self</span>, action: #selector(<span class="type">RatingControl</span>.ratingButtonTapped(<span class="number">_</span>:)), forControlEvents: .<span class="type">TouchDown</span>)</span><br><span class="line">    addSubview(button)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">override</span> <span class="function"><span class="keyword">func</span> <span class="title">intrinsicContentSize</span><span class="params">()</span></span> -&gt; <span class="type">CGSize</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="type">CGSize</span>(width: <span class="number">240</span>, height: <span class="number">44</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//// MARK: Button Action</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">ratingButtonTapped</span><span class="params">(button: UIButton)</span></span> &#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"Button pressed 👍"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>现在运行你的程序，点击蓝色小方块，你就可以从 Xcode 的控制台看到 『Button pressed 👍』，点多少下就显示多少行哦</p>
+<h3 id="添加评分属性"><a href="#添加评分属性" class="headerlink" title="添加评分属性"></a>添加评分属性</h3><p>开始写一些属性啦：<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// MARK: Properties</span></span><br><span class="line"><span class="keyword">var</span> rating = <span class="number">0</span></span><br><span class="line"><span class="keyword">var</span> ratingButtons = [<span class="type">UIButton</span>]()</span><br></pre></td></tr></table></figure></p>
+<p>到此为止我们有了一个button ，但是我们要做一个五分制的评分系统，所以我们要多弄几个 button，这个很容易，加个 <code>for-in</code> 循环就行:<br>你之前的代码是这样的：<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">required</span> <span class="keyword">init</span>?(coder aDecoder: <span class="type">NSCoder</span>) &#123;</span><br><span class="line">    <span class="keyword">super</span>.<span class="keyword">init</span>(coder: aDecoder)</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">let</span> button = <span class="type">UIButton</span>(frame: <span class="type">CGRect</span>(x: <span class="number">0</span>, y: <span class="number">0</span>, width: <span class="number">44</span>, height: <span class="number">44</span>))</span><br><span class="line">    button.backgroundColor = <span class="type">UIColor</span>.redColor()</span><br><span class="line">    button.addTarget(<span class="keyword">self</span>, action: #selector(<span class="type">RatingControl</span>.ratingButtonTapped(<span class="number">_</span>:)), forControlEvents: .<span class="type">TouchDown</span>)</span><br><span class="line">    addSubview(button)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>现在增加一个循环：<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> <span class="number">_</span> <span class="keyword">in</span> <span class="number">0</span>..&lt;<span class="number">5</span> &#123;</span><br><span class="line">    <span class="keyword">let</span> button = <span class="type">UIButton</span>(frame: <span class="type">CGRect</span>(x: <span class="number">0</span>, y: <span class="number">0</span>, width: <span class="number">44</span>, height: <span class="number">44</span>))</span><br><span class="line">    button.backgroundColor = <span class="type">UIColor</span>.redColor()</span><br><span class="line">    button.addTarget(<span class="keyword">self</span>, action: #selector(<span class="type">RatingControl</span>.ratingButtonTapped(<span class="number">_</span>:)), forControlEvents: .<span class="type">TouchDown</span>)</span><br><span class="line">    addSubview(button)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>然后在 <code>addSubview(button)</code> 上面加一行<br><code>ratingButtons += [button]</code><br>这一行是用来保证你在新加了 button 后能保证你的分数和 button 数能对得上</p>
+<p>现在你的 <code>init</code>看上去是这样的：<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">required</span> <span class="keyword">init</span>?(coder aDecoder: <span class="type">NSCoder</span>) &#123;</span><br><span class="line">    <span class="keyword">super</span>.<span class="keyword">init</span>(coder: aDecoder)</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span> <span class="number">_</span> <span class="keyword">in</span> <span class="number">0</span>..&lt;<span class="number">5</span> &#123;</span><br><span class="line">        <span class="keyword">let</span> button = <span class="type">UIButton</span>(frame: <span class="type">CGRect</span>(x: <span class="number">0</span>, y: <span class="number">0</span>, width: <span class="number">44</span>, height: <span class="number">44</span>))</span><br><span class="line">        button.backgroundColor = <span class="type">UIColor</span>.redColor()</span><br><span class="line">        button.addTarget(<span class="keyword">self</span>, action: #selector(<span class="type">RatingControl</span>.ratingButtonTapped(<span class="number">_</span>:)), forControlEvents: .<span class="type">TouchDown</span>)</span><br><span class="line">        ratingButtons += [button]</span><br><span class="line">        addSubview(button)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>###按钮的布局<br>在 RatingControl.swift 文件里， <code>init?（coder:）</code>方法下面，加一行注释<code>MARK: Initialization</code><br>并写下代码：<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">override</span> <span class="function"><span class="keyword">func</span> <span class="title">layoutSubviews</span><span class="params">()</span></span> &#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>在这个方法中，加上几行代码<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> button <span class="type">Frame</span> = <span class="type">CGRect</span>(x:<span class="number">0</span> ,y:<span class="number">0</span>, width:<span class="number">44</span> , height: <span class="number">44</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">//设置每一个评分星星的起点</span></span><br><span class="line"><span class="keyword">for</span>(index, button) <span class="keyword">in</span> ratingButtons.<span class="built_in">enumerate</span>() &#123;</span><br><span class="line">    buttonFrame.origin.x = <span class="type">CGFloat</span>(index * (<span class="number">44</span> + <span class="number">5</span>))</span><br><span class="line">    button.frame = buttonFrame</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>现在，layoutSubviews() 方法看上去是这样的：<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">override</span> <span class="function"><span class="keyword">func</span> <span class="title">layoutSubviews</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="keyword">var</span> buttonFrame = <span class="type">CGRect</span>(x: <span class="number">0</span>, y: <span class="number">0</span>, width: <span class="number">44</span>, height: <span class="number">44</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// Offset each button's origin by the length of the button plus spacing.</span></span><br><span class="line">    <span class="keyword">for</span> (index, button) <span class="keyword">in</span> ratingButtons.<span class="built_in">enumerate</span>() &#123;</span><br><span class="line">        buttonFrame.origin.x = <span class="type">CGFloat</span>(index * (<span class="number">44</span> + <span class="number">5</span>))</span><br><span class="line">        button.frame = buttonFrame</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>现在可以运行一下你的程序了，一切顺利的话，你会看到有五个蓝色正方形</p>
+<h2 id="给星星按钮间距和星星按钮的数量加上属性"><a href="#给星星按钮间距和星星按钮的数量加上属性" class="headerlink" title="给星星按钮间距和星星按钮的数量加上属性"></a>给星星按钮间距和星星按钮的数量加上属性</h2><p>注意：如果你在星星的个数和星星间的距离使用了『5』这个值，这就有点糟糕了，要知道在代码中分散的写死某一个值并不是个好主意，以后要是想改的话，会非常难过。<br>所以呢，我们应该声明两个值：星星的数量和星星间的距离。</p>
+<h3 id="增加属性"><a href="#增加属性" class="headerlink" title="增加属性"></a>增加属性</h3><p>在 RatingControl.swift 文件里，<code>class RatingControl(){}</code>中，加上下面的代码<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// MARK: Properties</span></span><br><span class="line"> </span><br><span class="line"><span class="keyword">var</span> rating = <span class="number">0</span></span><br><span class="line"><span class="keyword">var</span> ratingButtons = [<span class="type">UIButton</span>]()</span><br></pre></td></tr></table></figure></p>
+<p>在上面的属性后面再加上：<br><code>let spacing  = 5</code><br>这样就固定了星星之间的距离<br>在 <code>layoutSubViews</code> 中，把你之前写死的那些值都换掉<br>之前是：   <code>buttonFrame.origin.x = CGFloat(index * (44 + 5))</code><br>现在换成：<code>buttonFrame.origin.x = CGFloat(index * (44 + spacing))</code><br>当然，别忘了把星星数量的值也用变量替换一下：<br>在写属性的地方加上一行代码：<code>let starCount = 5</code><br>然后修改 init？{} 方法中的代码<br>之前是：<code>for _ in 0..&lt;5 {</code><br>现在换成：<code>for _ in 0 ..&lt; starCount {</code></p>
+<p>现在运行一下程序，一切都和之前看上去一样</p>
+<h2 id="声明一个常量用于表示星星形状按钮的尺寸"><a href="#声明一个常量用于表示星星形状按钮的尺寸" class="headerlink" title="声明一个常量用于表示星星形状按钮的尺寸"></a>声明一个常量用于表示星星形状按钮的尺寸</h2><p>你应该还记得星星形状按钮的尺寸是 44 吧，这是一个写死的值，现在需要改变这个糟糕的情况。<br>在<code>layoutSubviews()</code>方法中，加一行代码：<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 用frame 的高度去设置正方形按钮的边长</span></span><br><span class="line"><span class="keyword">let</span> buttonSize = <span class="type">Int</span>(frame.size.height)</span><br></pre></td></tr></table></figure></p>
+<p>这样一来，按钮的尺寸就更加灵活了<br>现在把代码中的 “44”替换成 <code>buttonSize</code><br>替换后应该是这样的：<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> buttonFrame = <span class="type">CGRect</span>(x: <span class="number">0</span>, y: <span class="number">0</span>, width: buttonSize, height: buttonSize)</span><br><span class="line"> </span><br><span class="line"><span class="comment">//从第二个开始，每个都往后挪"spacing"的长度</span></span><br><span class="line"><span class="keyword">for</span> (index, button) <span class="keyword">in</span> ratingButtons.<span class="built_in">enumerate</span>() &#123;</span><br><span class="line">    buttonFrame.origin.x = <span class="type">CGFloat</span>(index * (buttonSize + spacing))</span><br><span class="line">    button.frame = buttonFrame</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>现在在<code>intrinsicContentSize()</code>方法中设置一下评分按钮整体在 stack view 中占据的尺寸<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> buttonSize = <span class="type">Int</span>(frame.size.height)</span><br><span class="line"><span class="keyword">let</span> width = (buttonSize * starCount) + (spacing * (starCount - <span class="number">1</span>))</span><br><span class="line"><span class="keyword">return</span> <span class="type">CGRact</span>(width:width, height:buttonSize)</span><br></pre></td></tr></table></figure></p>
+<p>接下来把 init？{}方法中的第一行代码改成下面的样子：<br><code>let button = UIButton()</code><br>因为你已经在<code>layoutSubviews() {}</code>方法中设置好 button 的尺寸了。<br>现在你的 <code>layoutSubviews() {}</code>方法看上去是这个样子的：<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">override</span> <span class="function"><span class="keyword">func</span> <span class="title">layoutSubviews</span><span class="params">()</span></span> &#123;</span><br><span class="line">        <span class="keyword">let</span> buttonSize = <span class="type">Int</span>(frame.size.height)</span><br><span class="line">        <span class="keyword">var</span> buttonFrame = <span class="type">CGRect</span>(x: <span class="number">0</span>, y: <span class="number">0</span>, width: buttonSize, height: buttonSize)</span><br><span class="line">        </span><br><span class="line">        <span class="comment">//从第二个开始，每个都往后挪 5</span></span><br><span class="line">        <span class="keyword">for</span> (index, button) <span class="keyword">in</span> ratingButtons.<span class="built_in">enumerate</span>() &#123;</span><br><span class="line">            buttonFrame.origin.x = <span class="type">CGFloat</span>(index * (buttonSize + spacing))</span><br><span class="line">            button.frame = buttonFrame</span><br><span class="line">        &#125;</span><br><span class="line">        updateButtonsSelectionStates()</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
+<p>你的 <code>intrinsicContentSize() -&gt;CGSize{}</code>方法看上去是这样的<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">override</span> <span class="function"><span class="keyword">func</span> <span class="title">intrinsicContentSize</span><span class="params">()</span></span> -&gt; <span class="type">CGSize</span> &#123;</span><br><span class="line">    <span class="keyword">let</span> buttonSize = <span class="type">Int</span>(frame.size.height)</span><br><span class="line">    <span class="keyword">let</span> width = buttonSize * stars + spacing * (starCount - <span class="number">1</span>)        </span><br><span class="line">    <span class="keyword">return</span> <span class="type">CGSize</span>(width: width, height: buttonSize)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>你的 init？(){} 函数看上去是这样的：<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"> <span class="comment">//MARK :Initialization</span></span><br><span class="line"><span class="keyword">required</span> <span class="keyword">init</span>?(coder aDecoder: <span class="type">NSCoder</span>) &#123;</span><br><span class="line">    <span class="keyword">super</span>.<span class="keyword">init</span>(coder: aDecoder)</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span> <span class="number">_</span> <span class="keyword">in</span> <span class="number">0</span> ..&lt; starCount&#123;</span><br><span class="line">        <span class="keyword">let</span> button = <span class="type">UIButton</span>()</span><br><span class="line">        button.backgroudColor = <span class="type">UIColor</span>.blueColor()             </span><br><span class="line">        button.adjustsImageWhenHighlighted = <span class="literal">false</span>  <span class="comment">//用来确保不会有一个意外的高亮</span></span><br><span class="line"></span><br><span class="line">        button.addTarget(<span class="keyword">self</span>, action: #selector(<span class="type">RatingControl</span>.ratingButtonTapped(<span class="number">_</span>:)), forControlEvents: .<span class="type">TouchDown</span>) <span class="comment">//第二个参数是action是什么效果，第三个参数是针对哪种事件， .TouchDown 指的是『按下去』这个事件</span></span><br><span class="line">        ratingButtons += [button]</span><br><span class="line">        addSubview(button) <span class="comment">//将我创建的「button」添加到屏幕上</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="把-Button-现在的方块外观换成星星"><a href="#把-Button-现在的方块外观换成星星" class="headerlink" title="把 Button 现在的方块外观换成星星"></a>把 Button 现在的方块外观换成星星</h2><p>在这，你需要两个星星的图标，一个空心的，一个实心的，自己画一个或者去下载吧，记得两种星星要能重合。</p>
+<p>###把图片加入到你的项目里<br>获得这两个星星的图片后，把它们放到 Assets.xcassets 中去，并分别起名为：emptyStar 和 filledStar<br>并且把他们拖到 “2x”这个地方来，这个大小比较适合 iphone 5s 和 6s 的尺寸。<br>为了看上去更整齐，在Assets.xcassets的列表中，右击，选择 New Floder ，并且给这个文件夹命名为 “Rating image”，然后把两个星星图标都拖进去。</p>
+<h2 id="把星星图标用于-button"><a href="#把星星图标用于-button" class="headerlink" title="把星星图标用于 button"></a>把星星图标用于 button</h2><p>在 <code>RatingControl.swift</code> 文件的 <code>init？(coder:){}</code> 方法中，加入两行代码：<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> filledStarImage = <span class="type">UIImage</span>(named: <span class="string">"filledStar"</span>)</span><br><span class="line"><span class="keyword">let</span> emptyStarImage = <span class="type">UIImage</span>(named: <span class="string">"emptyStar"</span>)</span><br></pre></td></tr></table></figure></p>
+<p>然后加 for-in 循环中加入下列代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">button.setImage(emptyStarImage, forState: .Normal)</span><br><span class="line">button.setImage(filledStarImage, forState: .Selected)</span><br><span class="line">button.setImage(filledStarImage, forState: [.Highlighted, .Selected])</span><br></pre></td></tr></table></figure></p>
+<p>并删掉下面这行之前我们用来给按钮赋予颜色的代码：<br><code>button.backgroundColor = UIColor.blueColor()</code><br>然后增加一行代码确保不会出现意料之外的高亮效果：<br><code>button.adjustsImageWhenHighlighted = false</code><br>现在，<code>init?(coder:){}</code> 方法是这个样子的：<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"> <span class="comment">//MARK :Initialization</span></span><br><span class="line">    <span class="keyword">required</span> <span class="keyword">init</span>?(coder aDecoder: <span class="type">NSCoder</span>) &#123;</span><br><span class="line">        <span class="keyword">super</span>.<span class="keyword">init</span>(coder: aDecoder)</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">let</span> filledStarImage = <span class="type">UIImage</span>(named: <span class="string">"filledStar"</span>)</span><br><span class="line">        <span class="keyword">let</span> emptyStarImage = <span class="type">UIImage</span>(named: <span class="string">"emptyStar"</span>)</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span> <span class="number">_</span> <span class="keyword">in</span> <span class="number">0</span> ..&lt; stars &#123;</span><br><span class="line">            <span class="keyword">let</span> button = <span class="type">UIButton</span>()</span><br><span class="line">            </span><br><span class="line">            button.setImage(emptyStarImage, forState: .<span class="type">Normal</span>)</span><br><span class="line">            button.setImage(filledStarImage, forState: .<span class="type">Selected</span>)</span><br><span class="line">            button.setImage(filledStarImage, forState: [.<span class="type">Highlighted</span>, .<span class="type">Selected</span>])</span><br><span class="line">            </span><br><span class="line">            button.adjustsImageWhenHighlighted = <span class="literal">false</span>  <span class="comment">//用来确保不会有一个意外的高亮</span></span><br><span class="line"></span><br><span class="line">            button.addTarget(<span class="keyword">self</span>, action: #selector(<span class="type">RatingControl</span>.ratingButtonTapped(<span class="number">_</span>:)), forControlEvents: .<span class="type">TouchDown</span>) <span class="comment">//第二个参数是action是什么效果，第三个参数是针对哪种事件， .TouchDown 指的是『按下去』这个事件</span></span><br><span class="line">            ratingButtons += [button]</span><br><span class="line">            addSubview(button) <span class="comment">//将我创建的「button」添加到屏幕上</span></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">```   </span><br><span class="line">## 执行 <span class="type">Button</span> action 的动作</span><br><span class="line">在` <span class="type">RatingControl</span>.swift`, 找到 `ratingButtonTapped(<span class="number">_</span>:) `方法:</span><br><span class="line">``` swift</span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">ratingButtonTapped</span><span class="params">(button: UIButton)</span></span> &#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"Button pressed 👍"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>然后把 <code>print(&quot;Button pressed 👍&quot;)</code>这行代码换成下列代码：<br><code>rating = ratingButtons.indexOf(button)! + 1</code></p>
+<p>在<code>updateButtonSelectionStates()</code>方法中加一个 <code>for-in</code>循环<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (index, button) <span class="keyword">in</span> ratingButtons.<span class="built_in">enumerate</span>() &#123;</span><br><span class="line">            button.selected = index &lt; rating  <span class="comment">//按钮值小于额定值时，选择按钮的值</span></span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure></p>
+<p>在<code>ratingButtonTapped(_:)</code>方法中的<code>rating = ratingButtons.indexOf(button)! + 1</code>下面，加一行代码<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">ratingButtonTapped</span><span class="params">(button:UIButton)</span></span> &#123;</span><br><span class="line">        rating = ratingButtons.indexOf(button)! + <span class="number">1</span></span><br><span class="line">        </span><br><span class="line">        updateButtonsSelectionStates()</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
+<p>在 <code>layoutSubviews()</code> 方法中的最后, 加上 <code>to updateButtonSelectionStates()</code><br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">override</span> <span class="function"><span class="keyword">func</span> <span class="title">layoutSubviews</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="keyword">let</span> buttonSize = <span class="type">Int</span>(frame.size.height)</span><br><span class="line">    <span class="keyword">var</span> buttonFrame = <span class="type">CGRect</span>(x: <span class="number">0</span>, y: <span class="number">0</span>, width: buttonSize, height: buttonSize)</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//从第二个开始，每个都往后挪 5</span></span><br><span class="line">    <span class="keyword">for</span> (index, button) <span class="keyword">in</span> ratingButtons.<span class="built_in">enumerate</span>() &#123;</span><br><span class="line">        buttonFrame.origin.x = <span class="type">CGFloat</span>(index * (buttonSize + spacing))</span><br><span class="line">        button.frame = buttonFrame</span><br><span class="line">    &#125;</span><br><span class="line">    updateButtonsSelectionStates()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>在 <code>// MARK: Properties</code>部分，找到<br><code>var rating = 0</code><br>把它改成：<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> rating = <span class="number">0</span> &#123;</span><br><span class="line">       <span class="keyword">didSet</span> &#123;</span><br><span class="line">           setNeedsLayout()</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure></p>
+<p>现在你的<code>updateButtonSelectionStates()</code> 方法看上去是这样的：<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">updateButtonSelectionStates</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="keyword">for</span> (index, button) <span class="keyword">in</span> ratingButtons.<span class="built_in">enumerate</span>() &#123;</span><br><span class="line">        button.selected = index &lt; rating<span class="comment">//按钮值小于额定值时，选择按钮的值</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="把代码和视图联系起来"><a href="#把代码和视图联系起来" class="headerlink" title="把代码和视图联系起来"></a>把代码和视图联系起来</h2><p>把 Storyboard 中的按钮部分 通过 control-drag 连接到 ViewController.swift 名字定位 “ratingControl” 类型为”RatingControl”</p>
+<h2 id="调整"><a href="#调整" class="headerlink" title="调整"></a>调整</h2><p>现在可以自由的把你的视图调整一下了，喜欢居中就把 imageView 和 button Label 都在居中一下<br>在 ViewController.swift文件中, 删了<code>setDefaultLabelText(_:)</code>方法<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@IBAction</span> <span class="function"><span class="keyword">func</span> <span class="title">setDefaultLabelText</span><span class="params">(sender: UIButton)</span></span> &#123;</span><br><span class="line">    mealNameLabel.text = <span class="string">"Default Text"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>本部分结束，现在可以运行一下程序啦！<br>这个程序可以从<a href="https://developer.apple.com/sample-code/swift/downloads/Start-Dev-iOS-Apps-05.zip" target="_blank" rel="noopener">这个链接</a>下载到</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/swift/" rel="tag"># swift</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/04/04/『FoodTracker』(二)/" rel="next" title="『FoodTracker』(二)">
+                <i class="fa fa-chevron-left"></i> 『FoodTracker』(二)
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/04/30/积分系统初步认识/" rel="prev" title="积分系统初步认识">
+                积分系统初步认识 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">fengqiyue.cheri</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">76</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">categories</span>
+                
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-name">tags</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/fengqiyue" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:mynameiszhangxu@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一个新的-swift-文件来控制评分部分"><span class="nav-number">1.</span> <span class="nav-text">一个新的.swift 文件来控制评分部分</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#显示自定义视图"><span class="nav-number">2.</span> <span class="nav-text">显示自定义视图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#给视图中增加-Button"><span class="nav-number">3.</span> <span class="nav-text">给视图中增加 Button</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#现在，给-button-加-action"><span class="nav-number">3.1.</span> <span class="nav-text">现在，给 button 加 action</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#添加评分属性"><span class="nav-number">3.2.</span> <span class="nav-text">添加评分属性</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#给星星按钮间距和星星按钮的数量加上属性"><span class="nav-number">4.</span> <span class="nav-text">给星星按钮间距和星星按钮的数量加上属性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#增加属性"><span class="nav-number">4.1.</span> <span class="nav-text">增加属性</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#声明一个常量用于表示星星形状按钮的尺寸"><span class="nav-number">5.</span> <span class="nav-text">声明一个常量用于表示星星形状按钮的尺寸</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#把-Button-现在的方块外观换成星星"><span class="nav-number">6.</span> <span class="nav-text">把 Button 现在的方块外观换成星星</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#把星星图标用于-button"><span class="nav-number">7.</span> <span class="nav-text">把星星图标用于 button</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#把代码和视图联系起来"><span class="nav-number">8.</span> <span class="nav-text">把代码和视图联系起来</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#调整"><span class="nav-number">9.</span> <span class="nav-text">调整</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">fengqiyue.cheri</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
