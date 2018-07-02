@@ -262,6 +262,150 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://cheri.love/2018/01/26/js 获取设备显卡型号/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="fengqiyue.cheri">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="枫祺玥的小客栈">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/01/26/js 获取设备显卡型号/" itemprop="url">js 获取设备显卡型号的方法</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-01-26T11:55:00+08:00">
+                2018-01-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/速记/" itemprop="url" rel="index">
+                    <span itemprop="name">速记</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> canvas = <span class="built_in">document</span>.createElement(<span class="string">'canvas'</span>),</span><br><span class="line">        gl = canvas.getContext(<span class="string">'experimental-webgl'</span>),</span><br><span class="line">        debugInfo = gl.getExtension(<span class="string">'WEBGL_debug_renderer_info'</span>);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">console</span>.log(gl.getParameter(debugInfo.UNMASKED_RENDERER_WEBGL));</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure>
+<p>运行这段代码可以获取显卡的型号:<br>如果你在iOS的设备里运行，会获取到诸如 Apple A9 GPU 之类的信息。而我们知道每一代 iOS 设备的 GPU 型号都是不同的，<br>比如 iPhone 6:A8;<br>    iPhone 6s:A9<br>价值： 通过 GPU 的型号来辨别设备的型号<br>缺点很多，比如很多机型的 GPU 型号都是一致的，不过思路很值得学习</p>
+<p>参考原文：<br><a href="https://segmentfault.com/a/1190000010157682" target="_blank" rel="noopener">思路清奇：通过 JavaScript 获取移动设备的型号</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://cheri.love/2018/01/23/Web Workers 再来一个线程/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -828,6 +972,154 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://cheri.love/2018/01/03/position:sticky/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="fengqiyue.cheri">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="枫祺玥的小客栈">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/01/03/position:sticky/" itemprop="url">粘性定位 position:sticky</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-01-03T11:32:00+08:00">
+                2018-01-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/技术/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><a href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/position" target="_blank" rel="noopener">MND 文档</a><br><code>position:sticky</code>仍是一个实验属性，称之为粘性定位，元素在满足阈值之前表现如 relative ，在跨越阈值后表现为 fixed；<br>该属性必须指定一项条件：<code>top</code> <code>right</code> <code>bottom</code> <code>left</code>作为阈值。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#one &#123; position: sticky; top: 10px; &#125;</span><br></pre></td></tr></table></figure></p>
+<p>上述代码表示：在 viewport 视口距离元素 top 距离大于 10px 时，元素为相对定位；一旦该距离小于 10px 元素将固定在与顶部距离 10px 的位置，直到 viewport 视口回滚到阈值以下。</p>
+<p>注意：</p>
+<pre><code>* 必须指定一个属性，否则将会视为相对定位（relative）：
+* 如果同时设置了 top 和 bottom ，则 top 生效，如果同时设置了 left 和 right ，则 left 生效，
+* 根据实验，再跨越阈值后（即元素表现为 fixed）后，元素和表现 relative 时在文档流中的占据的位置并不会消失
+</code></pre><p>用这个属性可以很容易的实现一些侧边栏随页面滚动时固定的效果，不过要注意浏览器兼容性。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://cheri.love/2018/01/03/粘性定位 position:sticky/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -950,7 +1242,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://cheri.love/2018/01/03/position:sticky/">
+    <link itemprop="mainEntityOfPage" href="http://cheri.love/2017/12/28/High Sierra: bad interpreter/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="fengqiyue.cheri">
@@ -969,7 +1261,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/01/03/position:sticky/" itemprop="url">粘性定位 position:sticky</a></h1>
+                <a class="post-title-link" href="/2017/12/28/High Sierra: bad interpreter/" itemprop="url">High Sierra:bad interpreter</a></h1>
         
 
         <div class="post-meta">
@@ -981,8 +1273,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-01-03T11:32:00+08:00">
-                2018-01-03
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-12-28T16:09:00+08:00">
+                2017-12-28
               </time>
             
 
@@ -1004,8 +1296,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/技术/" itemprop="url" rel="index">
-                    <span itemprop="name">技术</span>
+                  <a href="/categories/速记/" itemprop="url" rel="index">
+                    <span itemprop="name">速记</span>
                   </a>
                 </span>
 
@@ -1043,13 +1335,7 @@
       
         
           
-            <p><a href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/position" target="_blank" rel="noopener">MND 文档</a><br><code>position:sticky</code>仍是一个实验属性，称之为粘性定位，元素在满足阈值之前表现如 relative ，在跨越阈值后表现为 fixed；<br>该属性必须指定一项条件：<code>top</code> <code>right</code> <code>bottom</code> <code>left</code>作为阈值。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#one &#123; position: sticky; top: 10px; &#125;</span><br></pre></td></tr></table></figure></p>
-<p>上述代码表示：在 viewport 视口距离元素 top 距离大于 10px 时，元素为相对定位；一旦该距离小于 10px 元素将固定在与顶部距离 10px 的位置，直到 viewport 视口回滚到阈值以下。</p>
-<p>注意：</p>
-<pre><code>* 必须指定一个属性，否则将会视为相对定位（relative）：
-* 如果同时设置了 top 和 bottom ，则 top 生效，如果同时设置了 left 和 right ，则 left 生效，
-* 根据实验，再跨越阈值后（即元素表现为 fixed）后，元素和表现 relative 时在文档流中的占据的位置并不会消失
-</code></pre><p>用这个属性可以很容易的实现一些侧边栏随页面滚动时固定的效果，不过要注意浏览器兼容性。</p>
+            <p>对于我来说，是 compass 出现了问题，重装一下就好了<br>gem install -n /usr/local/bin compass</p>
 
           
         
@@ -1279,148 +1565,6 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://cheri.love/2017/12/28/High Sierra: bad interpreter/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="fengqiyue.cheri">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="枫祺玥的小客栈">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/12/28/High Sierra: bad interpreter/" itemprop="url">High Sierra:bad interpreter</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-12-28T16:09:00+08:00">
-                2017-12-28
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/速记/" itemprop="url" rel="index">
-                    <span itemprop="name">速记</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>对于我来说，是 compass 出现了问题，重装一下就好了<br>gem install -n /usr/local/bin compass</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://cheri.love/2017/12/19/post发了两次请求/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1551,162 +1695,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://cheri.love/2017/12/19/setTimeout 实现 setInterval/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="fengqiyue.cheri">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="枫祺玥的小客栈">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/12/19/setTimeout 实现 setInterval/" itemprop="url">setTimeout 实现 setInterval</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-12-19T10:42:00+08:00">
-                2017-12-19
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/技术/" itemprop="url" rel="index">
-                    <span itemprop="name">技术</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>原理：定义一个自循环的函数，并用<code>setTimeout</code>启动<br>实现：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> mySetInterval = <span class="function"><span class="keyword">function</span>(<span class="params">f, wait</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">let</span> interval = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        setTimeout(interval, wait)</span><br><span class="line">        f()</span><br><span class="line">    &#125;</span><br><span class="line">    setTimeout(interval, wait)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>优化：可控制循环次数，并能合理抛出错误</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> mySetInterval = <span class="function"><span class="keyword">function</span>(<span class="params">f, wait, count</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">let</span> interval = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(<span class="keyword">typeof</span> count === <span class="string">"undefined"</span> || count-- &gt; <span class="number">0</span>)&#123;<span class="comment">//保证不传入参数 count 也可以运行</span></span><br><span class="line">            setTimeout(interval, wait)</span><br><span class="line">            <span class="keyword">try</span>&#123;</span><br><span class="line">                f()</span><br><span class="line">            &#125; <span class="keyword">catch</span>(e)&#123;</span><br><span class="line">                count = <span class="number">0</span>;</span><br><span class="line">                <span class="keyword">throw</span> e.toString();</span><br><span class="line">            &#125;            </span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    setTimeout(interval, wait)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<hr>
-<p>为什么不直接用 setInterval 原因：</p>
-<ol>
-<li><p>累计效应<br> 每次setTimeout计时到后就会去执行，然后执行一段时间后才会继续setTimeout，中间就多了误差<br>（误差多少与代码执行时间有关）</p>
-<p> 而setInterval则是每次都精确的隔一段时间推入一个事件<br>（但是，事件的实际执行时间不一定就准确，还有可能是这个事件还没执行完毕，下一个事件就来了）</p>
-<p> 如果setInterval代码在（setInterval）再次添加到队列之前还没有完成执行，<br>就会导致定时器代码连续运行好几次，而之间没有间隔。<br>就算正常间隔执行，多个setInterval的代码执行时间可能会比预期小（因为代码执行需要一定时间）</p>
-</li>
-</ol>
-<p>2.譬如像iOS的webview,或者Safari等浏览器中都有一个特点，在滚动的时候是不执行JS的，<br>如果使用了setInterval，会发现在滚动结束后会执行多次由于滚动不执行JS积攒回调，<br>如果回调执行时间过长,就会非常容器造成卡顿问题和一些不可知的错误</p>
-<p>3.把浏览器最小化显示等操作时，setInterval并不是不执行程序，<br>它会把setInterval的回调函数放在队列中，等浏览器窗口再次打开时，一瞬间全部执行时</p>
-<p>简单实现<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">mySetInterval</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        mySetInterval()</span><br><span class="line">    &#125;,<span class="number">1000</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>PS：JS高程中有提到，JS引擎会对setInterval进行优化，如果当前事件队列中有setInterval的回调，不会重复添加。(不过还是有其他问题)</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1757,7 +1745,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">76</span>
+                  <span class="site-state-item-count">77</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -1779,7 +1767,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-count">14</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>

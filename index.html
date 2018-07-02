@@ -262,6 +262,153 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://cheri.love/2018/07/01/停机问题，逻辑数学初探/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="fengqiyue.cheri">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="枫祺玥的小客栈">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/07/01/停机问题，逻辑数学初探/" itemprop="url">停机问题，逻辑数学初探</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-01T21:11:03+08:00">
+                2018-07-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/杂篇/" itemprop="url" rel="index">
+                    <span itemprop="name">杂篇</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>停机问题是逻辑数学中可计算性理论中的一个问题，简单的说，就是判断一个程序能否不陷入死循环的问题；具体可以描述为：是否存在一个方法，对于给定的函数和入参，能判断该函数会执行有限次还是会死循环。</p>
+<p>在往下看之前，不妨凭借经验猜测一下，这样的一个方法是否存在呢，能给出一个证明吗？</p>
+<p>关于为什么会有人提出这样的问题，原因只能是，如果这样的一个判断停机的方法存在的话，那实在是能解决太多问题了。举个例子：对于哥德巴赫猜想（是否任意大于2的偶数都能写作两个质数之和），我们可以设计一个方法：遍历所有的大于2的偶数，然后对于每一个偶数进行判断，如果可以写作两个素数之和，则继续执行，否则就跳出循环。把这个方法用判断停机算法跑一边，如果停机算法说，这个方法只会执行有限次，那我们不就成功证伪了哥德巴赫猜想！</p>
+<p>你可能已经凭经验得出了结果，这样的一个停机算法是不存在的，不知道你有没有想到怎么进行证明，用反证法可以很简洁地证明：</p>
+<p>假设存在一个停机程序 P，对于方法 F，和入参 i 可以判断，H(F, i) 会执行有限次则返回 true ，执行无限次则返回 false<br>我们构造一个新方法 K<br>function K(F){<br>    if( P(F, F) ){<br>        while(1){ console.log( ‘我在无限循环’) } // 单纯的构造一个会无限循环的方法<br>    }else{<br>        return<br>    }<br>}</p>
+<p>你说我们用停机程序P 去运行一下这个 方法K(F),结果是什么呢<br>假如返回了 true ，就说明 K(F) 不是无限循环的，也就是说，P(F,F) 返回了 false；但是P(F,F)返回了 false，就说明了 F 方法是无限循环的，逻辑矛盾<br>假如返回了 false ，就说明 K(F) 是无限循环的，也就是说， P(F,F) 返回 true；同样的，根据定义 P(F,F)返回 true 说明 F 不是一个会无限循环的方法，逻辑矛盾<br>综上所述，停机程序 P 不存在 。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://cheri.love/2018/06/03/css：will-change 属性/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1590,163 +1737,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://cheri.love/2018/03/03/webpack 运行原理/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="fengqiyue.cheri">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="枫祺玥的小客栈">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/03/03/webpack 运行原理/" itemprop="url">webpack 工作思想</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-03-03T17:10:00+08:00">
-                2018-03-03
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/技术/" itemprop="url" rel="index">
-                    <span itemprop="name">技术</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>webpack 作为最流行的打包工具，不好好研究一下真的就是有些落伍啦。</p>
-<h2 id="一句话描述"><a href="#一句话描述" class="headerlink" title="一句话描述"></a>一句话描述</h2><p>webpack是一个打包模块化js的工具，可以通过loader转换文件，通过plugin扩展功能。</p>
-<h2 id="webpack-做了什么"><a href="#webpack-做了什么" class="headerlink" title="webpack 做了什么"></a>webpack 做了什么</h2><p>Webpack 启动后会从 Entry 里配置的 Module 开始递归解析 Entry 依赖的所有 Module。<br>每找到一个 Module 就会根据配置的 Loader 规则去找出对应的转换规则立即对 Module 进行转换后，再解析出当前 Module 依赖的 Module。<br>这些模块会以 Entry 为单位进行分组，一个 Entry 和其所有依赖的 Module 被分到一个组也就是一个 Chunk。最后 Webpack 会把所有的 Chunk 转换成文件输出。<br>在整个流程中 Webpack 会在恰当的时候执行 Plugin 里定义的逻辑。</p>
-<h2 id="核心原理"><a href="#核心原理" class="headerlink" title="核心原理"></a>核心原理</h2><ul>
-<li>一切皆模块：在webpack中，css,html.js，静态资源文件等都可以视作模块；便于管理，利于重复利用；</li>
-<li>按需加载：进行代码分割，实现按需加载。</li>
-</ul>
-<p>##核心概念<br>最核心概念有如下 6 条</p>
-<ul>
-<li>Entry：入口，Webpack 执行构建的第一步将从 Entry 开始，可抽象成输入。</li>
-<li>Module：模块，在 Webpack 里一切皆模块，一个模块对于着一个文件。Webpack 会从配置的 Entry 开始递归找出所有依赖的模块。</li>
-<li>Chunk：代码块，一个 Chunk 由多个模块组合而成。它是为了做代码管理和分割。</li>
-<li>Loader：模块转换器，用于把模块原内容按照需求转换成新内容。</li>
-<li>Plugin：扩展插件，往 Webpack 构建流程中的特定时机注入扩展逻辑来改变构建结果或做你想要的事情。</li>
-<li>Output：输出结果，在 Webpack 经过一系列处理出最终想要的代码后，如何输出它们</li>
-</ul>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1797,7 +1787,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">76</span>
+                  <span class="site-state-item-count">77</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -1819,7 +1809,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-count">14</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>
